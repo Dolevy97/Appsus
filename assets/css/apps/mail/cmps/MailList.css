@@ -1,1 +1,58 @@
- /* mail list */
+/* mail list */
+
+.mails-container {
+    width: 80vw;
+    height: auto;
+
+    background-color: #ffffff;
+    color: #202124;
+
+    font-family: "Google Sans", "Roboto-Regular", RobotoDraft, Helvetica, Arial, sans-serif;
+}
+
+.mail-item {
+
+    text-align: start;
+
+    width: auto;
+    height: 20px;
+
+    line-height: 1.25em;
+    padding-block: 10px;
+    background: #ffffff;
+    box-shadow: rgba(100, 121, 143, 0.12) 0px -1px 0px 0px inset;
+}
+
+.mail-item.read {
+    background-color: #f2f6fc;
+}
+
+/* .mail-content {
+    width: ;
+} */
+
+.mail-from {
+    width: 168px;
+    padding-inline-end: 32px;
+}
+
+.mail-sent-at {
+    width: 56px;
+    font-size: 0.75em;
+    margin-inline-start: 20px;
+    padding-inline-end: 16px;
+    text-align: right;
+}
+
+
+/* Read Mail */
+
+.mail-item.read .mail-subject,
+.mail-item.read .mail-from,
+.mail-item.read .mail-sent-at {
+    font-weight: 700;
+}
+
+.mail-item.read .mail-sent-at {
+    color: #5f6368;
+}
