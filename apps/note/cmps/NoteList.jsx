@@ -6,41 +6,49 @@ import { ColorPicker } from "./ColorPicker.jsx"
 const { useState, useEffect, useRef } = React
 
 export function NoteList({ notes, onSelectNoteId, onRemoveNote }) {
-    const [currNotes, setCurrNotes] = useState(notes)
     const [colorPickerNoteId, setColorPickerNoteId] = useState(null)
-    // const [pickedColors, setPickedColors] = useState({})
-
-
+    const [notesState, setNotesState] = useState([])
 
     useEffect(() => {
-        setCurrNotes(notes)
+        setNotesState(notes)
     }, [notes])
 
-
     function onChangeColor(noteId, color) {
-        noteService.get(noteId).then(note => {
-            const newNote = { ...note, style: { backgroundColor: color } }
-            noteService.save(newNote).then(() => {
-                setCurrNotes(prevNotes =>({ ...prevNotes, style: { backgroundColor: color }}))
-                setColorPickerNoteId(null)
-            })
+        const noteToUpdate = notesState.find(note => note.id === noteId)
+        if (!noteToUpdate) return
+
+        const updatedNote = {
+            ...noteToUpdate,
+            style: {
+                ...noteToUpdate.style,
+                backgroundColor: color
+            }
+        }
+
+        noteService.save(updatedNote).then(savedNote => {
+            const updatedNotes = notesState.map(note =>
+                note.id === savedNote.id ? savedNote : note
+            )
+            setNotesState(updatedNotes)
+        }).catch(error => {
+            console.error('Error saving note:', error)
         })
+        setColorPickerNoteId(null)
     }
-
-
 
     return (
         <section className="note-list-container">
             <ul className="note-list">
-                {notes.map(note => (
+                {notesState.map(note => (
                     <li key={note.id} className="note-item" style={note.style} >
                         <NotePreview note={note} />
 
                         <section className='note-actions'>
                             <button onClick={() => onRemoveNote(note.id)}>Delete</button>
-                            <button >Details</button>
-                            <button onClick={() => setColorPickerNoteId(note.id)}>Colors</button>                    <button >Copy</button>
-                            <button >Send</button>
+                            <button>Details</button>
+                            <button onClick={() => setColorPickerNoteId(note.id)}>Colors</button>
+                            <button>Copy</button>
+                            <button>Send</button>
                         </section>
                         {colorPickerNoteId === note.id && (
                             <ColorPicker onChangeColor={(color) => onChangeColor(note.id, color)} />
@@ -49,6 +57,5 @@ export function NoteList({ notes, onSelectNoteId, onRemoveNote }) {
                 ))}
             </ul>
         </section>
-
     )
 }
