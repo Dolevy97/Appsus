@@ -44,15 +44,27 @@
 }
 
 
-.search-icon {
+.search-icon-note {
     width: 48px;
     height: 48px;
-    margin: 6px;
+    margin: 3px;
 
     text-align: center;
 }
 
 
-.search-icon span {
+.search-icon-note span {
+    line-height: 48px;
+}
+
+.filter-icon{
+    width: 24px;
+    height: 48px;
+    margin: 3px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.filter-icon span {
     line-height: 48px;
 }
