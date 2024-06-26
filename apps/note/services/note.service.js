@@ -1,44 +1,76 @@
-// note service
+import { storageService } from '../../../services/async-storage.service.js';
+import { utilService } from '../../../services/util.service.js';
+import { localStorageService } from '../../../services/storage.service.js';
 
-import { storageService } from '../../../services/async-storage.service.js'
-import { utilService } from '../../../services/util.service.js'
-import { localStorageService } from '../../../services/storage.service.js'
+let gDummyNotes;
+const NOTES_KEY = 'noteDB';
 
-let gDummyNotes
-const NOTES_KEY = 'noteDB'
-_createNotes()
+// Initialize notes if not already in localStorage
+_createNotes();
 
 export const noteService = {
     query,
     get,
     remove,
-}
+    getDefaultFilter,
+    save,
+};
 
-
-
-function query() {
+function query(filterBy = {}) {
     return storageService.query(NOTES_KEY)
-    .then(notes => {
-
-        return notes
-    })
+        .then(notes => {
+            if (!notes || !notes.length) {
+                notes = gDummyNotes;
+                _saveNotesToStorage();
+            }
+            
+            // Filter by type
+            if (filterBy.type) {
+                const regExp = new RegExp(filterBy.type, "i");
+                notes = notes.filter((note) => regExp.test(note.type));
+            }
+            
+            // Filter by text
+            if (filterBy.text) {
+                const regExp = new RegExp(filterBy.text, "i");
+                notes = notes.filter((note) => regExp.test(note.info.txt));
+            }
+            
+            return notes;
+        });
 }
-
 
 function get(noteId) {
-    return storageService.get(NOTES_KEY, noteId)
+    return storageService.get(NOTES_KEY, noteId);
 }
 
 function remove(noteId) {
-    return storageService.remove(NOTES_KEY, noteId)
+    return storageService.remove(NOTES_KEY, noteId);
 }
 
+function getDefaultFilter() {
+    return { text: '', type: '' };
+}
+
+function save(note) {
+    if (note.id) {
+        return storageService.put(NOTES_KEY, note);
+    } else {
+        // note.id = utilService.makeId();
+        // note.createdAt = Date.now();
+        return storageService.post(NOTES_KEY, note);
+    }
+}
+
+function _saveNotesToStorage() {
+    storageService.save(NOTES_KEY, gDummyNotes);
+}
 
 function _createNotes() {
-     gDummyNotes = localStorageService.loadFromStorage(NOTES_KEY)
+    gDummyNotes = localStorageService.loadFromStorage(NOTES_KEY);
     if (!gDummyNotes || !gDummyNotes.length) {
         gDummyNotes = [
-            //text
+            // text notes
             {
                 id: 'n101',
                 createdAt: 1112222,
@@ -87,7 +119,7 @@ function _createNotes() {
                     txt: 'Fullstack It!'
                 }
             },
-            //imgs
+            // image notes
             {
                 id: 'n105',
                 createdAt: 1112223,
@@ -101,7 +133,7 @@ function _createNotes() {
                     backgroundColor: '#00d'
                 }
             },
-            //todos
+            // todos notes
             {
                 id: 'n106',
                 createdAt: 1112224,
@@ -116,6 +148,6 @@ function _createNotes() {
                 }
             }
         ]
-        localStorageService.saveToStorage(NOTES_KEY, gDummyNotes)
+        localStorageService.saveToStorage(NOTES_KEY, gDummyNotes);
     }
 }

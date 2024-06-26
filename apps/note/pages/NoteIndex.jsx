@@ -13,13 +13,26 @@ const { useState, useEffect, useRef } = React
 
 
 export function NoteIndex() {
-
+    
     const [notes, setNotes] = useState([])
+    const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
+
+
 
 
     useEffect(() => {
-        noteService.query().then(notes => { setNotes(notes) })
-    }, [])
+        loadNotes()
+    }, [filterBy])
+
+
+    function loadNotes() {
+        noteService.query(filterBy)
+            .then(notes => setNotes(notes))
+            .catch(err => {
+                console.log('err:', err)
+            })
+    }
+
 
 
     function onSelectNoteId(noteId) {
@@ -31,6 +44,9 @@ export function NoteIndex() {
         })
     }
 
+    function onSetFilter(filterBy) {
+        setFilterBy({ ...filterBy })
+    }
 
 
     if (!notes) return <div>Loading...</div>
@@ -38,7 +54,7 @@ export function NoteIndex() {
     return (
         <section className='note-index'>
             <React.Fragment>
-                <NoteFilter/>
+                <NoteFilter filterBy={filterBy} onSetFilter={onSetFilter}/>
                 <AddNote/>
                     <NoteList
                         notes={notes}
