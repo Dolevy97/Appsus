@@ -6,6 +6,7 @@ const { useState, useEffect } = React
 export function MailPreview({ mail, getFormattedTime }) {
     const [isStarred, setIsStarred] = useState(mail.isStarred)
     const [isRemovedAt, setIsRemovedAt] = useState(mail.removedAt)
+    const [isRead, setIsRead] = useState(mail.isRead)
     const navigate = useNavigate()
 
     function onSetStar(ev) {
@@ -25,6 +26,14 @@ export function MailPreview({ mail, getFormattedTime }) {
             .catch(err => console.log('Oh no! err:', err))
     }
 
+    function onUpdateRead(ev) {
+        ev.stopPropagation()
+        const newMail = { ...mail, isRead: !isRead }
+        mailService.save(newMail)
+            .then(setIsRead(!isRead))
+            .catch(err => console.log('Oh no! err:', err))
+    }
+
 
     function moveToMail(mailId) {
         navigate(`/mail/${mailId}`)
@@ -38,6 +47,7 @@ export function MailPreview({ mail, getFormattedTime }) {
                 }
             })
     }
+
 
     if (isRemovedAt !== null) {
         return null;
@@ -57,7 +67,8 @@ export function MailPreview({ mail, getFormattedTime }) {
             </section>
             <span className="mail-sent-at">{getFormattedTime(mail.sentAt)}</span>
             <div className="hover-icons">
-                <span onClick={onDeleteMail} className="material-symbols-outlined">delete</span>
+                <span onClick={onDeleteMail} className="material-symbols-outlined hover-icon">delete</span>
+                <span onClick={onUpdateRead} className="material-symbols-outlined hover-icon">{isRead ? "mark_email_unread" : "mark_email_read"}</span>
             </div>
         </div>
     )
