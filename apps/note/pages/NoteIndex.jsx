@@ -16,8 +16,7 @@ export function NoteIndex() {
 
 
     useEffect(() => {
-        const notesFromTest = noteService.noteTest()
-        setNotes(notesFromTest)
+        noteService.query().then(notes => {console.log(notes)})
     }, [])
 
 
