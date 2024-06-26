@@ -1,6 +1,6 @@
 import { mailService } from "../services/mail.service.js"
 
-const { useParams, Link } = ReactRouterDOM
+const { useParams, Link} = ReactRouterDOM
 const { useEffect, useState, useRef } = React
 
 export function MailDetails() {
@@ -28,7 +28,9 @@ export function MailDetails() {
 
     return (
         <section className="mail-details-container">
-            <Link to="/mail"><button className="btn-back"><span className="material-symbols-outlined">arrow_back</span></button></Link>
+            <Link to="/mail"><button className="btn-back">
+                <span className="material-symbols-outlined">arrow_back</span>
+            </button></Link>
             <section className="mail-details-header">
                 <div className="header-left">
                     <h3 className="mail-details-subject">{mail.subject}</h3>
@@ -37,7 +39,6 @@ export function MailDetails() {
                 </div>
                 <div className="header-right">
                     {getFormattedTime(`${mail.sentAt}`)}
-
                 </div>
             </section>
             {mail.body}

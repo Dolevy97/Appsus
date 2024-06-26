@@ -3,12 +3,6 @@ const { Link, NavLink, useNavigate } = ReactRouterDOM
 
 export function MailList({ mails }) {
 
-    const navigate = useNavigate()
-
-    function moveToMail(mailId) {
-        navigate(`/mail/${mailId}`)
-    }
-
     function getFormattedTime(time) {
         const date = new Date(time * 1000)
         const today = Math.floor(Date.now() / 1000)
@@ -23,7 +17,7 @@ export function MailList({ mails }) {
     return (
         <section className="mails-container">
             {mails.map(mail =>
-                <div onClick={() => moveToMail(mail.id)} className={`flex space-between mail-item ${mail.isRead ? 'read' : ''}`} key={mail.id}>
+                <div className={`flex space-between mail-item ${mail.isRead ? 'read' : ''}`} key={mail.id}>
                     <MailPreview mail={mail} getFormattedTime={getFormattedTime} />
                 </div>
             )}
