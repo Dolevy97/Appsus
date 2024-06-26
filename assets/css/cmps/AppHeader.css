@@ -1,6 +1,7 @@
 header {
     background: lightcyan;
     border-bottom: 2px solid white;
+    font-family: "WorkSans-Regular", sans-serif;
 }
 
 .app-header {
