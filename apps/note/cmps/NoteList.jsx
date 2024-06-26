@@ -9,7 +9,7 @@ export function NoteList({ notes ,onSelectNoteId, onRemoveNote}) {
 
 
     return (
-<section >
+<section className = "note-list-container">
         <ul className = "note-list">
             {notes.map(note => (
                 <li key={note.id}>
@@ -17,7 +17,7 @@ export function NoteList({ notes ,onSelectNoteId, onRemoveNote}) {
                  
                     <section>
                     <button onClick={() => onRemoveNote(note.id)}>Delete</button>
-                    <button onClick={() => onSelectNoteId(note.id)}>Details</button>
+                    <button >Details</button>
                     </section>
                 </li>
             ))}
