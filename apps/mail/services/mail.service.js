@@ -64,6 +64,7 @@ function _createMail(id, sentAt = Math.floor(Date.now() / 1000), isRead = false)
         subject: 'Miss you!',
         body: 'Would love to catch up sometimes',
         isRead,
+        isStarred: false,
         sentAt,
         removedAt: null,
         from: 'momo@momo.com',
