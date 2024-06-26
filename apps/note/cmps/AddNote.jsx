@@ -1,15 +1,19 @@
 
 
 const { useNavigate, useParams, useSearchParams } = ReactRouterDOM
-const { useState, useEffect } = React
+const { useState, useEffect,useRef } = React
 
 import { eventBusService } from '../../../services/event-bus.service.js'
 import { noteService } from "../services/note.service.js"
 
 
-export function AddNote(){
-    const [noteToEdit, setNoteToEdit] = useState(noteService .getEmptyNote())
-    const navigate = useNavigate()
+export function AddNote() {
+    const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
+    // const inputRef = useRef()
+
+
+/////לא שולח ללוד ולא מעביר לאפקט
+
     const { noteId } = useParams()
 
 
@@ -26,9 +30,8 @@ export function AddNote(){
 
     function onSaveNote(ev) {
         ev.preventDefault()
-        noteService .save(noteToEdit)
+        noteService.save(noteToEdit)
             .then((note) => {
-                navigate('/note')
                 console.log('Note saved successfully:', note)
                 window.location.reload()
             })
@@ -60,21 +63,21 @@ export function AddNote(){
 
     const { title } = noteToEdit
 
-return(
-    <section className="add-note-container">
-         <form onSubmit={onSaveNote}>
-    <label htmlFor="byText"></label>
-    <input
-        type="text"
-        id="byText"
-        name="title"
-        className="input add-note-input"
-        placeholder="Take a note"
-        onChange={handleChange} value={title}
-    />
-    <button type="submit">Save</button>
-    </form>
-</section>
-)
+    return (
+        <section className="add-note-container">
+            <form onSubmit={onSaveNote}>
+                <label htmlFor="byText"></label>
+                <input
+                    type="text"
+                    id="byText"
+                    name="title"
+                    className="input add-note-input"
+                    placeholder="Take a note"
+                    onChange={handleChange} value={title}
+                />
+                <button type="submit">Save</button>
+            </form>
+        </section>
+    )
 
 }

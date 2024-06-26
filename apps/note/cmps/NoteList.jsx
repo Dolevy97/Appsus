@@ -40,22 +40,27 @@ export function NoteList({ notes, onSelectNoteId, onRemoveNote }) {
         <section className="note-list-container">
             <ul className="note-list">
                 {notesState.map(note => (
-                    <li key={note.id} className="note-item" style={note.style} >
+                    <li key={note.id} className="note-item" style={note.style}>
                         <NotePreview note={note} />
-
-                        <section className='note-actions'>
-                            <button onClick={() => onRemoveNote(note.id)}>Delete</button>
-                            <button>Details</button>
-                            <button onClick={() => setColorPickerNoteId(note.id)}>Colors</button>
-                            <button>Copy</button>
-                            <button>Send</button>
-                        </section>
-                        {colorPickerNoteId === note.id && (
-                            <ColorPicker onChangeColor={(color) => onChangeColor(note.id, color)} />
-                        )}
-                    </li>
-                ))}
-            </ul>
-        </section>
+                        <div className ="icones-display">
+                            <div className="pin-icon">
+                                <span className="material-symbols-outlined">keep</span>
+                            </div>
+                            <section className="note-actions">
+                                <div className="other-icons">
+                                    <span onClick={() => setColorPickerNoteId(note.id)} className="material-symbols-outlined">palette</span>
+                                    <span onClick={() => onRemoveNote(note.id)} className="material-symbols-outlined">delete</span>
+                                    <span className="material-symbols-outlined">content_copy</span>
+                                    <span className="material-symbols-outlined">mail</span>
+                                </div>
+                    </section>
+                        </div>
+                    { colorPickerNoteId === note.id && (
+                        <ColorPicker onChangeColor={(color) => onChangeColor(note.id, color)} />
+                    )}
+            </li>
+            ))}
+        </ul>
+    </section >
     )
 }
