@@ -20,7 +20,6 @@ export function NoteList({ notes ,onSelectNoteId, onRemoveNote}) {
                     <button >Details</button>
                     <button >Colors</button>
                     <button >Copy</button>
-                    <button >Delete</button>
                     <button >Send</button>
                     </section>
                 </li>
