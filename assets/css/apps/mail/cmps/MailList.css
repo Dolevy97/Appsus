@@ -42,6 +42,7 @@
 .mail-star {
     color: #C3C4C3;
     position: relative;
+    margin-inline: 10px;
     transition: text-shadow .3s;
 }
 

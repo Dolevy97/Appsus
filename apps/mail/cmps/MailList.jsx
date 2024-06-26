@@ -2,7 +2,6 @@ import { MailPreview } from "./MailPreview.jsx"
 
 
 export function MailList({ mails }) {
-    console.log(mails)
 
     function getFormattedTime(time) {
         const date = new Date(time * 1000)

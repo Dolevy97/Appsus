@@ -1,9 +1,42 @@
 .filter-container {
+    display: flex;
+    justify-content: start;
+    align-items: center;
 
-
+    width: 60vw;
     max-width: 720px;
     height: 48px;
 
+    margin: auto;
     background-color: #eaf1fb;
     border-radius: 24px;
+}
+
+.filter-container:focus-within {
+    background-color: #fff;
+    box-shadow: 0px 1px 2px #c1c3c6;
+}
+
+.search-icon {
+    width: 48px;
+    height: 48px;
+    margin: 6px;
+
+    text-align: center;
+}
+
+.search-icon span {
+    line-height: 48px;
+}
+
+.filter-input {
+    line-height: 1em;
+    font-size: 1em;
+    background-color: inherit;
+    border: none;
+}
+
+.filter-input:focus-visible,
+.filter-input:focus {
+    outline: none;
 }
