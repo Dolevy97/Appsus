@@ -16,20 +16,31 @@ export function NoteIndex() {
 
 
     useEffect(() => {
-        noteService.query().then(notes => {console.log(notes)})
+        noteService.query().then(notes => {setNotes(notes)})
     }, [])
 
+
+    function onSelectNoteId(noteId) {
+        setSelectedBookId(noteId)
+    }
+    function onRemoveNote(noteId) {
+        noteService.remove(noteId).then(() => {
+            setNotes((prevNotes) => prevNotes.filter((note) => note.id !== noteId))
+        })
+    }
 
 
 
     if (!notes) return <div>Loading...</div>
 
     return (
-        <section className='book-index'>
+        <section className='note-index'>
 
 <h1>Note List</h1>
         <NoteList
-            notes={notes} />
+            notes={notes} 
+            onRemoveNote={onRemoveNote}
+            onSelectNoteId={onSelectNoteId}/>
     </section>
         
     )

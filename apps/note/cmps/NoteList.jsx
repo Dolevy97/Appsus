@@ -3,7 +3,7 @@ import { NotePreview } from "../cmps/NotePreview.jsx";
 
 
 
-export function NoteList({ notes }) {
+export function NoteList({ notes ,onSelectNoteId, onRemoveNote}) {
 
 
 
@@ -16,8 +16,8 @@ export function NoteList({ notes }) {
                     <NotePreview note={note} />
                  
                     <section>
-                        <button >Remove</button>
-                        <button >Details</button>
+                    <button onClick={() => onRemoveNote(note.id)}>Delete</button>
+                    <button onClick={() => onSelectNoteId(note.id)}>Details</button>
                     </section>
                 </li>
             ))}
