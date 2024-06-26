@@ -45,10 +45,9 @@
 
 
 .search-icon-note {
-    width: 48px;
+    width: 30px;
     height: 48px;
     margin: 3px;
-
     text-align: center;
 }
 
@@ -60,7 +59,7 @@
 .filter-icon{
     width: 24px;
     height: 48px;
-    margin: 3px;
+    margin-right: 3px;
     text-align: center;
     cursor: pointer;
 }
