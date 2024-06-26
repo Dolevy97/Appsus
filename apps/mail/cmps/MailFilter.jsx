@@ -1,4 +1,3 @@
-
 export function MailFilter({ setFilterBy }) {
 
     function handleChange({ target }) {

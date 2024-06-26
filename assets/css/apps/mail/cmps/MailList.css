@@ -4,10 +4,10 @@
     width: 80vw;
     height: auto;
 
-    margin: auto;
+    margin: .5em auto;
     background-color: #ffffff;
     color: #202124;
-
+    border-radius: 10px;
 }
 
 .mail-item {
@@ -15,10 +15,18 @@
     height: 20px;
     
     font-size: 0.875em;
-    line-height: 1.25em;
-    padding-block: 10px;
+    line-height: 1.5em;
+    padding: 10px;
     background: #ffffff;
     box-shadow: rgba(100, 121, 143, 0.12) 0px -1px 0px 0px inset;
+}
+
+.mail-item:first-of-type {
+    border-radius: 5px 5px 0 0;
+}
+
+.mail-item:last-of-type {
+    border-radius: 0 0 5px 5px;
 }
 
 .mail-subject,
@@ -84,8 +92,8 @@
 
 .mail-sent-at {
     margin-left: auto;
-
-    width: 56px;
+    
+    min-width: 56px;
     font-size: 0.75em;
     margin-inline-start: 20px;
     padding-inline-end: 16px;

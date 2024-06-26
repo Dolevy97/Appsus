@@ -23,6 +23,7 @@
 /* Mails */
 /* Pages */
 @import './apps/mail/pages/MailIndex.css';
+@import './apps/mail/pages/MailDetails.css';
 
 /* Cmps */
 
