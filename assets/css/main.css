@@ -21,12 +21,16 @@
 
 
 /* Mails */
+/* Pages */
 @import './apps/mail/pages/MailIndex.css';
+
+/* Cmps */
+
 @import './apps/mail/cmps/MailList.css';
+@import './apps/mail/cmps/MailHeader.css';
+@import './apps/mail/cmps/MailFilter.css';
 
 /* Cmps */
 
 @import './cmps/UserMsg.css';
 @import './cmps/AppHeader.css';
-
-/* @import './apps/mail/cmps/MailList.css'; */

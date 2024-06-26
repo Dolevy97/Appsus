@@ -1,5 +1,9 @@
 
 export function MailFilter() {
-    return <div>mail filter</div>
+    return (
+        <section className="filter-container">
+            <h4>Filter</h4>
+        </section>
+    )
 }
 
