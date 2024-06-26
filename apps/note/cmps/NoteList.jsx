@@ -9,7 +9,7 @@ export function NoteList({ notes ,onSelectNoteId, onRemoveNote}) {
 
 
     return (
-
+<section >
         <ul className = "note-list">
             {notes.map(note => (
                 <li key={note.id}>
@@ -22,7 +22,7 @@ export function NoteList({ notes ,onSelectNoteId, onRemoveNote}) {
                 </li>
             ))}
         </ul>
-
+        </section>
 
     )
 }

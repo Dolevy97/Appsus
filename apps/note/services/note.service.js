@@ -51,9 +51,45 @@ function _createNotes() {
                     txt: 'Fullstack Me Baby!'
                 }
             },
-            //imgs
             {
                 id: 'n102',
+                createdAt: 1112222,
+                type: 'NoteTxt',
+                isPinned: true,
+                style: {
+                    backgroundColor: '#00d'
+                },
+                info: {
+                    txt: 'Fullstack Me Baby!'
+                }
+            },
+            {
+                id: 'n103',
+                createdAt: 1112222,
+                type: 'NoteTxt',
+                isPinned: true,
+                style: {
+                    backgroundColor: '#00d'
+                },
+                info: {
+                    txt: 'Fullstack RN!'
+                }
+            },
+            {
+                id: 'n104',
+                createdAt: 1112222,
+                type: 'NoteTxt',
+                isPinned: true,
+                style: {
+                    backgroundColor: '#00d'
+                },
+                info: {
+                    txt: 'Fullstack It!'
+                }
+            },
+            //imgs
+            {
+                id: 'n105',
                 createdAt: 1112223,
                 type: 'NoteImg',
                 isPinned: false,
@@ -67,7 +103,7 @@ function _createNotes() {
             },
             //todos
             {
-                id: 'n103',
+                id: 'n106',
                 createdAt: 1112224,
                 type: 'NoteTodos',
                 isPinned: false,

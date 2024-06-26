@@ -1,9 +1,10 @@
 
 import { noteService } from "../services/note.service.js"
 import { NoteList } from "../cmps/NoteList.jsx";
+import { NoteFilter } from "../cmps/NoteFilter.jsx";
 
 
-const { Link ,useSearchParams} = ReactRouterDOM
+const { Link, useSearchParams } = ReactRouterDOM
 const { useState, useEffect, useRef } = React
 
 
@@ -16,7 +17,7 @@ export function NoteIndex() {
 
 
     useEffect(() => {
-        noteService.query().then(notes => {setNotes(notes)})
+        noteService.query().then(notes => { setNotes(notes) })
     }, [])
 
 
@@ -35,13 +36,14 @@ export function NoteIndex() {
 
     return (
         <section className='note-index'>
+            <React.Fragment>
+                <NoteFilter/>
+                    <NoteList
+                        notes={notes}
+                        onRemoveNote={onRemoveNote}
+                        onSelectNoteId={onSelectNoteId} />
+            </React.Fragment>
+        </section>
 
-<h1>Note List</h1>
-        <NoteList
-            notes={notes} 
-            onRemoveNote={onRemoveNote}
-            onSelectNoteId={onSelectNoteId}/>
-    </section>
-        
     )
 }
