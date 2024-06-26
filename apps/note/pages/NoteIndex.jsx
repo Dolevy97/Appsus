@@ -51,7 +51,7 @@ export function NoteIndex() {
     }
 
 
-    if (!notes) return <div>Loading...</div>
+    if (!notes) return <div className ="loader-container"><div className="loader"></div> </div>
 
     return (
         <section className='note-index'>

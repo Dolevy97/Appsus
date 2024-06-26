@@ -15,17 +15,20 @@ export function AddNote() {
 /////לא שולח ללוד ולא מעביר לאפקט
 
     const { noteId } = useParams()
+    
+        function loadNote() {
+            noteService.get(noteId)
+                .then(setNoteToEdit)
+                .catch(err => console.log('err:', err))
+        }
 
 
+        //sec test
     useEffect(() => {
-        if (noteId) loadNote()
-    }, [noteId])
-
-    function loadNote() {
-        noteService.get(noteId)
-            .then(setNoteToEdit)
-            .catch(err => console.log('err:', err))
-    }
+        if(noteToEdit) {
+            setNoteToEdit(noteToEdit)
+        }
+      }, [noteToEdit])
 
 
     function onSaveNote(ev) {

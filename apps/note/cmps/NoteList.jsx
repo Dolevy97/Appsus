@@ -44,14 +44,14 @@ export function NoteList({ notes, onSelectNoteId, onRemoveNote }) {
                         <NotePreview note={note} />
                         <div className ="icones-display">
                             <div className="pin-icon">
-                                <span className="material-symbols-outlined">keep</span>
+                                <span className="material-symbols-outlined icone-hover">keep</span>
                             </div>
                             <section className="note-actions">
                                 <div className="other-icons">
-                                    <span onClick={() => setColorPickerNoteId(note.id)} className="material-symbols-outlined">palette</span>
-                                    <span onClick={() => onRemoveNote(note.id)} className="material-symbols-outlined">delete</span>
-                                    <span className="material-symbols-outlined">content_copy</span>
-                                    <span className="material-symbols-outlined">mail</span>
+                                    <span onClick={() => setColorPickerNoteId(note.id)} className="material-symbols-outlined icone-hover">palette</span>
+                                    <span onClick={() => onRemoveNote(note.id)} className="material-symbols-outlined icone-hover">delete</span>
+                                    <span className="material-symbols-outlined icone-hover ">content_copy</span>
+                                    <span className="material-symbols-outlined icone-hover">mail</span>
                                 </div>
                     </section>
                         </div>
