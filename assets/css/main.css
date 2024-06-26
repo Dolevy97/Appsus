@@ -14,6 +14,11 @@
 /* Apps */
 
 /* Notes */
+@import './apps/note/pages/NoteIndex.css';
+@import './apps/note/cmps/NoteFilter.css';
+@import './apps/note/cmps/NoteList.css';
+
+
 
 /* Mails */
 /* Pages */

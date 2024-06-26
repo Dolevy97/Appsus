@@ -1,0 +1,30 @@
+.note-filter-container {
+    margin-block-start: 1em;
+    text-align: center;
+}
+
+.note-filter-input {
+    width: 350px;
+    padding: 10px;
+    color: #202124;
+    background-color: #ffffff;
+    border: 1px solid #202124;
+    border-radius: 8px;
+
+    -webkit-box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.41);
+    -moz-box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.41);
+    box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.41);
+
+}
+
+.note-filter-input::placeholder {
+    color: #202124;
+    opacity: 1;
+    width: auto;
+}
+
+.note-filter-input:focus {
+
+    outline: none;
+
+}
