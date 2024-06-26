@@ -20,5 +20,5 @@ nav a:active {
 nav a.active {
     color: darkblue;
     font-weight: bold;
-    text-decoration: overline;
+    text-decoration: underline;
 }
