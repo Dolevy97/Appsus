@@ -1,12 +1,12 @@
-import { storageService } from '../../../services/async-storage.service.js';
-import { utilService } from '../../../services/util.service.js';
-import { localStorageService } from '../../../services/storage.service.js';
+import { storageService } from '../../../services/async-storage.service.js'
+import { utilService } from '../../../services/util.service.js'
+import { localStorageService } from '../../../services/storage.service.js'
 
-let gDummyNotes;
-const NOTES_KEY = 'noteDB';
+let gDummyNotes
+const NOTES_KEY = 'noteDB'
 
 // Initialize notes if not already in localStorage
-_createNotes();
+_createNotes()
 
 export const noteService = {
     query,
@@ -14,60 +14,73 @@ export const noteService = {
     remove,
     getDefaultFilter,
     save,
-};
+}
 
 function query(filterBy = {}) {
     return storageService.query(NOTES_KEY)
         .then(notes => {
             if (!notes || !notes.length) {
-                notes = gDummyNotes;
-                _saveNotesToStorage();
+                notes = gDummyNotes
+                _saveNotesToStorage()
             }
             
             // Filter by type
             if (filterBy.type) {
-                const regExp = new RegExp(filterBy.type, "i");
-                notes = notes.filter((note) => regExp.test(note.type));
+                const regExp = new RegExp(filterBy.type, "i")
+                notes = notes.filter((note) => regExp.test(note.type))
             }
             
             // Filter by text
             if (filterBy.text) {
-                const regExp = new RegExp(filterBy.text, "i");
-                notes = notes.filter((note) => regExp.test(note.info.txt));
+                const regExp = new RegExp(filterBy.text, "i")
+                notes = notes.filter((note) => regExp.test(note.info.txt))
             }
             
-            return notes;
-        });
+            return notes
+        })
 }
 
 function get(noteId) {
-    return storageService.get(NOTES_KEY, noteId);
+    return storageService.get(NOTES_KEY, noteId)
 }
 
 function remove(noteId) {
-    return storageService.remove(NOTES_KEY, noteId);
+    return storageService.remove(NOTES_KEY, noteId)
 }
 
 function getDefaultFilter() {
-    return { text: '', type: '' };
+    return { text: '', type: '' }
 }
 
 function save(note) {
     if (note.id) {
-        return storageService.put(NOTES_KEY, note);
+        return storageService.put(NOTES_KEY, note)
     } else {
-        // note.id = utilService.makeId();
-        // note.createdAt = Date.now();
-        return storageService.post(NOTES_KEY, note);
+        // note.id = utilService.makeId()
+        // note.createdAt = Date.now()
+        return storageService.post(NOTES_KEY, note)
     }
 }
 
 function _saveNotesToStorage() {
-    storageService.save(NOTES_KEY, gDummyNotes);
+    storageService.save(NOTES_KEY, gDummyNotes)
 }
 
+
+// function getEmptyNote(type, title = '') {
+//     const note = {
+//       id: '',
+//       info: { title },
+//       isPinned: false,
+//       style: { backgroundColor: 'white' },
+//       type,
+//     }
+// }
+
+
+
 function _createNotes() {
-    gDummyNotes = localStorageService.loadFromStorage(NOTES_KEY);
+    gDummyNotes = localStorageService.loadFromStorage(NOTES_KEY)
     if (!gDummyNotes || !gDummyNotes.length) {
         gDummyNotes = [
             // text notes
@@ -77,7 +90,7 @@ function _createNotes() {
                 type: 'NoteTxt',
                 isPinned: true,
                 style: {
-                    backgroundColor: '#00d'
+                    backgroundColor: '#f6e2dd'
                 },
                 info: {
                     txt: 'Fullstack Me Baby!'
@@ -89,7 +102,7 @@ function _createNotes() {
                 type: 'NoteTxt',
                 isPinned: true,
                 style: {
-                    backgroundColor: '#00d'
+                    backgroundColor: '#e2f6d3'
                 },
                 info: {
                     txt: 'Fullstack Me Baby!'
@@ -101,7 +114,7 @@ function _createNotes() {
                 type: 'NoteTxt',
                 isPinned: true,
                 style: {
-                    backgroundColor: '#00d'
+                    backgroundColor: '#f39f76'
                 },
                 info: {
                     txt: 'Fullstack RN!'
@@ -113,7 +126,7 @@ function _createNotes() {
                 type: 'NoteTxt',
                 isPinned: true,
                 style: {
-                    backgroundColor: '#00d'
+                    backgroundColor: '#e9e3d4'
                 },
                 info: {
                     txt: 'Fullstack It!'
@@ -130,7 +143,7 @@ function _createNotes() {
                     title: 'Bobi and Me'
                 },
                 style: {
-                    backgroundColor: '#00d'
+                    backgroundColor: '#f39f76'
                 }
             },
             // todos notes
@@ -148,6 +161,6 @@ function _createNotes() {
                 }
             }
         ]
-        localStorageService.saveToStorage(NOTES_KEY, gDummyNotes);
+        localStorageService.saveToStorage(NOTES_KEY, gDummyNotes)
     }
 }

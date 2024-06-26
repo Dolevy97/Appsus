@@ -19,10 +19,10 @@ export function NoteFilter({ onSetFilter, filterBy }) {
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
       }
     
-      function onFilter(ev) {
-        ev.preventDefault()
-        onSetFilter(filterByToEdit)
-      }
+    //   function onFilter(ev) {
+    //     ev.preventDefault()
+    //     onSetFilter(filterByToEdit)
+    //   }
 
       const {text} = filterByToEdit
 
@@ -37,7 +37,7 @@ export function NoteFilter({ onSetFilter, filterBy }) {
                 value={text}
                 onChange={handleChange}
                 className="input note-filter-input"
-                placeholder="Search by text"
+                placeholder="Search"
             />
         </section>
     );
