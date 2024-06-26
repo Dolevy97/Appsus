@@ -3,7 +3,8 @@ import { MailPreview } from "./MailPreview.jsx"
 
 const { useState, useEffect } = React
 
-export function MailList({ mails }) {
+export function MailList({ mails, setMails }) {
+
 
     function getFormattedTime(time) {
         const date = new Date(time * 1000)
@@ -16,12 +17,25 @@ export function MailList({ mails }) {
         else return new Intl.DateTimeFormat('en-US').format(date)
     }
 
-    // const filteredMails = mails.filter(mail => mail.removedAt === null);
+    function onSetMail(updatedMail) {
+        const updatedMails = mails.map(mail => {
+            if (mail.id === updatedMail.id) {
+                return updatedMail
+            }
+            return mail
+        })
+        setMails(updatedMails)
+    }
 
     return (
         <section className="mails-container">
             {mails.map(mail =>
-                <MailPreview mail={mail} getFormattedTime={getFormattedTime} key={mail.id} />
+                <MailPreview
+                    mail={mail}
+                    getFormattedTime={getFormattedTime}
+                    onSetMail={onSetMail}
+                    key={mail.id}
+                />
 
             )}
         </section >

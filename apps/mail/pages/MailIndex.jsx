@@ -27,6 +27,7 @@ export function MailIndex() {
             <MailHeader setFilterBy={setFilterBy} />
             <MailList
                 mails={mails}
+                setMails={setMails}
             />
         </section>
     )
