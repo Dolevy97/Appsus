@@ -14,6 +14,7 @@ export const noteService = {
     remove,
     getDefaultFilter,
     save,
+    getEmptyNote,
 }
 
 function query(filterBy = {}) {
@@ -56,9 +57,8 @@ function save(note) {
     if (note.id) {
         return storageService.put(NOTES_KEY, note)
     } else {
-        // note.id = utilService.makeId()
-        // note.createdAt = Date.now()
-        return storageService.post(NOTES_KEY, note)
+        const newNote = _createNote(note.title)
+        return storageService.post(NOTES_KEY, newNote)
     }
 }
 
@@ -67,17 +67,25 @@ function _saveNotesToStorage() {
 }
 
 
-// function getEmptyNote(type, title = '') {
-//     const note = {
-//       id: '',
-//       info: { title },
-//       isPinned: false,
-//       style: { backgroundColor: 'white' },
-//       type,
-//     }
-// }
+function getEmptyNote(type, title = '') {
+    return { title, type }
 
+}
 
+function _createNote(title) {
+    return {
+        id: utilService.makeId(5),
+        createdAt: Date.now(),
+        type: 'NoteTxt',
+        isPinned: false,
+        style: {
+            backgroundColor: '#f6e2dd'
+        },
+        info: {
+            txt: title
+        }
+    }
+  }
 
 function _createNotes() {
     gDummyNotes = localStorageService.loadFromStorage(NOTES_KEY)
