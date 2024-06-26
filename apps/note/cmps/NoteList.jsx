@@ -12,12 +12,16 @@ export function NoteList({ notes ,onSelectNoteId, onRemoveNote}) {
 <section className = "note-list-container">
         <ul className = "note-list">
             {notes.map(note => (
-                <li key={note.id}>
+                <li key={note.id} className="note-item" style ={note.style} >
                     <NotePreview note={note} />
                  
-                    <section>
+                    <section className='note-actions'>
                     <button onClick={() => onRemoveNote(note.id)}>Delete</button>
                     <button >Details</button>
+                    <button >Colors</button>
+                    <button >Copy</button>
+                    <button >Delete</button>
+                    <button >Send</button>
                     </section>
                 </li>
             ))}

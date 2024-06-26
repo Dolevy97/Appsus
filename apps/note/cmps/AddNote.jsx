@@ -5,6 +5,7 @@ import { eventBusService } from '../../../services/event-bus.service.js'
 import { noteService } from "../services/note.service.js"
 
 export function AddNote(){
+    // const [notesList, setNotesList] = useState()
 
 
 
@@ -19,7 +20,7 @@ return(
         id="byText"
         name="text"
         className="input add-note-input"
-        placeholder="Search by text"
+        placeholder="Take a note"
     />
 </section>
 )
