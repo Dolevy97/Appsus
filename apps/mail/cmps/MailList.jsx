@@ -1,12 +1,21 @@
+import { mailService } from "../services/mail.service.js"
 import { MailPreview } from "./MailPreview.jsx"
 const { Link, NavLink, useNavigate } = ReactRouterDOM
 
 export function MailList({ mails }) {
 
     const navigate = useNavigate()
-
     function moveToMail(mailId) {
         navigate(`/mail/${mailId}`)
+        mailService.get(mailId)
+            .then(mail => {
+                if (!mail.isRead) {
+                    const newMail = { ...mail, isRead: true }
+                    mailService.save(newMail)
+                        .then()
+                        .catch(err => console.log('Oh no! err:', err))
+                }
+            })
     }
 
     function getFormattedTime(time) {

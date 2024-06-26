@@ -5,11 +5,11 @@ const { useState } = React
 export function MailPreview({ mail, getFormattedTime }) {
     const [isStarred, setIsStarred] = useState(mail.isStarred)
 
-    function onSetStar(mail) {
-        const newStarred = !isStarred
-        const newMail = { ...mail, isStarred: newStarred }
+    function onSetStar(ev) {
+        ev.stopPropagation()
+        const newMail = { ...mail, isStarred: !isStarred }
         mailService.save(newMail)
-            .then(setIsStarred(newStarred))
+            .then(setIsStarred(!isStarred))
             .catch(err => console.log('Oh no! err:', err))
     }
 
@@ -18,7 +18,8 @@ export function MailPreview({ mail, getFormattedTime }) {
     return (
         <React.Fragment>
             <section className="mail-start flex align-center">
-                <span onClick={() => { onSetStar(mail) }} className={`material-symbols-outlined mail-star ${isStar}`}>star</span>
+                <div onClick={(onSetStar)}
+                    className={`material-symbols-outlined mail-star ${isStar}`}>star</div>
                 <span className="mail-from">{mail.from}</span>
             </section>
             <section className="mail-content">
@@ -26,6 +27,9 @@ export function MailPreview({ mail, getFormattedTime }) {
                 <span className="mail-body"> - {mail.body}</span>
             </section>
             <span className="mail-sent-at">{getFormattedTime(mail.sentAt)}</span>
+            <div className="hover-icons">
+                <span className="material-symbols-outlined">delete</span>
+            </div>
         </React.Fragment>
     )
 }

@@ -34,6 +34,7 @@
     font-size: 1em;
     background-color: inherit;
     border: none;
+    width: 35vw;
 }
 
 .filter-input:focus-visible,

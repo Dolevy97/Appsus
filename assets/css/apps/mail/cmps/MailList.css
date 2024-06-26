@@ -13,12 +13,16 @@
 .mail-item {
     width: auto;
     height: 20px;
-    
+
     font-size: 0.875em;
     line-height: 1.5em;
     padding: 10px;
     background: #ffffff;
     box-shadow: rgba(100, 121, 143, 0.12) 0px -1px 0px 0px inset;
+}
+
+.hover-icons {
+    display: none;
 }
 
 .mail-item:first-of-type {
@@ -35,8 +39,16 @@
     font-weight: 700;
 }
 
+/* Mail item hover states */
+
 .mail-item:hover {
+    outline: 1px solid #D5DBE2;
+    box-shadow: 5px 0 1px 1px #D5DBE2 inset;
     cursor: pointer;
+}
+
+.mail-item:hover .mail-sent-at {
+    display: none;
 }
 
 .mail-item:hover .mail-star:not(.star) {
@@ -46,6 +58,12 @@
 .mail-item:hover .mail-star.star {
     color: #d4a117;
 }
+
+.mail-item:hover .hover-icons {
+    display: block;
+}
+
+/* --- */
 
 .mail-star {
     color: #C3C4C3;
@@ -92,14 +110,13 @@
 
 .mail-sent-at {
     margin-left: auto;
-    
+
     min-width: 56px;
     font-size: 0.75em;
     margin-inline-start: 20px;
     padding-inline-end: 16px;
     text-align: right;
 }
-
 
 /* Read Mail */
 
