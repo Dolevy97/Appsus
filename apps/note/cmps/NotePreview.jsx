@@ -8,9 +8,9 @@ export function NotePreview({ note }) {
 
     return (
 
-        <section className = 'note-preview'>
-            <h2>{note.type}</h2>
-            <h2>{note.info.txt}</h2>
+        <section style ={note.style} className='note-preview'>
+            <h3>{note.type}</h3>
+            <p>{note.info.txt}</p>
             {/* <img src={`./assets/imgs/${note.info.url}.jpg`} alt='' /> */}
         </section>
     )
