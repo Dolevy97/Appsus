@@ -4,13 +4,13 @@ import { noteService } from "../services/note.service.js"
 import { eventBusService } from '../../../services/event-bus.service.js'
 
 
-const { Link,useParams} = ReactRouterDOM
+const { Link, useParams } = ReactRouterDOM
 const { useState, useEffect, useRef } = React
 
 
-export function NoteEdit(){
-const {noteId} = useParams()
-const [note, setNote] = useState(null)/// paly with the note 
+export function NoteEdit({setColorPickerNoteId,onRemoveNote,onDuplicateNote}) {
+    const { noteId } = useParams()
+    const [note, setNote] = useState(null)/// paly with the note 
 
     useEffect(() => {
         noteService.get(noteId)
@@ -18,15 +18,30 @@ const [note, setNote] = useState(null)/// paly with the note
     }, [])
 
 
-
-    return(
+    if (!note) return <div className="loader-container"> <div className="loader"></div> </div>
+    return (
         <section className="edit-note">
-        <div className="main-screen"></div>
-        <div className="edit-note-container">
-          <h1>Test</h1>
-          <br />
-          <h2><Link to="/note">X</Link></h2>
-        </div>
-      </section>
+            <h2><Link to="/note"><div className="main-screen"> </div></Link></h2>
+            <div style={note.style} className="edit-note-container">
+                <div >
+                    <h3>{note.type}</h3>
+                    <p>{note.info.txt}</p>
+
+
+                    <div className="pin-icon">
+                        <span className="material-symbols-outlined icone-hover">keep</span>
+                    </div>
+                    <section className="note-actions">
+                        <div className="other-icons">
+                            <span onClick={() => setColorPickerNoteId(note.id)} className="material-symbols-outlined icone-hover">palette</span>
+                            <span onClick={() => onRemoveNote(note.id)} className="material-symbols-outlined icone-hover">delete</span>
+                            <span onClick={() => onDuplicateNote(note)} className="material-symbols-outlined icone-hover">content_copy</span>
+                            <span className="material-symbols-outlined icone-hover">mail</span>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+        </section>
     )
 }

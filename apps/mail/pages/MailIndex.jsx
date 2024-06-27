@@ -16,8 +16,7 @@ export function MailIndex() {
 
     useEffect(() => {
         debounceLoadBooks.current(filterBy, sortBy)
-        console.log(mails)
-    }, [filterBy, sortBy, mails])
+    }, [filterBy, sortBy])
 
     function loadMails(filterBy, sortBy) {
         mailService.query(filterBy, sortBy)
