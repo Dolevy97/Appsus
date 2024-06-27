@@ -63,7 +63,7 @@ export function MailCompose({ setIsAdding, isAdding, onSetMail }) {
             <form onSubmit={onAddMail} className="compose-form-container">
                 <article className="title-container">
                     <p className="input-title">New Message</p>
-                    <span onClick={() => setIsAdding(false)} class="material-symbols-outlined btn-close">close</span>
+                    <span onClick={() => setIsAdding(false)} className="material-symbols-outlined btn-close">close</span>
                 </article>
 
                 <article className="from-container">

@@ -2,21 +2,66 @@
     display: flex;
     align-items: center;
 
-    width: 100%;
     height: 64px;
     background-color: #f6f8fc;
 
 }
 
-.logo-container {
+.logo-menu-container,
+.logo-container,
+.menu-container {
     display: flex;
     align-items: center;
+}
 
-    padding-inline-start: 1em;
+.logo-menu-container {
+    width: 238px;
+    height: 64px;
+    margin: .5em;
+}
+
+.logo-container {
+    width: 109px;
+    height: 44px;
+}
+
+.menu-container {
+    justify-content: center;
+    width: 40px;
+    height: 44px;
+    margin: .25em;
+    text-align: center;
 }
 
 .logo {
     width: 109px;
     height: auto;
     object-fit: contain;
+}
+
+.hamburger-icon {
+    position: relative;
+}
+
+.hamburger-icon:hover {
+    cursor: pointer;
+}
+
+.hamburger-icon::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+
+    border-radius: 50%;
+
+    width: 40px;
+    height: 40px;
+    scale: 0;
+    background-color: rgb(0 0 0 / 0.1);
+    transition: scale .1s;
+}
+
+.hamburger-icon:hover::before {
+    scale: 1;
 }

@@ -1,7 +1,7 @@
 const { useState, useEffect, useRef } = React;
 
 import { utilService } from "../../../services/util.service.js"
-import { MailFolderList } from "../cmps/MailFolderList.jsx";
+import { MailSideBar } from "../cmps/MailSideBar.jsx";
 import { MailHeader } from "../cmps/MailHeader.jsx"
 import { MailList } from "../cmps/MailList.jsx"
 import { MailSorting } from "../cmps/MailSorting.jsx"
@@ -11,6 +11,9 @@ export function MailIndex() {
     const [mails, setMails] = useState(null)
     const [filterBy, setFilterBy] = useState({ status: 'inbox' })
     const [sortBy, setSortBy] = useState()
+    const [isAdding, setIsAdding] = useState(false)
+    const [isOpenSideBar, setIsOpenSideBar] = useState(false)
+
     const debounceLoadBooks = useRef(utilService.debounce(loadMails, 300))
 
 
@@ -33,13 +36,21 @@ export function MailIndex() {
         setSortBy(sort)
     }
 
+    function onOpenSideBar() {
+        setIsOpenSideBar(prev => !prev)
+    }
+
     if (!mails) return <div className="loader-container"> <div className="loader"></div></div>
+
     return (
         <section className="mail-index">
             <MailHeader
                 mails={mails}
                 setMails={setMails}
                 setFilterBy={setFilterBy}
+                onOpenSideBar={onOpenSideBar}
+                setIsAdding={setIsAdding}
+                isAdding={isAdding}
             />
 
             <MailSorting
@@ -47,8 +58,11 @@ export function MailIndex() {
                 onSetFilterBy={onSetFilterBy}
                 onSetSortBy={onSetSortBy}
             />
-            <MailFolderList
+            <MailSideBar
+                isOpenSideBar={isOpenSideBar}
                 onSetFilterBy={onSetFilterBy}
+                setIsAdding={setIsAdding}
+                isAdding={isAdding}
             />
             <MailList
                 mails={mails}

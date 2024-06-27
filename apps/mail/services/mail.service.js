@@ -28,36 +28,11 @@ function query(filterBy = {}, sortBy = {}) {
         .then(mails => {
 
             // Filtering
-            if (filterBy.txt) {
-                const regex = new RegExp(filterBy.txt, 'i')
-                mails = mails.filter(mail => regex.test(mail.body) || regex.test(mail.subject) || regex.test(mail.from))
-            }
-            if (filterBy.isRead !== undefined) {
-                mails = mails.filter(mail => mail.isRead === filterBy.isRead)
-            }
-            if (filterBy.status === 'inbox') {
-                mails = mails.filter(mail => mail.to === loggedInUser.email && !mail.removedAt)
-            }
-            if (filterBy.status === 'sent') {
-                mails = mails.filter(mail => mail.from === loggedInUser.email)
-            }
-            if (filterBy.status === 'starred') {
-                mails = mails.filter(mail => mail.isStarred)
-            }
-            if (filterBy.status === 'drafts') {
-                console.log('insert drafts logic')
-            }
-            if (filterBy.status === 'trash') {
-                mails = mails.filter(mail => mail.removedAt)
-            }
+            mails = _filter(mails, filterBy)
 
             // Sorting
-            if (sortBy.subject) {
-                mails = mails.toSorted((m1, m2) => m1.subject.localeCompare(m2.subject) * sortBy.subject)
-            }
-            if (sortBy.date) {
-                mails = mails.toSorted((m1, m2) => (m1.sentAt - m2.sentAt) * sortBy.date)
-            }
+            mails = _sort(mails, sortBy)
+
             return mails
         })
 }
@@ -150,4 +125,40 @@ function _createMail(id, from = 'momo@momo.com', sentAt = Math.floor(Date.now() 
         from,
         to: loggedInUser.email
     }
+}
+
+function _filter(mails, filterBy) {
+    if (filterBy.txt) {
+        const regex = new RegExp(filterBy.txt, 'i')
+        mails = mails.filter(mail => regex.test(mail.body) || regex.test(mail.subject) || regex.test(mail.from))
+    }
+    if (filterBy.isRead !== undefined) {
+        mails = mails.filter(mail => mail.isRead === filterBy.isRead)
+    }
+    if (filterBy.status === 'inbox') {
+        mails = mails.filter(mail => mail.to === loggedInUser.email && !mail.removedAt && mail.sentAt)
+    }
+    if (filterBy.status === 'sent') {
+        mails = mails.filter(mail => mail.from === loggedInUser.email)
+    }
+    if (filterBy.status === 'starred') {
+        mails = mails.filter(mail => mail.isStarred)
+    }
+    if (filterBy.status === 'drafts') {
+        mails = mails.filter(mail => !mail.sentAt)
+    }
+    if (filterBy.status === 'trash') {
+        mails = mails.filter(mail => mail.removedAt)
+    }
+    return mails
+}
+
+function _sort(mails, sortBy) {
+    if (sortBy.subject) {
+        mails = mails.toSorted((m1, m2) => m1.subject.localeCompare(m2.subject) * sortBy.subject)
+    }
+    if (sortBy.date) {
+        mails = mails.toSorted((m1, m2) => (m1.sentAt - m2.sentAt) * sortBy.date)
+    }
+    return mails
 }

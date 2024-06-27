@@ -1,23 +1,4 @@
-.compose-container {
-    position: relative;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 56px;
-    height: 56px;
-
-    margin: 8px;
-    color: #001d35;
-    background-color: #c2e7ff;
-    border-radius: 16px;
-}
-
-.compose-container:hover {
-    cursor: pointer;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 3px 0px, rgba(60, 64, 67, 0.15) 0px 4px 8px 3px;
-}
 
 .compose-mail {
     position: fixed;
