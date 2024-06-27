@@ -1,15 +1,12 @@
-
-
-
-.note-filter-section{
+.note-filter-section {
     display: flex;
     justify-content: center;
-   
+
 }
 
 .note-filter-container {
 
-   
+
     display: flex;
     justify-content: start;
     align-items: center;
@@ -21,7 +18,7 @@
     margin-block-start: 2em;
     background-color: #eaf1fb;
     border-radius: 24px;
-   
+
 }
 
 
@@ -56,7 +53,8 @@
     line-height: 48px;
 }
 
-.filter-icon{
+.filter-icon {
+    position: relative; 
     width: 24px;
     height: 48px;
     margin-right: 3px;
@@ -66,4 +64,42 @@
 
 .filter-icon span {
     line-height: 48px;
+}
+
+.note-filter-type {
+    display: none;
+    position: absolute; 
+    top: 40px; 
+    left: -20px;
+    flex-direction: column;
+    background-color: #ffffff;
+    border: 1px solid #c1c3c6;
+    border-radius: 4px;
+    box-shadow: 0px 1px 2px #c1c3c6;
+    z-index: 10;
+}
+
+.filter-icon:hover .note-filter-type {
+    display: flex; 
+}
+
+.note-filter-type p {
+    margin: 0;
+    padding: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    border-bottom: 1px solid #c1c3c6; 
+}
+
+.note-filter-type p:last-child {
+    border-bottom: none; 
+}
+
+.note-filter-type p:hover {
+    filter: brightness(90%);
+    background-color: #ffffff;
+}
+
+.note-filter-type p.active {
+    background-color: #feefc3;
 }

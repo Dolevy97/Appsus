@@ -56,7 +56,8 @@ export function NoteIndex() {
     return (
         <section className='note-index'>
             <React.Fragment>
-                <NoteFilter filterBy={filterBy} onSetFilter={onSetFilter}/>
+                <NoteFilter 
+                filterBy={filterBy} onSetFilter={onSetFilter}/>
                 <AddNote/>
                     <NoteList
                         notes={notes}

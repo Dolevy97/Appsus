@@ -6,10 +6,24 @@ export function NoteFilter({ onSetFilter, filterBy }) {
 
   const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
 
+  const filters = [
+    { display: 'Text', filter: 'NoteTxt' },
+    { display: 'Image', filter: 'NoteImg' },
+    { display: 'Todo', filter: 'NoteTodos' },
+    { display: 'Video', filter: 'NoteVideo' },
+  ]
+
   useEffect(() => {
     onSetFilter(filterByToEdit)
   }, [filterByToEdit])
 
+
+
+  function onFilterClick(filterType) {
+    filterBy.type === filterType
+      ? onSetFilter({ type: '' })
+      : onSetFilter({ type: filterType })
+  }
 
 
   function handleChange(ev) {
@@ -19,13 +33,8 @@ export function NoteFilter({ onSetFilter, filterBy }) {
     setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
   }
 
-  //   function onFilter(ev) {
-  //     ev.preventDefault()
-  //     onSetFilter(filterByToEdit)
-  //   }
 
   const { text } = filterByToEdit
-
 
   return (
 
@@ -35,7 +44,20 @@ export function NoteFilter({ onSetFilter, filterBy }) {
           <span className="material-symbols-outlined">search</span>
         </div>
         <div className="filter-icon">
-        <span className="material-symbols-outlined">  filter_alt </span>
+          <span className="material-symbols-outlined">  filter_alt </span>
+          <div className="note-filter-type">
+          {filters.map((filterItem) => {
+            return (
+              <p
+                className={filterBy.type === filterItem.filter ? 'active' : ''}
+                key={filterItem.display}
+                onClick={() => onFilterClick(filterItem.filter)}
+              >
+                {filterItem.display}
+              </p>
+            )
+          })}
+        </div>
         </div>
         <div className="filter-input-container">
           <input
@@ -45,6 +67,7 @@ export function NoteFilter({ onSetFilter, filterBy }) {
             value={text} onChange={handleChange} className="input note-filter-input" placeholder="Search"
           />
         </div>
+       
       </div>
     </section>
   );
