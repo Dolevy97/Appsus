@@ -40,8 +40,10 @@ export function AddNote({ onSaveNewNote }) {
             default:
                 break;
         }
-
+        if (field === 'txt' || field === 'title' || field === 'url') {///for all types
         setNoteToEdit(prevNote => ({ ...prevNote, [field]: value }))
+    }
+    return
     }
 
 

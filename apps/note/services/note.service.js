@@ -80,7 +80,7 @@ function _createNote(title) {
         type: 'NoteTxt',
         isPinned: false,
         style: {
-            backgroundColor: '#f6e2dd'
+            backgroundColor: '#ffffff'
         },
         info: {
             txt: title
