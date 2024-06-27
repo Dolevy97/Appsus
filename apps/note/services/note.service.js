@@ -62,6 +62,7 @@ function save(note) {
     }
 }
 
+
 function _saveNotesToStorage() {
     storageService.save(NOTES_KEY, gDummyNotes)
 }
@@ -94,7 +95,7 @@ function _createNotes() {
             // text notes
             {
                 id: 'n101',
-                createdAt: 1112222,
+                createdAt:  Date.now(),
                 type: 'NoteTxt',
                 isPinned: true,
                 style: {
@@ -106,7 +107,7 @@ function _createNotes() {
             },
             {
                 id: 'n102',
-                createdAt: 1112222,
+                createdAt:  Date.now(),
                 type: 'NoteTxt',
                 isPinned: true,
                 style: {
@@ -118,7 +119,7 @@ function _createNotes() {
             },
             {
                 id: 'n103',
-                createdAt: 1112222,
+                createdAt:  Date.now(),
                 type: 'NoteTxt',
                 isPinned: true,
                 style: {
@@ -130,7 +131,7 @@ function _createNotes() {
             },
             {
                 id: 'n104',
-                createdAt: 1112222,
+                createdAt:  Date.now(),
                 type: 'NoteTxt',
                 isPinned: true,
                 style: {
@@ -143,7 +144,7 @@ function _createNotes() {
             // image notes
             {
                 id: 'n105',
-                createdAt: 1112223,
+                createdAt: Date.now(),
                 type: 'NoteImg',
                 isPinned: false,
                 info: {
@@ -157,8 +158,11 @@ function _createNotes() {
             // todos notes
             {
                 id: 'n106',
-                createdAt: 1112224,
+                createdAt: Date.now(),
                 type: 'NoteTodos',
+                style: {
+                    backgroundColor: '#f39f76'
+                },
                 isPinned: false,
                 info: {
                     title: 'Get my stuff together',

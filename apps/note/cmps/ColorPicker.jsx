@@ -26,7 +26,7 @@ export function ColorPicker({ onChangeColor }) {
 
 
   return (
-    <div className="color-picker">
+    <div className="color-picker icones-display">
       {colors.map((color) => (
         <div
           key={color}
