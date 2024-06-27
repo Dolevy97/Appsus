@@ -9,9 +9,10 @@ import { mailService } from "../services/mail.service.js"
 
 export function MailIndex() {
     const [mails, setMails] = useState(null)
-    const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
+    const [filterBy, setFilterBy] = useState({ status: 'inbox' })
     const [sortBy, setSortBy] = useState()
     const debounceLoadBooks = useRef(utilService.debounce(loadMails, 300))
+
 
     useEffect(() => {
         debounceLoadBooks.current(filterBy, sortBy)
@@ -46,7 +47,9 @@ export function MailIndex() {
                 onSetFilterBy={onSetFilterBy}
                 onSetSortBy={onSetSortBy}
             />
-            <MailFolderList />
+            <MailFolderList
+                onSetFilterBy={onSetFilterBy}
+            />
             <MailList
                 mails={mails}
                 setMails={setMails}

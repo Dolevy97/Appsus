@@ -50,11 +50,6 @@ export function MailPreview({ mail, getFormattedTime, onSetMail }) {
             })
     }
 
-
-    if (isRemovedAt !== null) {
-        return null;
-    }
-
     const isStar = mail.isStarred ? 'star' : ''
     return (
         <div onClick={() => moveToMail(mail.id)} className={`flex space-between mail-item ${mail.isRead ? 'read' : ''}`}>

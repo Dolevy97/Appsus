@@ -5,22 +5,22 @@
     flex-direction: column;
     gap: 12px;
 
-
-
-    width: 3em;
+    width: 4em;
     height: 100%;
     color: #202124;
     background-color: #f6f8fc;
     user-select: none;
 
-
     z-index: 15;
     transition: width .3s;
-
 }
 
 .mail-folder-list:hover {
     width: 256px;
+}
+
+.mail-folder-list:hover span {
+    width: 202px;
 }
 
 .folder-titles {
@@ -44,22 +44,23 @@
     padding-inline-start: 1em;
 
     height: 32px;
-    width: 202px;
+    width: 50px;
 
     border-radius: 0 16px 16px 0;
     line-height: 32px;
     z-index: 5;
 }
 
-.mail-folder-list .folder-titles div:hover+.material-symbols-outlined:not(.active) {
+.mail-folder-list .material-symbols-outlined:hover:not(.active) {
+    background-color: rgba(32, 33, 36, 0.06);
+    cursor: pointer;
+}
+
+.title:hover .material-symbols-outlined {
     background-color: rgba(32, 33, 36, 0.06);
 }
 
-.mail-folder-list .material-symbols-outlined:hover:not(.active) {
-    background-color: rgba(32, 33, 36, 0.06)
-}
-
-.mail-folder-list div .mail-folder-list *:hover {
+.mail-folder-list div:hover {
     cursor: pointer;
 }
 
@@ -79,7 +80,6 @@
         width .3s,
         border-radius .6s,
         transform .2s;
-
     z-index: -1;
 }
 
