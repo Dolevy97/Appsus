@@ -1,6 +1,6 @@
 const { useState, useRef } = React
 
-export function MailSideBar({ onSetFilterBy, isOpenSideBar }) {
+export function MailSideBar({ onSetFilterBy, isAdding, setIsAdding }) {
     const [currFolder, setCurrFolder] = useState('inbox')
     const sideRef = useRef()
 

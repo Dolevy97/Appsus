@@ -1,12 +1,10 @@
-const { useState, useEffect } = React
-import { mailService } from "../services/mail.service.js";
+const { useState } = React
 import { MailCompose } from "./MailCompose.jsx";
 import { MailFilter } from "./MailFilter.jsx";
 
 
 
-export function MailHeader({ setFilterBy, setMails, mails, onOpenSideBar }) {
-    const [isAdding, setIsAdding] = useState(false)
+export function MailHeader({ setFilterBy, setMails, mails, onOpenSideBar, setIsAdding, isAdding }) {
 
     function onSetMail(updatedMail) {
         const updatedMails = [...mails, updatedMail]

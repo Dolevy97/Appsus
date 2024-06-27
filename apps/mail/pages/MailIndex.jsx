@@ -11,7 +11,7 @@ export function MailIndex() {
     const [mails, setMails] = useState(null)
     const [filterBy, setFilterBy] = useState({ status: 'inbox' })
     const [sortBy, setSortBy] = useState()
-
+    const [isAdding, setIsAdding] = useState(false)
     const [isOpenSideBar, setIsOpenSideBar] = useState(false)
 
     const debounceLoadBooks = useRef(utilService.debounce(loadMails, 300))
@@ -49,6 +49,8 @@ export function MailIndex() {
                 setMails={setMails}
                 setFilterBy={setFilterBy}
                 onOpenSideBar={onOpenSideBar}
+                setIsAdding={setIsAdding}
+                isAdding={isAdding}
             />
 
             <MailSorting
@@ -59,6 +61,8 @@ export function MailIndex() {
             <MailSideBar
                 isOpenSideBar={isOpenSideBar}
                 onSetFilterBy={onSetFilterBy}
+                setIsAdding={setIsAdding}
+                isAdding={isAdding}
             />
             <MailList
                 mails={mails}

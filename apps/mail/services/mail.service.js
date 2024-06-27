@@ -136,7 +136,7 @@ function _filter(mails, filterBy) {
         mails = mails.filter(mail => mail.isRead === filterBy.isRead)
     }
     if (filterBy.status === 'inbox') {
-        mails = mails.filter(mail => mail.to === loggedInUser.email && !mail.removedAt)
+        mails = mails.filter(mail => mail.to === loggedInUser.email && !mail.removedAt && mail.sentAt)
     }
     if (filterBy.status === 'sent') {
         mails = mails.filter(mail => mail.from === loggedInUser.email)
@@ -145,7 +145,7 @@ function _filter(mails, filterBy) {
         mails = mails.filter(mail => mail.isStarred)
     }
     if (filterBy.status === 'drafts') {
-        mails = mails.filter(mail => mail.sentAt === null)
+        mails = mails.filter(mail => !mail.sentAt)
     }
     if (filterBy.status === 'trash') {
         mails = mails.filter(mail => mail.removedAt)
