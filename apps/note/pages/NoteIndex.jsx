@@ -40,7 +40,7 @@ export function NoteIndex() {
 
     function onSaveNewNote(note) {
         noteService.save(note).then(() => {
-            setNotes((prevNotes) => [...prevNotes, note])
+            setNotes((prevNotes) => [note,...prevNotes])
         })
     }
 

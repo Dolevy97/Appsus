@@ -4,13 +4,18 @@ import { noteService } from "../services/note.service.js"
 import { eventBusService } from '../../../services/event-bus.service.js'
 
 
-const { Link } = ReactRouterDOM
+const { Link,useParams} = ReactRouterDOM
+const { useState, useEffect, useRef } = React
+
 
 export function NoteEdit(){
+const {noteId} = useParams()
+const [note, setNote] = useState(null)/// paly with the note 
 
-
-
-
+    useEffect(() => {
+        noteService.get(noteId)
+            .then(setNote)
+    }, [])
 
 
 
