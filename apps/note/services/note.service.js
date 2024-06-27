@@ -57,7 +57,7 @@ function save(note) {
     if (note.id) {
         return storageService.put(NOTES_KEY, note)
     } else {
-        const newNote = _createNote(note.title)
+        const newNote = _createNote(note.info.txt)
         return storageService.post(NOTES_KEY, newNote)
     }
 }
@@ -69,7 +69,7 @@ function _saveNotesToStorage() {
 
 
 function getEmptyNote(type, title = '') {
-    return { title, type }
+    return { info:{txt:title}, type }
 
 }
 

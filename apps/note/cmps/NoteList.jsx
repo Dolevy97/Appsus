@@ -6,7 +6,7 @@ import { ColorPicker } from "./ColorPicker.jsx"
 const { Link, Outlet } = ReactRouterDOM
 const { useState, useEffect, useRef } = React
 
-export function NoteList({ notes, onRemoveNote, onChangeColor, onDuplicateNote }) {
+export function NoteList({ notes, onRemoveNote, onChangeColor, onDuplicateNote,onChangeNote }) {
     const [colorPickerNoteId, setColorPickerNoteId] = useState(null)
     const [notesState, setNotesState] = useState([])
 
@@ -14,6 +14,16 @@ export function NoteList({ notes, onRemoveNote, onChangeColor, onDuplicateNote }
     useEffect(() => {
         setNotesState(notes)
     }, [notes])
+
+
+    function onDuplicateNote(note) {
+        const newNote = { ...note, id: '' }
+        console.log(newNote);
+        noteService
+          .save(newNote)
+          .then(onChangeNote)
+          .catch((err) => console.log('err', err))
+      }
 
 
     function handlePinClick(noteId) {
