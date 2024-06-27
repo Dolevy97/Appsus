@@ -7,28 +7,9 @@ import { eventBusService } from '../../../services/event-bus.service.js'
 import { noteService } from "../services/note.service.js"
 
 
-export function AddNote() {
+export function AddNote( {onSaveNewNote}) {
     const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
-    // const inputRef = useRef()
 
-
-/////לא שולח ללוד ולא מעביר לאפקט
-
-    const { noteId } = useParams()
-    
-        function loadNote() {
-            noteService.get(noteId)
-                .then(setNoteToEdit)
-                .catch(err => console.log('err:', err))
-        }
-
-
-        //sec test
-    useEffect(() => {
-        if(noteToEdit) {
-            setNoteToEdit(noteToEdit)
-        }
-      }, [noteToEdit])
 
 
     function onSaveNote(ev) {
@@ -36,8 +17,7 @@ export function AddNote() {
         noteService.save(noteToEdit)
             .then((note) => {
                 console.log('Note saved successfully:', note)
-                window.location.reload()
-            })
+                onSaveNewNote(note)})
             .catch(err => console.log('err:', err))
     }
 
