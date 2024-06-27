@@ -9,7 +9,7 @@
     box-shadow: 0 1px 3px rgb(0 0 0 / 0.5);
     border-radius: 0 0 10px 10px;
     margin-block: .5em;
-    padding: 1em 3em;
+    padding: 1em 4em;
 }
 
 .mail-details-header {
@@ -44,4 +44,22 @@
 
 .btn-back:hover {
     cursor: pointer;
+}
+
+.to-from-container {
+    position: relative;
+}
+
+.to-from {
+    display: flex;
+    flex-direction: column;
+}
+
+.from-profile-img {
+    position: absolute;
+    top: .8em;
+    left: -3.2em;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
 }

@@ -12,7 +12,8 @@ export const mailService = {
     get,
     remove,
     save,
-    getEmptyMail
+    getEmptyMail,
+    getDefaultFilter
 }
 
 const loggedInUser = {
@@ -21,15 +22,21 @@ const loggedInUser = {
 }
 
 
-function query(filterBy = {}) {
+function query(filterBy = {}, sortBy = {}) {
     return storageService.query(MAIL_KEY)
         .then(mails => {
             if (filterBy.txt) {
                 const regex = new RegExp(filterBy.txt, 'i')
-                mails = mails.filter(mail => regex.test(mail.body))
+                mails = mails.filter(mail => regex.test(mail.body) || regex.test(mail.subject) || regex.test(mail.from))
             }
             if (filterBy.isRead !== undefined) {
                 mails = mails.filter(mail => mail.isRead === filterBy.isRead)
+            }
+            if (sortBy.subject) {
+                mails = mails.toSorted((m1, m2) => m1.subject.localeCompare(m2.subject) * sortBy.subject)
+            }
+            if (sortBy.date) {
+                mails = mails.toSorted((m1, m2) => (m1.sentAt - m2.sentAt) * sortBy.date)
             }
             return mails
         })
@@ -65,6 +72,9 @@ function getEmptyMail() {
     }
 }
 
+function getDefaultFilter() {
+    return { txt: '', isRead: undefined, isStarred: undefined, status: undefined, labels: [] }
+}
 
 // Private Functions
 

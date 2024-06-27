@@ -1,18 +1,21 @@
 .sort-filter-container {
     display: flex;
     align-items: center;
+    gap: 2em;
 
     width: 80vw;
     height: 32px;
     margin: auto;
     background-color: #f6f8fc;
+    user-select: none;
 }
 
-.filter-icons {
+.filter-icons,
+.sort-icons {
     display: flex;
     align-items: center;
     gap: 10px;
-    
+
     margin-inline-start: 1.5em;
     height: 32px;
 }
@@ -21,6 +24,7 @@
     height: auto;
 }
 
-.filter-icon:hover {
+.filter-icon:hover,
+.sort-icon:hover {
     cursor: pointer;
 }

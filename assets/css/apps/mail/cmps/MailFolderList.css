@@ -1,0 +1,38 @@
+.mail-folder-list {
+    position: absolute;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+
+    width: 72px;
+    height: auto;
+    color: #202124;
+    background-color: #f6f8fc;
+    user-select: none;
+}
+
+.mail-folder-list *:hover {
+    cursor: pointer;
+}
+
+.mail-folder-list *.active {
+    position: relative;
+    z-index: 5;
+}
+
+.mail-folder-list *.active::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    border-radius: 50%;
+
+    width: 32px;
+    height: 32px;
+    scale: 1;
+    background-color: rgb(211 227 253 / 1);
+    transition: scale .2s;
+    z-index: -1;
+}
