@@ -1,7 +1,8 @@
-const { useState } = React
+const { useState, useRef } = React
 
-export function MailSideBar({ onSetFilterBy }) {
+export function MailSideBar({ onSetFilterBy, isOpenSideBar }) {
     const [currFolder, setCurrFolder] = useState('inbox')
+    const sideRef = useRef()
 
     function onChangeFolder(folder) {
         onSetFilterBy(folder)
@@ -11,9 +12,10 @@ export function MailSideBar({ onSetFilterBy }) {
         setIsAdding(!isAdding)
     }
 
+    // console.log(sideRef.current)
 
     return (
-        <section className="side-bar">
+        <section ref={sideRef} className="side-bar">
             <section onClick={onCompose} className="compose-container">
                 <i className="material-symbols-outlined">edit</i>
             </section>
@@ -26,11 +28,11 @@ export function MailSideBar({ onSetFilterBy }) {
                 <div title="Drafts" onClick={() => { onChangeFolder({ status: 'drafts' }) }} className="title">Drafts</div>
                 <div title="Trash" onClick={() => { onChangeFolder({ status: 'trash' }) }} className="title">Trash</div>
             </section>
-            <span title="Inbox" onClick={() => { onChangeFolder({ status: 'inbox' }) }} className={`span-icon material-symbols-outlined ${currFolder === 'inbox'? 'active' : ''}`}>inbox</span>
-            <span title="Starred" onClick={() => { onChangeFolder({ status: 'starred' }) }} className={`span-icon material-symbols-outlined ${currFolder === 'starred'? 'active' : ''}`}>star</span>
-            <span title="Sent" onClick={() => { onChangeFolder({ status: 'sent' }) }} className={`span-icon material-symbols-outlined ${currFolder === 'sent'? 'active' : ''}`}>send</span>
-            <span title="Drafts" onClick={() => { onChangeFolder({ status: 'drafts' }) }} className={`span-icon material-symbols-outlined ${currFolder === 'drafts'? 'active' : ''}`}>draft</span>
-            <span title="Trash" onClick={() => { onChangeFolder({ status: 'trash' }) }} className={`span-icon material-symbols-outlined ${currFolder === 'trash'? 'active' : ''}`}>delete</span>
+            <span title="Inbox" onClick={() => { onChangeFolder({ status: 'inbox' }) }} className={`span-icon material-symbols-outlined ${currFolder === 'inbox' ? 'active' : ''}`}>inbox</span>
+            <span title="Starred" onClick={() => { onChangeFolder({ status: 'starred' }) }} className={`span-icon material-symbols-outlined ${currFolder === 'starred' ? 'active' : ''}`}>star</span>
+            <span title="Sent" onClick={() => { onChangeFolder({ status: 'sent' }) }} className={`span-icon material-symbols-outlined ${currFolder === 'sent' ? 'active' : ''}`}>send</span>
+            <span title="Drafts" onClick={() => { onChangeFolder({ status: 'drafts' }) }} className={`span-icon material-symbols-outlined ${currFolder === 'drafts' ? 'active' : ''}`}>draft</span>
+            <span title="Trash" onClick={() => { onChangeFolder({ status: 'trash' }) }} className={`span-icon material-symbols-outlined ${currFolder === 'trash' ? 'active' : ''}`}>delete</span>
         </section>
     )
 }
