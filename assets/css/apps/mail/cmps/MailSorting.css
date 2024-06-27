@@ -10,7 +10,6 @@
     user-select: none;
 }
 
-.filter-icons,
 .sort-icons {
     display: flex;
     align-items: center;
@@ -20,11 +19,6 @@
     height: 32px;
 }
 
-.filter-icon {
-    height: auto;
-}
-
-.filter-icon:hover,
 .sort-icon:hover {
     cursor: pointer;
 }

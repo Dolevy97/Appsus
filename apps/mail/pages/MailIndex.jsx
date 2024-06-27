@@ -3,7 +3,7 @@ const { useState, useEffect, useRef } = React;
 import { utilService } from "../../../services/util.service.js"
 import { MailHeader } from "../cmps/MailHeader.jsx"
 import { MailList } from "../cmps/MailList.jsx"
-import { MailSortAndFilter } from "../cmps/MailSortAndFilter.jsx"
+import { MailSorting } from "../cmps/MailSorting.jsx"
 import { mailService } from "../services/mail.service.js"
 
 export function MailIndex() {
@@ -14,7 +14,6 @@ export function MailIndex() {
 
     useEffect(() => {
         debounceLoadBooks.current(filterBy, sortBy)
-        // console.log(sortBy)
     }, [filterBy, sortBy])
 
     function loadMails(filterBy, sortBy) {
@@ -41,7 +40,7 @@ export function MailIndex() {
                 setFilterBy={setFilterBy}
             />
 
-            <MailSortAndFilter
+            <MailSorting
                 mails={mails}
                 onSetFilterBy={onSetFilterBy}
                 onSetSortBy={onSetSortBy}
