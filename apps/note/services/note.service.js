@@ -88,6 +88,7 @@ function _createNote(title) {
     }
   }
 
+
 function _createNotes() {
     gDummyNotes = localStorageService.loadFromStorage(NOTES_KEY)
     if (!gDummyNotes || !gDummyNotes.length) {
