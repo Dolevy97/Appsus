@@ -45,7 +45,7 @@ function query(filterBy = {}, sortBy = {}) {
                 mails = mails.filter(mail => mail.isStarred)
             }
             if (filterBy.status === 'drafts') {
-                console.log('insert drafts logic')
+                mails = mails.filter(mail => mail.sentAt === null)
             }
             if (filterBy.status === 'trash') {
                 mails = mails.filter(mail => mail.removedAt)

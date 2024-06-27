@@ -1,7 +1,7 @@
 const { useState, useEffect, useRef } = React;
 
 import { utilService } from "../../../services/util.service.js"
-import { MailFolderList } from "../cmps/MailFolderList.jsx";
+import { MailSideBar } from "../cmps/MailSideBar.jsx";
 import { MailHeader } from "../cmps/MailHeader.jsx"
 import { MailList } from "../cmps/MailList.jsx"
 import { MailSorting } from "../cmps/MailSorting.jsx"
@@ -48,7 +48,7 @@ export function MailIndex() {
                 onSetFilterBy={onSetFilterBy}
                 onSetSortBy={onSetSortBy}
             />
-            <MailFolderList
+            <MailSideBar
                 onSetFilterBy={onSetFilterBy}
             />
             <MailList

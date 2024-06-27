@@ -3,7 +3,7 @@ import { mailService } from "../services/mail.service.js"
 const { Link, NavLink, useNavigate } = ReactRouterDOM
 const { useState } = React
 
-export function MailPreview({ mail, getFormattedTime, onSetMail }) {
+export function MailPreview({ mail, getFormattedTime, onSetMail, onDeleteMail }) {
 
     const navigate = useNavigate()
 
@@ -23,17 +23,17 @@ export function MailPreview({ mail, getFormattedTime, onSetMail }) {
             .catch(err => console.log('Oh no! err:', err))
     }
 
-    function onDeleteMail(ev) {
+    function onDelMail(ev) {
         ev.stopPropagation()
         if (mail.removedAt !== null) {
             mailService.remove(mail.id)
-                .then(onSetMail(mail.id, true))
+                .then(onDeleteMail(mail.id, true))
                 .catch(err => console.log('Oh no! err:', err))
         } else {
             const now = Math.floor(Date.now() / 1000)
             const newMail = { ...mail, removedAt: now }
             mailService.save(newMail)
-                .then(onSetMail)
+                .then(onDeleteMail)
                 .catch(err => console.log('Oh no! err:', err))
         }
     }
@@ -55,9 +55,10 @@ export function MailPreview({ mail, getFormattedTime, onSetMail }) {
     return (
         <div onClick={() => moveToMail(mail.id)} className={`flex space-between mail-item ${mail.isRead ? 'read' : ''}`}>
             <section className="mail-start flex align-center">
-                <div onClick={(onSetStar)}
-                    className={`material-symbols-outlined mail-star ${isStar}`}>star</div>
+                {!mail.removedAt && <div onClick={(onSetStar)}
+                    className={`material-symbols-outlined mail-star ${isStar}`}>star</div>}
                 <span className="mail-from">{mail.from}</span>
+                <div className="separator"></div>
             </section>
             <section className="mail-content">
                 <span className="mail-subject">{mail.subject}</span>
@@ -65,7 +66,7 @@ export function MailPreview({ mail, getFormattedTime, onSetMail }) {
             </section>
             <span className="mail-sent-at">{getFormattedTime(mail.sentAt)}</span>
             <div className="hover-icons">
-                <span onClick={onDeleteMail} className="material-symbols-outlined hover-icon">delete</span>
+                <span onClick={onDelMail} className="material-symbols-outlined hover-icon">delete</span>
                 <span onClick={onUpdateRead} className="material-symbols-outlined hover-icon">{mail.isRead ? "mark_email_unread" : "mark_email_read"}</span>
             </div>
         </div>

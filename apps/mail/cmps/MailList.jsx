@@ -14,13 +14,21 @@ export function MailList({ mails, setMails }) {
         else return new Intl.DateTimeFormat('en-US').format(date)
     }
 
-    function onSetMail(updatedMail, fullDelete = false) {
+    function onDeleteMail(updatedMail, fullDelete = false) {
         var updatedMails
         if (fullDelete) {
             updatedMails = mails.filter(mail => mail.id !== updatedMail)
         } else {
             updatedMails = mails.filter(mail => mail.id !== updatedMail.id)
         }
+        setMails([...updatedMails])
+    }
+
+    function onSetMail(updatedMail, fullDelete = false) {
+        const updatedMails = mails.map(mail => {
+            if (mail.id === updatedMail.id) return updatedMail
+            return mail
+        })
         setMails([...updatedMails])
     }
 
@@ -31,6 +39,7 @@ export function MailList({ mails, setMails }) {
                     mail={mail}
                     getFormattedTime={getFormattedTime}
                     onSetMail={onSetMail}
+                    onDeleteMail={onDeleteMail}
                     key={mail.id}
                 />
 
