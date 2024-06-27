@@ -1,6 +1,6 @@
 import { mailService } from "../services/mail.service.js"
 
-const { useParams, Link} = ReactRouterDOM
+const { useParams, Link } = ReactRouterDOM
 const { useEffect, useState, useRef } = React
 
 export function MailDetails() {
@@ -24,7 +24,7 @@ export function MailDetails() {
         }).format(date)
     }
 
-    if (!mail) return <h2>Loading..</h2>
+    if (!mail) return <div className="loader-container"><div className="loader"></div> </div>
 
     return (
         <section className="mail-details-container">

@@ -14,7 +14,7 @@
 }
 
 .loader {
-    height: 40px;
+    height: 60px;
     aspect-ratio: .866;
     display: grid;
     background: conic-gradient(from -121deg at right,#0000, #BF1E62 1deg 60deg,#0000 61deg);
