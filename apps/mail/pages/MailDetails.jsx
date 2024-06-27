@@ -34,8 +34,13 @@ export function MailDetails() {
             <section className="mail-details-header">
                 <div className="header-left">
                     <h3 className="mail-details-subject">{mail.subject}</h3>
-                    <p className="mail-details-from">{mail.from}</p>
-                    <p className="mail-details-to">to me</p>
+                    <section className="to-from-container">
+                        <img className="from-profile-img" src="../assets/imgs/default_profile.png" alt="" />
+                        <div className="to-from">
+                            <p className="mail-details-from">{mail.from}</p>
+                            <p className="mail-details-to">to me</p>
+                        </div>
+                    </section>
                 </div>
                 <div className="header-right">
                     {getFormattedTime(`${mail.sentAt}`)}
