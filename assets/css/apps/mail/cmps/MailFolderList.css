@@ -6,7 +6,7 @@
     gap: 12px;
 
     width: 4em;
-    height: 100%;
+    height: calc(100vh - 168px);
     color: #202124;
     background-color: #f6f8fc;
     user-select: none;

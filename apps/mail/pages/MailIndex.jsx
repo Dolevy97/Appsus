@@ -34,6 +34,7 @@ export function MailIndex() {
     }
 
     if (!mails) return <div className="loader-container"> <div className="loader"></div></div>
+
     return (
         <section className="mail-index">
             <MailHeader

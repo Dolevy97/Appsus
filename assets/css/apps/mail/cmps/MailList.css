@@ -2,13 +2,15 @@
 
 .mails-container {
     width: 90vw;
-    height: auto;
+    height: calc(100vh - 176px);
 
-    margin-block: .5em;
+    margin-block-start: .5em;
     margin-left: 4.5em;
     background-color: #ffffff;
     color: #202124;
     border-radius: 10px;
+
+    overflow-y: scroll;
 }
 
 .mail-item {
@@ -146,4 +148,19 @@
 
 .mail-item.read .mail-sent-at {
     color: #5f6368;
+}
+
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #CCCCCC;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #919191;
 }

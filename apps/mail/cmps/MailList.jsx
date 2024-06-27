@@ -15,15 +15,11 @@ export function MailList({ mails, setMails }) {
     }
 
     function onSetMail(updatedMail, fullDelete = false) {
-        console.log(updatedMail)
         var updatedMails
         if (fullDelete) {
             updatedMails = mails.filter(mail => mail.id !== updatedMail)
         } else {
-            updatedMails = mails.map(mail => {
-                if (mail.id === updatedMail.id) return updatedMail
-                return mail
-            })
+            updatedMails = mails.filter(mail => mail.id !== updatedMail.id)
         }
         setMails([...updatedMails])
     }

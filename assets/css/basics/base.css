@@ -1,6 +1,7 @@
 body {
     margin: 0;
     font-family: "Google Sans", "Roboto-Regular", RobotoDraft, Helvetica, Arial, sans-serif;
+    overflow-y:auto;
 }
 
 h1,
@@ -22,10 +23,11 @@ img {
     width: 100%;
     object-fit: cover;
 }
+
 .main-screen {
     position: fixed;
     inset: 0;
     background-color: #54545474;
     cursor: pointer;
     z-index: 25;
-  }
+}
