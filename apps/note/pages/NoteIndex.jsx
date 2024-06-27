@@ -1,6 +1,7 @@
 
 
 import { noteService } from "../services/note.service.js"
+import { utilService } from '../../../services/util.service.js'
 
 import { NoteList } from "../cmps/NoteList.jsx"
 import { NoteFilter } from "../cmps/NoteFilter.jsx"
@@ -39,7 +40,7 @@ export function NoteIndex() {
 
     function onSaveNewNote(note) {
         noteService.save(note).then(() => {
-            setNotes((prevNotes) => [...prevNotes, note])
+            setNotes((prevNotes) => [note,...prevNotes])
         })
     }
 
@@ -80,6 +81,15 @@ export function NoteIndex() {
     }
 
 
+    function onDuplicateNote(note) {
+        noteService
+          .save({ ...note, id: '' })
+          .then(() => {
+            setNotes((prevNotes) => [...prevNotes, note])
+          })
+          .catch((err) => console.log('err', err))
+      }
+
     
     if (!notes) return <div className="loader-container"> <div className="loader"></div> </div>
     return (
@@ -92,7 +102,9 @@ export function NoteIndex() {
                     notes={notes}
                     onRemoveNote={onRemoveNote}
                     onSelectNoteId={onSelectNoteId}
-                    onChangeColor={onChangeColor} />
+                    onChangeColor={onChangeColor}
+                    onDuplicateNote={onDuplicateNote}
+                    />
             </React.Fragment>
         </section>
 

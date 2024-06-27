@@ -1,23 +1,23 @@
 
 
 const { useNavigate, useParams, useSearchParams } = ReactRouterDOM
-const { useState, useEffect,useRef } = React
+const { useState, useEffect, useRef } = React
 
 import { eventBusService } from '../../../services/event-bus.service.js'
 import { noteService } from "../services/note.service.js"
 
 
-export function AddNote( {onSaveNewNote}) {
+export function AddNote({ onSaveNewNote }) {
     const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
-
-
+  
 
     function onSaveNote(ev) {
         ev.preventDefault()
         noteService.save(noteToEdit)
             .then((note) => {
                 console.log('Note saved successfully:', note)
-                onSaveNewNote(note)})
+                onSaveNewNote(note)
+            })
             .catch(err => console.log('err:', err))
     }
 
@@ -44,6 +44,7 @@ export function AddNote( {onSaveNewNote}) {
     }
 
 
+
     const { title } = noteToEdit
 
     return (
@@ -58,7 +59,13 @@ export function AddNote( {onSaveNewNote}) {
                     placeholder="Take a note"
                     onChange={handleChange} value={title}
                 />
-                <button type="submit">Save</button>
+
+                <div className="submit-icones">
+                    <button className="button-reset " type="submit"><span className="material-symbols-outlined">add</span></button>
+                    <span className="material-symbols-outlined"> image  </span>
+                    <span className="material-symbols-outlined"> youtube_activity </span>
+                    <span className="material-symbols-outlined">list_alt </span>
+                </div>
             </form>
         </section>
     )
