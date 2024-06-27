@@ -2,9 +2,9 @@
 
 import { noteService } from "../services/note.service.js"
 
-import { NoteList } from "../cmps/NoteList.jsx";
-import { NoteFilter } from "../cmps/NoteFilter.jsx";
-import { AddNote } from "../cmps/AddNote.jsx";
+import { NoteList } from "../cmps/NoteList.jsx"
+import { NoteFilter } from "../cmps/NoteFilter.jsx"
+import { AddNote } from "../cmps/AddNote.jsx"
 
 
 const { Link, useSearchParams } = ReactRouterDOM
@@ -18,6 +18,7 @@ export function NoteIndex() {
 
     const [notes, setNotes] = useState()
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
+
     // const debounceLoadBooks = useRef(utilService.debounce(loadMails, 300))
 
 
@@ -35,7 +36,6 @@ export function NoteIndex() {
                 console.log('err:', err)
             })
     }
-
 
     function onSaveNewNote(note) {
         noteService.save(note).then(() => {
@@ -57,6 +57,29 @@ export function NoteIndex() {
         setFilterBy({ ...filterBy })
     }
 
+    function onChangeColor(noteId, color) {
+        const noteToUpdate = notes.find(note => note.id === noteId)
+        if (!noteToUpdate) return
+
+        const updatedNote = {
+            ...noteToUpdate,
+            style: {
+                ...noteToUpdate.style,
+                backgroundColor: color,
+            },
+        }
+
+        noteService.save(updatedNote).then(savedNote => {
+            const updatedNotes = notes.map(note =>
+                note.id === savedNote.id ? savedNote : note
+            )
+            setNotes(updatedNotes)
+        }).catch(error => {
+            console.error('Error saving note:', error)
+        })
+    }
+
+
     
     if (!notes) return <div className="loader-container"> <div className="loader"></div> </div>
     return (
@@ -68,7 +91,8 @@ export function NoteIndex() {
                 <NoteList
                     notes={notes}
                     onRemoveNote={onRemoveNote}
-                    onSelectNoteId={onSelectNoteId} />
+                    onSelectNoteId={onSelectNoteId}
+                    onChangeColor={onChangeColor} />
             </React.Fragment>
         </section>
 

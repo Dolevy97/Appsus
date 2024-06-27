@@ -5,7 +5,7 @@ import { ColorPicker } from "./ColorPicker.jsx"
 
 const { useState, useEffect, useRef } = React
 
-export function NoteList({ notes, onSelectNoteId, onRemoveNote }) {
+export function NoteList({ notes, onSelectNoteId, onRemoveNote, onChangeColor })  {
     const [colorPickerNoteId, setColorPickerNoteId] = useState(null)
     const [notesState, setNotesState] = useState([])
 
@@ -13,29 +13,7 @@ export function NoteList({ notes, onSelectNoteId, onRemoveNote }) {
         setNotesState(notes)
     }, [notes])
 
-    function onChangeColor(noteId, color) {
-        const noteToUpdate = notesState.find(note => note.id === noteId)
-        if (!noteToUpdate) return
-
-        const updatedNote = {
-            ...noteToUpdate,
-            style: {
-                ...noteToUpdate.style,
-                backgroundColor: color
-            }
-        }
-
-        noteService.save(updatedNote).then(savedNote => {
-            const updatedNotes = notesState.map(note =>
-                note.id === savedNote.id ? savedNote : note
-            )
-            setNotesState(updatedNotes)
-        }).catch(error => {
-            console.error('Error saving note:', error)
-        })
-        setColorPickerNoteId(null)
-    }
-
+ 
 
 
     return (
