@@ -14,7 +14,7 @@ export function NoteList({ notes, onRemoveNote, onChangeColor,onDuplicateNote })
         setNotesState(notes)
     }, [notes])
 
- 
+   
 
 
     return (
@@ -39,7 +39,7 @@ export function NoteList({ notes, onRemoveNote, onChangeColor,onDuplicateNote })
                     </section>
                         </div>
                     { colorPickerNoteId === note.id && (
-                        <ColorPicker onChangeColor={(color) => onChangeColor(note.id, color)} />
+                        <ColorPicker onChangeColor={(color) => onChangeColor(note.id, color, setColorPickerNoteId)} />
                     )}
             </li>
             ))}
