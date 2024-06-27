@@ -5,10 +5,11 @@
     top: 50%;
     left: 50%;
     translate: -50% -50%;
-    width: 90%;
+    width: 600px;
+    height: 181px;
     z-index: 30;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+
   }
-  .edit-note-container .add-note {
-    width: 100%;
-  }
-  
+ 

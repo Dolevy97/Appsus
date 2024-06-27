@@ -6,13 +6,10 @@ import { utilService } from '../../../services/util.service.js'
 import { NoteList } from "../cmps/NoteList.jsx"
 import { NoteFilter } from "../cmps/NoteFilter.jsx"
 import { AddNote } from "../cmps/AddNote.jsx"
-
+import { NoteEdit } from "../pages/NoteEdit.jsx"
 
 const { Link, useSearchParams } = ReactRouterDOM
 const { useState, useEffect, useRef } = React
-
-
-
 
 
 export function NoteIndex() {
@@ -21,8 +18,6 @@ export function NoteIndex() {
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
 
     // const debounceLoadBooks = useRef(utilService.debounce(loadMails, 300))
-
-
 
 
     useEffect(() => {
@@ -40,7 +35,7 @@ export function NoteIndex() {
 
     function onSaveNewNote(note) {
         noteService.save(note).then(() => {
-            setNotes((prevNotes) => [note,...prevNotes])
+            setNotes((prevNotes) => [note, ...prevNotes])
         })
     }
 
@@ -58,7 +53,7 @@ export function NoteIndex() {
         setFilterBy({ ...filterBy })
     }
 
-    function onChangeColor(noteId, color) {
+    function onChangeColor(noteId, color,setColorPickerNoteId) {
         const noteToUpdate = notes.find(note => note.id === noteId)
         if (!noteToUpdate) return
 
@@ -75,6 +70,7 @@ export function NoteIndex() {
                 note.id === savedNote.id ? savedNote : note
             )
             setNotes(updatedNotes)
+            setColorPickerNoteId(null)
         }).catch(error => {
             console.error('Error saving note:', error)
         })
@@ -83,14 +79,14 @@ export function NoteIndex() {
 
     function onDuplicateNote(note) {
         noteService
-          .save({ ...note, id: '' })
-          .then(() => {
-            setNotes((prevNotes) => [...prevNotes, note])
-          })
-          .catch((err) => console.log('err', err))
-      }
+            .save({ ...note, id: '' })
+            .then(() => {
+                setNotes((prevNotes) => [...prevNotes, note])
+            })
+            .catch((err) => console.log('err', err))
+    }
 
-    
+
     if (!notes) return <div className="loader-container"> <div className="loader"></div> </div>
     return (
         <section className='note-index'>
@@ -104,7 +100,13 @@ export function NoteIndex() {
                     onSelectNoteId={onSelectNoteId}
                     onChangeColor={onChangeColor}
                     onDuplicateNote={onDuplicateNote}
-                    />
+                />
+                {/* <NoteEdit
+                     onRemoveNote={onRemoveNote}
+                     onSelectNoteId={onSelectNoteId}
+                     onChangeColor={onChangeColor}
+                     onDuplicateNote={onDuplicateNote}
+                /> */}
             </React.Fragment>
         </section>
 
