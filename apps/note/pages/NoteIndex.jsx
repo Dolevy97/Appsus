@@ -76,14 +76,28 @@ export function NoteIndex() {
         })
     }
 
-
+   
     function onDuplicateNote(note) {
-        noteService
-            .save({ ...note, id: '' })
+        const emptyNote = noteService.getEmptyNote()
+    
+        const newNote = {
+            ...emptyNote,
+            type: note.type, 
+            style: {
+                ...note.style, 
+                backgroundColor: note.style.backgroundColor, 
+            },
+            info: {
+                ...note.info, 
+                txt: note.info.txt, 
+            },
+        }
+    
+        noteService.save(newNote)
             .then(() => {
-                setNotes((prevNotes) => [...prevNotes, note])
+                setNotes((prevNotes) => [...prevNotes, newNote] )
             })
-            .catch((err) => console.log('err', err))
+            .catch((err) => console.log('Error duplicating note:', err))
     }
 
 

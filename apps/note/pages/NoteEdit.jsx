@@ -17,6 +17,7 @@ export function NoteEdit({setColorPickerNoteId,onRemoveNote,onDuplicateNote}) {
             .then(setNote)
     }, [])
 
+   
 
     if (!note) return <div className="loader-container"> <div className="loader"></div> </div>
     return (
@@ -24,7 +25,7 @@ export function NoteEdit({setColorPickerNoteId,onRemoveNote,onDuplicateNote}) {
             <h2><Link to="/note"><div className="main-screen"> </div></Link></h2>
             <div style={note.style} className="edit-note-container">
                 <div >
-                    <h3>{note.type}</h3>
+                <input name="title" type="text" placeholder="Title" value=""/>
                     <p>{note.info.txt}</p>
 
 

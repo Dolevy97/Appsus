@@ -6,7 +6,7 @@ import { ColorPicker } from "./ColorPicker.jsx"
 const { Link, Outlet } = ReactRouterDOM
 const { useState, useEffect, useRef } = React
 
-export function NoteList({ notes, onRemoveNote, onChangeColor,onDuplicateNote })  {
+export function NoteList({ notes, onRemoveNote, onChangeColor, onDuplicateNote }) {
     const [colorPickerNoteId, setColorPickerNoteId] = useState(null)
     const [notesState, setNotesState] = useState([])
 
@@ -14,20 +14,22 @@ export function NoteList({ notes, onRemoveNote, onChangeColor,onDuplicateNote })
         setNotesState(notes)
     }, [notes])
 
-   
 
+    function handlePinClick(note) {
+        console.log(note)
+    }
 
     return (
         <section className="note-list-container">
             <ul className="note-list">
                 {notesState.map(note => (
                     <li key={note.id} className="note-item" style={note.style} >
-                          <Link replace to={`/note/${note.id}`}>
+                        <Link replace to={`/note/${note.id}`}>
                             <NotePreview note={note} />
                         </Link>
-                        <div className ="icones-display">
-                            <div className="pin-icon">
-                                <span className="material-symbols-outlined icone-hover">keep</span>
+                        <div className="icones-display">
+                            <div className="pin-icon" onClick={(ev) => handlePinClick(note.id)}>
+                                <span className="material-symbols-outlined icone-hover">{note.isPinned ? 'keep' : 'keep'}</span>
                             </div>
                             <section className="note-actions">
                                 <div className="other-icons">
@@ -36,17 +38,17 @@ export function NoteList({ notes, onRemoveNote, onChangeColor,onDuplicateNote })
                                     <span onClick={() => onDuplicateNote(note)} className="material-symbols-outlined icone-hover">content_copy</span>
                                     <span className="material-symbols-outlined icone-hover">mail</span>
                                 </div>
-                    </section>
+                            </section>
                         </div>
-                    { colorPickerNoteId === note.id && (
-                        <ColorPicker onChangeColor={(color) => onChangeColor(note.id, color, setColorPickerNoteId)} />
-                    )}
-            </li>
-            ))}
-        </ul>
-        <section>
+                        {colorPickerNoteId === note.id && (
+                            <ColorPicker onChangeColor={(color) => onChangeColor(note.id, color, setColorPickerNoteId)} />
+                        )}
+                    </li>
+                ))}
+            </ul>
+            <section>
                 <Outlet />
             </section>
-    </section >
+        </section >
     )
 }

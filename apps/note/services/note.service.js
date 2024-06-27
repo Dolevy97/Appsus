@@ -149,7 +149,7 @@ function _createNotes() {
                 type: 'NoteImg',
                 isPinned: false,
                 info: {
-                    url: 'http://some-img/me',
+                    url: 'https://www.coding-academy.org/books-photos/2.jpg',
                     title: 'Bobi and Me'
                 },
                 style: {
