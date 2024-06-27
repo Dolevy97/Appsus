@@ -33,7 +33,6 @@ export function MailCompose({ setIsAdding, isAdding, onSetMail }) {
         setNewMail(prevMail => ({ ...prevMail, [field]: value }))
     }
 
-
     function onAddMail(ev) {
         ev.preventDefault()
         const mailToAdd = { ...newMail, from: user.email, sentAt: Math.floor(Date.now() / 1000) }
@@ -57,13 +56,18 @@ export function MailCompose({ setIsAdding, isAdding, onSetMail }) {
         }
     }
 
+    function onSaveDraft() {
+        console.log(newMail)
+        // setIsAdding(false) //Close new mail
+    }
+
     return (
         isAdding &&
         <section className="compose-mail">
             <form onSubmit={onAddMail} className="compose-form-container">
                 <article className="title-container">
                     <p className="input-title">New Message</p>
-                    <span onClick={() => setIsAdding(false)} className="material-symbols-outlined btn-close">close</span>
+                    <span onClick={() => onSaveDraft()} className="material-symbols-outlined btn-close">close</span>
                 </article>
 
                 <article className="from-container">
@@ -85,6 +89,7 @@ export function MailCompose({ setIsAdding, isAdding, onSetMail }) {
 
                 <section className="compose-footer">
                     <button className="btn-send">Send</button>
+                    <span onClick={() => setIsAdding(false)} className="material-symbols-outlined discard-draft-icon">delete</span>
                 </section>
             </form>
         </section>
