@@ -1,4 +1,4 @@
-import { MailPreview } from "./MailPreview.jsx"
+import { MailPreview } from "../pages/MailPreview.jsx"
 
 export function MailList({ mails, setMails }) {
 
@@ -14,14 +14,18 @@ export function MailList({ mails, setMails }) {
         else return new Intl.DateTimeFormat('en-US').format(date)
     }
 
-    function onSetMail(updatedMail) {
-        const updatedMails = mails.map(mail => {
-            if (mail.id === updatedMail.id) {
-                return updatedMail
-            }
-            return mail
-        })
-        setMails(updatedMails)
+    function onSetMail(updatedMail, fullDelete = false) {
+        console.log(updatedMail)
+        var updatedMails
+        if (fullDelete) {
+            updatedMails = mails.filter(mail => mail.id !== updatedMail)
+        } else {
+            updatedMails = mails.map(mail => {
+                if (mail.id === updatedMail.id) return updatedMail
+                return mail
+            })
+        }
+        setMails([...updatedMails])
     }
 
     return (

@@ -4,7 +4,6 @@ const { Link, NavLink, useNavigate } = ReactRouterDOM
 const { useState } = React
 
 export function MailPreview({ mail, getFormattedTime, onSetMail }) {
-    const [isRemovedAt, setIsRemovedAt] = useState(mail.removedAt)
 
     const navigate = useNavigate()
 
@@ -12,9 +11,7 @@ export function MailPreview({ mail, getFormattedTime, onSetMail }) {
         ev.stopPropagation()
         const newMail = { ...mail, isStarred: !mail.isStarred }
         mailService.save(newMail)
-            .then(prevMail => {
-                onSetMail(prevMail)
-            })
+            .then(onSetMail)
             .catch(err => console.log('Oh no! err:', err))
     }
 
@@ -22,19 +19,23 @@ export function MailPreview({ mail, getFormattedTime, onSetMail }) {
         ev.stopPropagation()
         const newMail = { ...mail, isRead: !mail.isRead }
         mailService.save(newMail)
-            .then(prevMail => {
-                onSetMail(prevMail)
-            })
+            .then(onSetMail)
             .catch(err => console.log('Oh no! err:', err))
     }
 
     function onDeleteMail(ev) {
         ev.stopPropagation()
-        const now = Math.floor(Date.now() / 1000)
-        const newMail = { ...mail, removedAt: now }
-        mailService.save(newMail)
-            .then(() => setIsRemovedAt(now))
-            .catch(err => console.log('Oh no! err:', err))
+        if (mail.removedAt !== null) {
+            mailService.remove(mail.id)
+                .then(onSetMail(mail.id, true))
+                .catch(err => console.log('Oh no! err:', err))
+        } else {
+            const now = Math.floor(Date.now() / 1000)
+            const newMail = { ...mail, removedAt: now }
+            mailService.save(newMail)
+                .then(onSetMail)
+                .catch(err => console.log('Oh no! err:', err))
+        }
     }
 
     function moveToMail(mailId) {
