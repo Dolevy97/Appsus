@@ -23,7 +23,6 @@
 
 .hover-icons {
     display: none;
-
 }
 
 .mail-item:first-of-type {
@@ -64,6 +63,7 @@
     display: flex;
     align-items: center;
     gap: 15px;
+    z-index: 1;
 }
 
 .hover-icon {

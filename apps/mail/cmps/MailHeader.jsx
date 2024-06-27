@@ -1,18 +1,20 @@
-const { useState } = React
+const { useState, useEffect } = React
+import { mailService } from "../services/mail.service.js";
+import { MailCompose } from "./MailCompose.jsx";
 import { MailFilter } from "./MailFilter.jsx";
 
 
 
-export function MailHeader({ setFilterBy }) {
+export function MailHeader({ setFilterBy, setMails, mails }) {
     const [isAdding, setIsAdding] = useState(false)
 
     function onCompose({ target }) {
-        console.log(target)
         setIsAdding(!isAdding)
     }
 
-    function onAddMail() {
-        console.log('Added!')
+    function onSetMail(updatedMail) {
+        const updatedMails = [...mails, updatedMail]
+        setMails(updatedMails)
     }
 
     return (
@@ -24,29 +26,11 @@ export function MailHeader({ setFilterBy }) {
                 <img className="logo" src="../assets/imgs/gmail.png" alt="" />
             </section>
             <MailFilter setFilterBy={setFilterBy} />
-            {isAdding &&
-                <section className="compose-mail">
-                    <form onSubmit={onAddMail} className="compose-form-container">
-                        <h1>New Message</h1>
-
-                        {/* <h2>`From ${}`</h2> */}
-
-                        <div className="input-to">
-                            <label htmlFor="mail-to"></label>
-                            <input id="mail-to" type="text" name="input-to" />
-                        </div>
-
-                        <div className="input-subject">
-                            <label htmlFor="subject"></label>
-                            <input id="subject" type="text" name="input-subject" />
-                        </div>
-
-                        <textarea name="" id="">
-                        </textarea>
-
-                        <button className="btn-send">Send</button>
-                    </form>
-                </section>}
+            <MailCompose
+                setIsAdding={setIsAdding}
+                isAdding={isAdding}
+                onSetMail={onSetMail}
+            />
         </header>
     )
 }

@@ -5,6 +5,7 @@
     width: 100%;
     height: 64px;
     background-color: #f6f8fc;
+
 }
 
 .logo-container {
@@ -19,43 +20,4 @@
     width: 109px;
     height: auto;
     object-fit: contain;
-}
-
-.compose-container {
-    position: relative;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 56px;
-    height: 56px;
-
-    margin: 8px;
-    color: #001d35;
-    background-color: #c2e7ff;
-    border-radius: 16px;
-}
-
-.compose-container:hover {
-    cursor: pointer;
-}
-
-.compose-mail {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-
-    height: 50vh;
-    width:50vw;
-
-    background-color: azure;
-}
-
-.compose-form-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-
 }

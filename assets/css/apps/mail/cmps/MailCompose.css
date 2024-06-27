@@ -1,0 +1,127 @@
+.compose-container {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 56px;
+    height: 56px;
+
+    margin: 8px;
+    color: #001d35;
+    background-color: #c2e7ff;
+    border-radius: 16px;
+}
+
+.compose-container:hover {
+    cursor: pointer;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 3px 0px, rgba(60, 64, 67, 0.15) 0px 4px 8px 3px;
+}
+
+.compose-mail {
+    position: fixed;
+    bottom: 0;
+    right: 3.75em;
+
+    width: 590px;
+
+    background-color: #fff;
+    border-radius: 8px 8px 0 0 ;
+    box-shadow: 0 0 10px 2px rgb(0 0 0 / 0.2);
+    
+    z-index: 5;
+}
+
+.compose-mail * {
+    box-sizing: border-box;
+}
+
+.compose-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    font-size: 0.875em;
+    height: 615px;
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+
+    height: 40px;
+    width: 100%;
+
+    padding-block: 10px;
+    padding-inline-start: 16px;
+
+    color: #041e49;
+    background-color: #f2f6fc;
+    font-weight: bold;
+    
+    border-radius: 8px 8px 0 0 ;
+}
+
+input:focus-visible,
+.input-textarea:focus-visible {
+    outline: none;
+}
+
+.from-container {
+    padding-inline: 1em;
+
+    user-select: none;
+}
+
+.user-email {
+    padding-inline-start: .5em;
+    font-size: 0.825em;
+    color: #949494;
+}
+
+.input-to input,
+.input-subject input,
+.input-textarea {
+    width: 100%;
+    height: 40px;
+    padding-inline: 1em;
+
+    line-height: 1.25em;
+    border-radius: 0;
+    border: none;
+}
+
+.input-to input,
+.input-subject input {
+    box-shadow: rgba(100, 121, 143, 0.12) 0px -1px 0px 0px inset;
+}
+
+.input-textarea {
+    font-family: inherit;
+    height: 100%;
+    line-height: 1.219em;
+    resize: none;
+    padding: 1em;
+}
+
+.btn-send {
+    margin-block-end: auto;
+    border-radius: 18px;
+    height: 36px;
+    width: 105px;
+    color: #fff;
+    background-color: #0b57d0;
+    border: none;
+}
+
+.btn-send:hover {
+    background-color: #1B61D1;
+    cursor: pointer;
+}
+
+.compose-footer {
+    height: 32px;
+    padding-inline: 1em;
+    margin-block: 0.75em 1em;
+}

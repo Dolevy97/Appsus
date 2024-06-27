@@ -8,13 +8,15 @@ _createMails()
 
 export const mailService = {
     query,
+    getUser,
     get,
     remove,
-    save
+    save,
+    getEmptyMail
 }
 
-const loggedinUser = {
-    email: 'user@appsus.com',
+const loggedInUser = {
+    email: 'Dolevy@appsus.com',
     fullname: 'Dolev Levy'
 }
 
@@ -30,6 +32,10 @@ function query(filterBy = {}) {
         })
 }
 
+function getUser() {
+    return Promise.resolve(loggedInUser)
+}
+
 function get(mailId) {
     return storageService.get(MAIL_KEY, mailId)
 }
@@ -41,6 +47,19 @@ function remove(mailId) {
 function save(mail) {
     if (mail.id) return storageService.put(MAIL_KEY, mail)
     else return storageService.post(MAIL_KEY, mail)
+}
+
+function getEmptyMail() {
+    return {
+        subject: '',
+        body: '',
+        isRead: false,
+        isStarred: false,
+        sentAt: null,
+        removedAt: null,
+        from: '',
+        to: ''
+    }
 }
 
 

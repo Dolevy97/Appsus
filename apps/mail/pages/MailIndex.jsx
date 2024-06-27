@@ -12,7 +12,7 @@ export function MailIndex() {
 
     useEffect(() => {
         debounceLoadBooks.current(filterBy)
-    }, [filterBy])
+    }, [filterBy, mails])
 
     function loadMails(filterBy) {
         mailService.query(filterBy)
@@ -24,7 +24,11 @@ export function MailIndex() {
     if (!mails) return <h2>Loading..</h2>
     return (
         <section className="mail-index">
-            <MailHeader setFilterBy={setFilterBy} />
+            <MailHeader
+                mails={mails}
+                setMails={setMails}
+                setFilterBy={setFilterBy}
+            />
             <MailList
                 mails={mails}
                 setMails={setMails}
