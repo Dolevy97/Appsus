@@ -1,0 +1,14 @@
+.edit-note-container {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    width: 90%;
+    z-index: 30;
+  }
+  .edit-note-container .add-note {
+    width: 100%;
+  }
+  

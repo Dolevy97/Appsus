@@ -22,3 +22,10 @@ img {
     width: 100%;
     object-fit: cover;
 }
+.main-screen {
+    position: fixed;
+    inset: 0;
+    background-color: #54545474;
+    cursor: pointer;
+    z-index: 25;
+  }
