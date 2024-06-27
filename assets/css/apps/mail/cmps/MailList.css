@@ -43,7 +43,7 @@
 
 .mail-item:hover {
     outline: 1px solid #D5DBE2;
-    box-shadow: 5px 0 1px 1px #D5DBE2 inset;
+    box-shadow: 0 0 1px 1px #D5DBE2 inset;
     cursor: pointer;
 }
 
