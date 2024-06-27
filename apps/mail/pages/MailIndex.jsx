@@ -1,8 +1,9 @@
 const { useState, useEffect, useRef } = React;
 
-import { utilService } from "../../../services/util.service.js";
-import { MailHeader } from "../cmps/MailHeader.jsx";
-import { MailList } from "../cmps/MailList.jsx";
+import { utilService } from "../../../services/util.service.js"
+import { MailHeader } from "../cmps/MailHeader.jsx"
+import { MailList } from "../cmps/MailList.jsx"
+import { MailSortAndFilter } from "../cmps/MailSortAndFilter.jsx"
 import { mailService } from "../services/mail.service.js"
 
 export function MailIndex() {
@@ -21,7 +22,7 @@ export function MailIndex() {
             })
     }
 
-    if (!mails) return <h2>Loading..</h2>
+    if (!mails) return <div className="loader-container"> <div className="loader"></div></div>
     return (
         <section className="mail-index">
             <MailHeader
@@ -29,6 +30,10 @@ export function MailIndex() {
                 setMails={setMails}
                 setFilterBy={setFilterBy}
             />
+
+            <MailSortAndFilter
+                mails={mails} />
+
             <MailList
                 mails={mails}
                 setMails={setMails}

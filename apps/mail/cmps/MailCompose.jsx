@@ -50,7 +50,6 @@ export function MailCompose({ setIsAdding, isAdding, onSetMail }) {
         }
     }
 
-
     return (
         isAdding &&
         <section className="compose-mail">
