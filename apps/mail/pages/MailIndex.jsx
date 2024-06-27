@@ -22,6 +22,10 @@ export function MailIndex() {
             })
     }
 
+    function onSetFilterBy(filter) {
+        setFilterBy(prevFilter => ({ ...prevFilter, ...filter }))
+    }
+
     if (!mails) return <div className="loader-container"> <div className="loader"></div></div>
     return (
         <section className="mail-index">
@@ -32,7 +36,9 @@ export function MailIndex() {
             />
 
             <MailSortAndFilter
-                mails={mails} />
+                mails={mails}
+                onSetFilterBy={onSetFilterBy}
+            />
 
             <MailList
                 mails={mails}

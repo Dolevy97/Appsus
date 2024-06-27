@@ -28,6 +28,9 @@ function query(filterBy = {}) {
                 const regex = new RegExp(filterBy.txt, 'i')
                 mails = mails.filter(mail => regex.test(mail.body))
             }
+            if (filterBy.isRead !== undefined) {
+                mails = mails.filter(mail => mail.isRead === filterBy.isRead)
+            }
             return mails
         })
 }
