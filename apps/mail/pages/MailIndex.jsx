@@ -13,7 +13,7 @@ export function MailIndex() {
 
     useEffect(() => {
         debounceLoadBooks.current(filterBy)
-    }, [filterBy, mails])
+    }, [filterBy])
 
     function loadMails(filterBy) {
         mailService.query(filterBy)

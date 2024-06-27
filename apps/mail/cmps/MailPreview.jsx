@@ -1,7 +1,7 @@
 import { mailService } from "../services/mail.service.js"
 
 const { Link, NavLink, useNavigate } = ReactRouterDOM
-const { useState, useEffect } = React
+const { useState } = React
 
 export function MailPreview({ mail, getFormattedTime, onSetMail }) {
     const [isRemovedAt, setIsRemovedAt] = useState(mail.removedAt)
