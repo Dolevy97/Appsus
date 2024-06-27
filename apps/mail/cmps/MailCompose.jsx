@@ -47,6 +47,13 @@ export function MailCompose({ setIsAdding, isAdding, onSetMail }) {
                         onSetMail(mail)
                     })
             }
+        } else {
+            mailService.save(mailToAdd)
+                .then(mail => {
+                    setNewMail(mailService.getEmptyMail())
+                    setIsAdding(false)
+                    onSetMail(mail)
+                })
         }
     }
 
@@ -56,6 +63,7 @@ export function MailCompose({ setIsAdding, isAdding, onSetMail }) {
             <form onSubmit={onAddMail} className="compose-form-container">
                 <article className="title-container">
                     <p className="input-title">New Message</p>
+                    <span onClick={() => setIsAdding(false)} class="material-symbols-outlined btn-close">close</span>
                 </article>
 
                 <article className="from-container">

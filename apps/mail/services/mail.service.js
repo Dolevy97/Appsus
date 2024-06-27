@@ -4,6 +4,11 @@ import { utilService } from '../../../services/util.service.js'
 
 const MAIL_KEY = 'emailDB'
 
+const loggedInUser = {
+    email: 'Dolevy@appsus.com',
+    fullname: 'Dolev Levy'
+}
+
 _createMails()
 
 export const mailService = {
@@ -16,15 +21,13 @@ export const mailService = {
     getDefaultFilter
 }
 
-const loggedInUser = {
-    email: 'Dolevy@appsus.com',
-    fullname: 'Dolev Levy'
-}
 
 
 function query(filterBy = {}, sortBy = {}) {
     return storageService.query(MAIL_KEY)
         .then(mails => {
+
+            // Filtering
             if (filterBy.txt) {
                 const regex = new RegExp(filterBy.txt, 'i')
                 mails = mails.filter(mail => regex.test(mail.body) || regex.test(mail.subject) || regex.test(mail.from))
@@ -32,6 +35,23 @@ function query(filterBy = {}, sortBy = {}) {
             if (filterBy.isRead !== undefined) {
                 mails = mails.filter(mail => mail.isRead === filterBy.isRead)
             }
+            if (filterBy.status === 'inbox') {
+                mails = mails.filter(mail => mail.to === loggedInUser.email && !mail.removedAt)
+            }
+            if (filterBy.status === 'sent') {
+                mails = mails.filter(mail => mail.from === loggedInUser.email)
+            }
+            if (filterBy.status === 'starred') {
+                mails = mails.filter(mail => mail.isStarred)
+            }
+            if (filterBy.status === 'drafts') {
+                console.log('insert drafts logic')
+            }
+            if (filterBy.status === 'trash') {
+                mails = mails.filter(mail => mail.removedAt)
+            }
+
+            // Sorting
             if (sortBy.subject) {
                 mails = mails.toSorted((m1, m2) => m1.subject.localeCompare(m2.subject) * sortBy.subject)
             }
@@ -128,6 +148,6 @@ function _createMail(id, from = 'momo@momo.com', sentAt = Math.floor(Date.now() 
         sentAt,
         removedAt: null,
         from,
-        to: 'user@appsus.com'
+        to: loggedInUser.email
     }
 }

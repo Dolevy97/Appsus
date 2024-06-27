@@ -125,3 +125,12 @@ input:focus-visible,
     padding-inline: 1em;
     margin-block: 0.75em 1em;
 }
+
+.btn-close {
+    position: absolute;
+    right: .5em;
+}
+
+.btn-close:hover {
+    cursor: pointer;
+}
