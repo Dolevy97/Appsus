@@ -21,10 +21,10 @@ function get(entityType, entityId) {
 }
 
 function post(entityType, newEntity) {
-    newEntity = {...newEntity}
+    newEntity = { ...newEntity }
     newEntity.id = _makeId()
     return query(entityType).then(entities => {
-        entities.push(newEntity)
+        entities.unshift(newEntity)
         _save(entityType, entities)
         return newEntity
     })
@@ -33,7 +33,7 @@ function post(entityType, newEntity) {
 ///just added
 function save(entityType, entities) {
     localStorage.setItem(entityType, JSON.stringify(entities))
-  }
+}
 
 function put(entityType, updatedEntity) {
     return query(entityType).then(entities => {

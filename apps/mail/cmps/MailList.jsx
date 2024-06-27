@@ -1,7 +1,4 @@
-import { mailService } from "../services/mail.service.js"
 import { MailPreview } from "./MailPreview.jsx"
-
-const { useState, useEffect } = React
 
 export function MailList({ mails, setMails }) {
 
