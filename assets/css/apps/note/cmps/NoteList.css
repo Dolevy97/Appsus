@@ -30,8 +30,12 @@
    transition: 0.6s ease;
    width: 240px;
    height: auto; 
-   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+
    overflow: hidden; 
+}
+
+.note-item:hover{
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
 }
 
 .note-preview {
@@ -43,7 +47,7 @@
    justify-content: space-between;
    align-items: center;
    position: absolute;
-   left: 4px;
+   left: 10px;
    bottom: 4px;
    width: calc(100% - 30px); 
    margin-top: 10px;
