@@ -15,9 +15,10 @@ const { useState, useEffect, useRef } = React
 
 
 export function NoteIndex() {
-    
-    const [notes, setNotes] = useState([])
+
+    const [notes, setNotes] = useState()
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
+    // const debounceLoadBooks = useRef(utilService.debounce(loadMails, 300))
 
 
 
@@ -36,7 +37,7 @@ export function NoteIndex() {
     }
 
 
-    function onSaveNewNote(note){
+    function onSaveNewNote(note) {
         noteService.save(note).then(() => {
             setNotes((prevNotes) => [...prevNotes, note])
         })
@@ -45,7 +46,7 @@ export function NoteIndex() {
     function onSelectNoteId(noteId) {
         setSelectedBookId(noteId)
     }
-    
+
     function onRemoveNote(noteId) {
         noteService.remove(noteId).then(() => {
             setNotes((prevNotes) => prevNotes.filter((note) => note.id !== noteId))
@@ -56,19 +57,18 @@ export function NoteIndex() {
         setFilterBy({ ...filterBy })
     }
 
-
-    if (!notes) return <div className ="loader-container"><div className="loader"></div> </div>
-
+    
+    if (!notes) return <div className="loader-container"> <div className="loader"></div> </div>
     return (
         <section className='note-index'>
             <React.Fragment>
-                <NoteFilter 
-                filterBy={filterBy} onSetFilter={onSetFilter}/>
+                <NoteFilter
+                    filterBy={filterBy} onSetFilter={onSetFilter} />
                 <AddNote onSaveNewNote={onSaveNewNote} />
-                    <NoteList
-                        notes={notes}
-                        onRemoveNote={onRemoveNote}
-                        onSelectNoteId={onSelectNoteId} />
+                <NoteList
+                    notes={notes}
+                    onRemoveNote={onRemoveNote}
+                    onSelectNoteId={onSelectNoteId} />
             </React.Fragment>
         </section>
 

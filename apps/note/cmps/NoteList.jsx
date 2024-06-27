@@ -36,8 +36,6 @@ export function NoteList({ notes, onSelectNoteId, onRemoveNote }) {
         setColorPickerNoteId(null)
     }
 
-    
-
 
 
     return (
