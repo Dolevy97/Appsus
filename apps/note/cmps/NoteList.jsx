@@ -36,6 +36,10 @@ export function NoteList({ notes, onSelectNoteId, onRemoveNote }) {
         setColorPickerNoteId(null)
     }
 
+    
+
+
+
     return (
         <section className="note-list-container">
             <ul className="note-list">

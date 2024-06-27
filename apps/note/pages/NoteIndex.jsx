@@ -36,10 +36,16 @@ export function NoteIndex() {
     }
 
 
+    function onSaveNewNote(note){
+        noteService.save(note).then(() => {
+            setNotes((prevNotes) => [...prevNotes, note])
+        })
+    }
 
     function onSelectNoteId(noteId) {
         setSelectedBookId(noteId)
     }
+    
     function onRemoveNote(noteId) {
         noteService.remove(noteId).then(() => {
             setNotes((prevNotes) => prevNotes.filter((note) => note.id !== noteId))
@@ -58,7 +64,7 @@ export function NoteIndex() {
             <React.Fragment>
                 <NoteFilter 
                 filterBy={filterBy} onSetFilter={onSetFilter}/>
-                <AddNote/>
+                <AddNote onSaveNewNote={onSaveNewNote} />
                     <NoteList
                         notes={notes}
                         onRemoveNote={onRemoveNote}
