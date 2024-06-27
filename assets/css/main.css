@@ -33,7 +33,7 @@
 @import './apps/mail/cmps/MailHeader.css';
 @import './apps/mail/cmps/MailFilter.css';
 @import './apps/mail/cmps/MailCompose.css';
-@import './apps/mail/cmps/MailSortAndFilter.css';
+@import './apps/mail/cmps/MailSorting.css';
 @import './apps/mail/cmps/MailFolderList.css';
 
 

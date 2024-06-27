@@ -12,6 +12,8 @@ export function MailDetails() {
             .then(setMail)
     }, [])
 
+
+
     function getFormattedTime(time) {
         const date = new Date(time * 1000)
         const today = Math.floor(Date.now() / 1000)
