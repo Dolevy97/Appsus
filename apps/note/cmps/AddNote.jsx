@@ -1,46 +1,51 @@
 
 
-const { useNavigate, useParams, useSearchParams } = ReactRouterDOM
 const { useState, useEffect, useRef } = React
 
 import { eventBusService } from '../../../services/event-bus.service.js'
 import { noteService } from "../services/note.service.js"
-import { Accordion } from "../cmps/Accordion.jsx"
 
 
 export function AddNote({ onSaveNewNote }) {
     const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
+    const [noteType, setNoteType] = useState('NoteTxt')
+
+
+    useEffect(() => {
+      setNoteToEdit(noteService.getEmptyNote(noteType))
+    }, [])
+
 
 
     function onSaveNote(ev) {
         ev.preventDefault()
-        console.log(noteToEdit)
-        noteService.save(noteToEdit)
-            .then((note) => {
-                console.log('Note saved successfully:', note)
-                onSaveNewNote(note)
+        const newNote = { ...noteToEdit, type: noteType }
+        console.log(newNote);
+        noteService.save(newNote)
+            .then((savedNote) => {
+                console.log('Note saved successfully:', savedNote)
+                onSaveNewNote(savedNote)
+                setNoteToEdit(noteService.getEmptyNote(noteType))
             })
-            .catch(err => console.log('err:', err))
+            .catch(err => console.log('Error saving note:', err))
     }
-
 
     function handleChange({ target }) {
         const field = target.name
         let value = target.value
-        console.log(field);
-        console.log(value);
+
         switch (target.type) {
             case 'number':
             case 'range':
                 value = +value
-                break;
+                break
 
             case 'checkbox':
                 value = target.checked
                 break
 
             default:
-                break;
+                break
         }
 
         setNoteToEdit(prevNote => ({
@@ -52,48 +57,60 @@ export function AddNote({ onSaveNewNote }) {
         }))
     }
 
+    function handleNoteTypeChange(type) {
+        setNoteType(type)
+        setNoteToEdit(noteService.getEmptyNote(type)) 
+    }
+
     const { info } = noteToEdit
-
     return (
-        <section className="add-note-section" >
+        <section className="add-note-section">
             <div className="add-note-container">
-                {/* <Accordion title="Take a note"> */}
                 <form onSubmit={onSaveNote}>
-                    <label htmlFor="byText"></label>
-                    <input
-                        type="text"
-                        id="byText"
-                        name="txt"
-                        className="input add-note-input"
-                        placeholder="Take a note"
-                        onChange={handleChange} value={info.txt || ''}
-                    />
+                    {noteType === 'NoteTxt' && (
+                        <input
+                            type="text"
+                            id="byText"
+                            name="txt"
+                            className="input add-note-input"
+                            placeholder="Take a text note"
+                            onChange={handleChange}
+                            value={info.txt || ''}
+                        />
+                    )}
+                    {noteType === 'NoteImg' && (
+                        <input
+                            type="url"
+                            id="byImage"
+                            name="url"
+                            className="input add-note-input"
+                            placeholder="Enter image URL"
+                            onChange={handleChange}
+                            value={info.url || ''}
+                        />
+                    )}
+                    {noteType === 'NoteVideo' && (
+                        <input
+                            type="url"
+                            id="byVideo"
+                            name="url"
+                            className="input add-note-input"
+                            placeholder="Enter YouTube video URL"
+                            onChange={handleChange}
+                            value={info.url || ''}
+                        />
+                    )}
 
-                    <div className="submit-icones">
-                        <button className="button-reset " type="submit"><span className="material-symbols-outlined">add</span></button>
-                        <span className="material-symbols-outlined"> text_fields </span>
-                        <span className="material-symbols-outlined"> image  </span>
-                        <span className="material-symbols-outlined"> youtube_activity </span>
-                        <span className="material-symbols-outlined">list_alt </span>
+                    <div className="submit-icons">
+                        <button className="button-reset" type="submit"><span className="material-symbols-outlined">add</span></button>
+                        <span className="material-symbols-outlined" onClick={() => handleNoteTypeChange('NoteTxt')}> text_fields </span>
+                        <span className="material-symbols-outlined" onClick={() => handleNoteTypeChange('NoteImg')}> image </span>
+                        <span className="material-symbols-outlined" onClick={() => handleNoteTypeChange('NoteVideo')}> youtube_activity </span>
                     </div>
                 </form>
-                {/* </Accordion> */}
             </div>
         </section>
     )
 
 }
 
-
-// function DynamicCmp(props) {
-//     switch (props.cmpType) {
-//         case 'hello':
-//             return <Hello {...props} />
-//         case 'goodbye':
-//             return <GoodBye {...props} />
-//         case 'welcomeBack':
-//             return <WelcomeBack {...props} />
-//         default:
-//             return null
-//     }
-// }

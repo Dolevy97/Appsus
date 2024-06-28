@@ -1,45 +1,56 @@
 .note-filter-section {
     display: flex;
     justify-content: center;
+    align-items: center; 
+    padding: 10px 0; 
+    border-bottom: 0.5px solid rgb(205, 205, 205);
+}
 
+.note-filter-img {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 10px;
+    color: #5f6368;
+    font-size: x-large;
+    font-weight:200;
+    width: 32px;
+    height: 42px;
+    margin-right: 5em; 
 }
 
 .note-filter-container {
-
-
     display: flex;
     justify-content: start;
     align-items: center;
-
     width: 60vw;
     max-width: 720px;
     height: 48px;
-
-    margin-block-start: 2em;
+   
     background-color: #eaf1fb;
     border-radius: 24px;
-
+    padding: 0 16px; 
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); 
 }
-
 
 .note-filter-container:focus-within {
     background-color: #fff;
     box-shadow: 0px 1px 2px #c1c3c6;
 }
 
-
 .note-filter-input {
+    flex: 1; 
     line-height: 1em;
     font-size: 1em;
     background-color: inherit;
     border: none;
+    padding: 8px 12px; 
 }
 
 .note-filter-input:focus-visible,
 .note-filter-input:focus {
     outline: none;
 }
-
 
 .search-icon-note {
     width: 48px;
@@ -48,16 +59,15 @@
     text-align: center;
 }
 
-
 .search-icon-note span {
     line-height: 48px;
 }
 
 .filter-icon {
-    position: relative; 
+    position: relative;
     width: 24px;
     height: 48px;
-    margin-right: 3px;
+    margin-left: 8px; 
     text-align: center;
     cursor: pointer;
 }
@@ -68,8 +78,8 @@
 
 .note-filter-type {
     display: none;
-    position: absolute; 
-    top: 40px; 
+    position: absolute;
+    top: 40px;
     left: -20px;
     flex-direction: column;
     background-color: #ffffff;
@@ -80,19 +90,19 @@
 }
 
 .filter-icon:hover .note-filter-type {
-    display: flex; 
+    display: flex;
 }
 
 .note-filter-type p {
     margin: 0;
-    padding: 6px;
+    padding: 6px 12px; 
     cursor: pointer;
     transition: 0.2s;
-    border-bottom: 1px solid #c1c3c6; 
+    border-bottom: 1px solid #c1c3c6;
 }
 
 .note-filter-type p:last-child {
-    border-bottom: none; 
+    border-bottom: none;
 }
 
 .note-filter-type p:hover {
@@ -101,5 +111,5 @@
 }
 
 .note-filter-type p.active {
-    background-color: #feefc3;
+    background-color: #eaf1fb;
 }

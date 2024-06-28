@@ -9,15 +9,15 @@
 .add-note-container {
 
     padding: 10px;
-    width: 60vw;
-    max-width: 300px;
-    height: 48px;
+    width: 70vw;
+    max-width: 500px;
+    height: 36px;
     -webkit-box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.41);
     -moz-box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.41);
     box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.41);
     margin-block-start: 2em;
     background-color: #ffffff;
-    border-radius: 24px;
+    border-radius: 8px;
 }
 
 .add-note-input {

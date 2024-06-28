@@ -15,6 +15,7 @@ export const noteService = {
     getDefaultFilter,
     save,
     getEmptyNote,
+    getEmptyTodo,
 }
 
 function query(filterBy = {}) {
@@ -57,37 +58,47 @@ function save(note) {
     if (note.id) {
         return storageService.put(NOTES_KEY, note)
     } else {
-        const newNote = _createNote(note.info.txt)
-        return storageService.post(NOTES_KEY, newNote)
+        console.log(note)
+        return storageService.post(NOTES_KEY, note)
     }
 }
 
 
-function _saveNotesToStorage() {
-    storageService.save(NOTES_KEY, gDummyNotes)
-}
 
-
-function getEmptyNote(type, title = '') {
-    return { info:{txt:title}, type }
-
-}
-
-function _createNote(title) {
-    return {
-        id: utilService.makeId(5),
-        createdAt: Date.now(),
-        type: 'NoteTxt',
+function getEmptyNote(type="NoteTxt", txt = '') {
+    const note = {
+        id: '', 
+        info: {},
         isPinned: false,
-        style: {
-            backgroundColor: '#ffffff'
-        },
-        info: {
-            txt: title
-        }
+        style: { backgroundColor: 'white' },
+        type ,
     }
-  }
 
+    switch (type) {
+        case 'NoteTxt':
+            note.info.txt = txt
+            break
+
+        case 'NoteImg':
+        case 'NoteVideo':
+            note.info.url = ''
+            break
+
+        case 'NoteTodos':
+            note.info.todos = []
+            break
+
+        default:
+            break
+    }
+
+    return note
+}
+
+
+function getEmptyTodo() {
+    return { txt: '', doneAt: null, id: utilService.makeId() }
+  }
 
 function _createNotes() {
     gDummyNotes = localStorageService.loadFromStorage(NOTES_KEY)
@@ -96,6 +107,23 @@ function _createNotes() {
             // text notes
             {
                 id: 'n101',
+                createdAt: Date.now(),
+                type: 'NoteTodos',
+                style: {
+                    backgroundColor: '#f39f76'
+                },
+                isPinned: false,
+                info: {
+                    title: 'Get my stuff together',
+                    todos: [
+                        { txt: 'Driving license', doneAt: null },
+                        { txt: 'Coding power', doneAt: 187111111 }
+                    ]
+                }
+            },
+            
+            {
+                id: 'n102',
                 createdAt:  Date.now(),
                 type: 'NoteTxt',
                 isPinned: true,
@@ -103,11 +131,24 @@ function _createNotes() {
                     backgroundColor: '#f6e2dd'
                 },
                 info: {
-                    txt: 'Fullstack Me Baby!'
+                    txt: 'Buy eggs!'
                 }
             },
             {
-                id: 'n102',
+                id: 'n103',
+                createdAt: Date.now(),
+                type: 'NoteImg',
+                isPinned: false,
+                info: {
+                    url: 'https://img.freepik.com/free-photo/vibrant-colors-nature-close-up-wet-purple-daisy-generated-by-artificial-intellingence_25030-63819.jpg',
+                    title: 'Bobi and Me'
+                },
+                style: {
+                    backgroundColor: '#f39f76'
+                }
+            },
+            {
+                id: 'n104',
                 createdAt:  Date.now(),
                 type: 'NoteTxt',
                 isPinned: true,
@@ -115,11 +156,11 @@ function _createNotes() {
                     backgroundColor: '#e2f6d3'
                 },
                 info: {
-                    txt: 'Fullstack Me Baby!'
+                    txt: 'Buy milk and honey!'
                 }
             },
             {
-                id: 'n103',
+                id: 'n105',
                 createdAt:  Date.now(),
                 type: 'NoteTxt',
                 isPinned: true,
@@ -131,7 +172,7 @@ function _createNotes() {
                 }
             },
             {
-                id: 'n104',
+                id: 'n106',
                 createdAt:  Date.now(),
                 type: 'NoteTxt',
                 isPinned: true,
@@ -144,7 +185,7 @@ function _createNotes() {
             },
             // image notes
             {
-                id: 'n105',
+                id: 'n107',
                 createdAt: Date.now(),
                 type: 'NoteImg',
                 isPinned: false,
@@ -158,7 +199,7 @@ function _createNotes() {
             },
             // todos notes
             {
-                id: 'n106',
+                id: 'n108',
                 createdAt: Date.now(),
                 type: 'NoteTodos',
                 style: {

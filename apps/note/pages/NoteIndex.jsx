@@ -34,9 +34,7 @@ export function NoteIndex() {
     }
 
     function onSaveNewNote(note) {
-        noteService.save(note).then(() => {
-            setNotes((prevNotes) => [note, ...prevNotes])
-        })
+        setNotes((prevNotes) => [note, ...prevNotes])
     }
 
     function onSelectNoteId(noteId) {
@@ -53,7 +51,7 @@ export function NoteIndex() {
         setFilterBy({ ...filterBy })
     }
 
-    function onChangeColor(noteId, color,setColorPickerNoteId) {
+    function onChangeColor(noteId, color, setColorPickerNoteId) {
         const noteToUpdate = notes.find(note => note.id === noteId)
         if (!noteToUpdate) return
 
@@ -78,20 +76,19 @@ export function NoteIndex() {
 
     function onChangeNote(note) {
         if (!note) {
-          loadNotes()
-          return
-        }
-      
-        noteService
-          .save(note)
-          .then(() => {
             loadNotes()
-          })
-          .catch((err) => console.log('err:', err))
-      }
+            return
+        }
 
-   
-  
+        noteService
+            .save(note)
+            .then(() => {
+                loadNotes()
+            })
+            .catch((err) => console.log('err:', err))
+    }
+
+
 
 
     if (!notes) return <div className="loader-container"> <div className="loader"></div> </div>
