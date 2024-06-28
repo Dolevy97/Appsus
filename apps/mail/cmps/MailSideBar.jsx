@@ -1,6 +1,6 @@
 const { useState, useRef } = React
 
-export function MailSideBar({ onSetFilterBy, isAdding, setIsAdding }) {
+export function MailSideBar({ mails, onSetFilterBy, isAdding, setIsAdding }) {
     const [currFolder, setCurrFolder] = useState('inbox')
     const sideRef = useRef()
 
@@ -11,8 +11,6 @@ export function MailSideBar({ onSetFilterBy, isAdding, setIsAdding }) {
     function onCompose({ target }) {
         setIsAdding(!isAdding)
     }
-
-    // console.log(sideRef.current)
 
     return (
         <section ref={sideRef} className="side-bar">
@@ -26,7 +24,7 @@ export function MailSideBar({ onSetFilterBy, isAdding, setIsAdding }) {
                 <div title="Starred" onClick={() => { onChangeFolder({ status: 'starred' }) }} className="title">Starred</div>
                 <div title="Sent" onClick={() => { onChangeFolder({ status: 'sent' }) }} className="title">Sent</div>
                 <div title="Drafts" onClick={() => { onChangeFolder({ status: 'drafts' }) }} className="title">Drafts</div>
-                <div title="Trash" onClick={() => { onChangeFolder({ status: 'trash' }) }} className="title">Trash</div>
+                <div title="Trash" onClick={() => { onChangeFolder({ status: 'trash' }) }} className="title">Trash </div>
             </section>
             <span title="Inbox" onClick={() => { onChangeFolder({ status: 'inbox' }) }} className={`span-icon material-symbols-outlined ${currFolder === 'inbox' ? 'active' : ''}`}>inbox</span>
             <span title="Starred" onClick={() => { onChangeFolder({ status: 'starred' }) }} className={`span-icon material-symbols-outlined ${currFolder === 'starred' ? 'active' : ''}`}>star</span>

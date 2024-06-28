@@ -1,10 +1,8 @@
 import { mailService } from "../services/mail.service.js"
 
-const { Link, NavLink, useNavigate } = ReactRouterDOM
-const { useState } = React
+const { useNavigate } = ReactRouterDOM
 
-export function MailPreview({ mail, getFormattedTime, onSetMail, onDeleteMail }) {
-
+export function MailPreview({ setEditId, setIsEditing, mail, getFormattedTime, onSetMail, onDeleteMail }) {
     const navigate = useNavigate()
 
     function onSetStar(ev) {
@@ -38,7 +36,7 @@ export function MailPreview({ mail, getFormattedTime, onSetMail, onDeleteMail })
         }
     }
 
-    function moveToMail(mailId) {
+    function onMoveToMail(mailId) {
         navigate(`/mail/${mailId}`)
         mailService.get(mailId)
             .then(mail => {
@@ -51,9 +49,15 @@ export function MailPreview({ mail, getFormattedTime, onSetMail, onDeleteMail })
             })
     }
 
+    function onEditDraft(draftId) {
+        setIsEditing(prevIsEditing => !prevIsEditing)
+        setEditId(draftId)
+    }
+
     const isStar = mail.isStarred ? 'star' : ''
+
     return (
-        <div onClick={() => moveToMail(mail.id)} className={`flex space-between mail-item ${mail.isRead ? 'read' : ''}`}>
+        <div onClick={() => `${mail.createdAt ? onEditDraft(mail.id) : onMoveToMail(mail.id)}`} className={`flex space-between mail-item ${mail.isRead ? 'read' : ''}`}>
             <section className="mail-start flex align-center">
                 {!mail.removedAt && <div onClick={(onSetStar)}
                     className={`material-symbols-outlined mail-star ${isStar}`}>star</div>}
@@ -64,7 +68,8 @@ export function MailPreview({ mail, getFormattedTime, onSetMail, onDeleteMail })
                 <span className="mail-subject">{mail.subject}</span>
                 <span className="mail-body"> - {mail.body}</span>
             </section>
-            <span className="mail-sent-at">{getFormattedTime(mail.sentAt)}</span>
+            {mail.sentAt && <span className="mail-sent-at">{getFormattedTime(mail.sentAt)}</span>}
+            {mail.createdAt && <span className="mail-sent-at">{getFormattedTime(mail.createdAt)}</span>}
             <div className="hover-icons">
                 <span onClick={onDelMail} className="material-symbols-outlined hover-icon">delete</span>
                 <span onClick={onUpdateRead} className="material-symbols-outlined hover-icon">{mail.isRead ? "mark_email_unread" : "mark_email_read"}</span>

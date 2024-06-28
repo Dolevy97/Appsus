@@ -1,6 +1,6 @@
 import { MailPreview } from "../pages/MailPreview.jsx"
 
-export function MailList({ mails, setMails }) {
+export function MailList({ mails, setMails, setIsEditing, setEditId }) {
 
 
     function getFormattedTime(time) {
@@ -40,6 +40,8 @@ export function MailList({ mails, setMails }) {
                     getFormattedTime={getFormattedTime}
                     onSetMail={onSetMail}
                     onDeleteMail={onDeleteMail}
+                    setIsEditing={setIsEditing}
+                    setEditId={setEditId}
                     key={mail.id}
                 />
 

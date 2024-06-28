@@ -2,6 +2,7 @@ body {
     margin: 0;
     font-family: "Google Sans", "Roboto-Regular", RobotoDraft, Helvetica, Arial, sans-serif;
     overflow-y:auto;
+    overflow-x: hidden
 }
 
 h1,
