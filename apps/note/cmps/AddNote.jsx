@@ -9,23 +9,38 @@ import { noteService } from "../services/note.service.js"
 export function AddNote({ onSaveNewNote }) {
     const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
     const [noteType, setNoteType] = useState('NoteTxt')
+    const [isAddOpen, setIsAddOpen] = useState(false)
+    const containerRef = useRef(null)
 
 
     useEffect(() => {
-      setNoteToEdit(noteService.getEmptyNote(noteType))
+        function handleOutsideClick (event){
+            if (containerRef.current && !containerRef.current.contains(event.target)) {
+                setIsAddOpen(false)
+            }
+        }
+        window.addEventListener('click', handleOutsideClick)
+        return () => {
+            window.removeEventListener('click', handleOutsideClick)
+        }
     }, [])
 
+
+    useEffect(() => {
+        setNoteToEdit(noteService.getEmptyNote(noteType))
+    }, [])
 
 
     function onSaveNote(ev) {
         ev.preventDefault()
         const newNote = { ...noteToEdit, type: noteType }
-        console.log(newNote);
+        console.log(newNote)
         noteService.save(newNote)
             .then((savedNote) => {
                 console.log('Note saved successfully:', savedNote)
                 onSaveNewNote(savedNote)
                 setNoteToEdit(noteService.getEmptyNote(noteType))
+                onCloseAdd()
             })
             .catch(err => console.log('Error saving note:', err))
     }
@@ -59,13 +74,28 @@ export function AddNote({ onSaveNewNote }) {
 
     function handleNoteTypeChange(type) {
         setNoteType(type)
-        setNoteToEdit(noteService.getEmptyNote(type)) 
+        setNoteToEdit(noteService.getEmptyNote(type))
     }
+
+
+    function onOpenAdd() {
+        setIsAddOpen(true)
+    }
+
+    function onCloseAdd() {
+        setIsAddOpen(false)
+    }
+
+ 
 
     const { info } = noteToEdit
     return (
         <section className="add-note-section">
-            <div className="add-note-container">
+            <div className={`dummy-addNote ${isAddOpen ? 'dummy-addNote-hidden' : 'dummy-addNote-visible'}`} onClick={onOpenAdd}>
+                <span>Take a note</span>
+                </div>
+
+            <div className={`add-note-container ${isAddOpen ? 'add-note-visible' : 'add-note-hidden'}`}>
                 <form onSubmit={onSaveNote}>
                     {noteType === 'NoteTxt' && (
                         <input
@@ -73,7 +103,7 @@ export function AddNote({ onSaveNewNote }) {
                             id="byText"
                             name="txt"
                             className="input add-note-input"
-                            placeholder="Take a text note"
+                            placeholder="Take a note"
                             onChange={handleChange}
                             value={info.txt || ''}
                         />
@@ -101,6 +131,7 @@ export function AddNote({ onSaveNewNote }) {
                         />
                     )}
 
+                    <span onClick={onCloseAdd}>X</span>
                     <div className="submit-icons">
                         <button className="button-reset" type="submit"><span className="material-symbols-outlined">add</span></button>
                         <span className="material-symbols-outlined" onClick={() => handleNoteTypeChange('NoteTxt')}> text_fields </span>
