@@ -143,7 +143,7 @@ function _filter(mails, filterBy) {
         mails = mails.filter(mail => mail.to === loggedInUser.email && !mail.removedAt && mail.sentAt)
     }
     if (filterBy.status === 'sent') {
-        mails = mails.filter(mail => mail.from === loggedInUser.email)
+        mails = mails.filter(mail => mail.from === loggedInUser.email && mail.sentAt)
     }
     if (filterBy.status === 'starred') {
         mails = mails.filter(mail => mail.isStarred)

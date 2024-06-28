@@ -1,13 +1,9 @@
 const { useState, useRef } = React
 
-export function MailSideBar({ mails, onSetFilterBy, isAdding, setIsAdding }) {
-    const [currFolder, setCurrFolder] = useState('inbox')
+export function MailSideBar({ onChangeFolder, currFolder, isAdding, setIsAdding }) {
+
     const sideRef = useRef()
 
-    function onChangeFolder(folder) {
-        onSetFilterBy(folder)
-        setCurrFolder(folder.status)
-    }
     function onCompose({ target }) {
         setIsAdding(!isAdding)
     }

@@ -1,7 +1,7 @@
 const { useState, useEffect } = React
 import { mailService } from "../services/mail.service.js";
 
-export function DraftEdit({ onSetDraft, editId, setIsEditing, isEditing, onSetMail }) {
+export function DraftEdit({ onChangeFolder, onSetDraft, editId, setIsEditing, isEditing, onSetMail }) {
     const [draftToEdit, setDraftToEdit] = useState()
 
     useEffect(() => {
@@ -45,6 +45,15 @@ export function DraftEdit({ onSetDraft, editId, setIsEditing, isEditing, onSetMa
 
     function onSaveAsMail(ev) {
         ev.preventDefault()
+        delete draftToEdit.createdAt
+        draftToEdit.sentAt = Math.floor(Date.now() / 1000)
+        mailService.save(draftToEdit)
+            .then(mail => {
+                setDraftToEdit(null)
+                setIsEditing(false)
+                onSetDraft(mail)
+                onChangeFolder({ status: 'sent' })
+            })
     }
 
     if (!draftToEdit) return

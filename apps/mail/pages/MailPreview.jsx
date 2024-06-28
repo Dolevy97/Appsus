@@ -1,9 +1,15 @@
+const { useEffect, useState } = React
 import { mailService } from "../services/mail.service.js"
 
 const { useNavigate } = ReactRouterDOM
 
 export function MailPreview({ setEditId, setIsEditing, mail, getFormattedTime, onSetMail, onDeleteMail }) {
     const navigate = useNavigate()
+    const [user, setUser] = useState()
+
+    useEffect(() => {
+        mailService.getUser().then(setUser)
+    }, [])
 
     function onSetStar(ev) {
         ev.stopPropagation()
@@ -55,24 +61,25 @@ export function MailPreview({ setEditId, setIsEditing, mail, getFormattedTime, o
     }
 
     const isStar = mail.isStarred ? 'star' : ''
-
+    if (!user) return
     return (
         <div onClick={() => `${mail.createdAt ? onEditDraft(mail.id) : onMoveToMail(mail.id)}`} className={`flex space-between mail-item ${mail.isRead ? 'read' : ''}`}>
             <section className="mail-start flex align-center">
-                {!mail.removedAt && <div onClick={(onSetStar)}
+                {!mail.removedAt && <div title="Set As Starred" onClick={(onSetStar)}
                     className={`material-symbols-outlined mail-star ${isStar}`}>star</div>}
-                <span className="mail-from">{mail.from}</span>
+                {user.email === mail.to && <span title="Sent From" className="mail-from">{mail.from}</span>}
+                {user.email === mail.from && <span title="Sent To" className="mail-from">To: {mail.to}</span>}
                 <div className="separator"></div>
             </section>
             <section className="mail-content">
-                <span className="mail-subject">{mail.subject}</span>
-                <span className="mail-body"> - {mail.body}</span>
+                <span title="Mail Subject" className="mail-subject">{mail.subject}</span>
+                <span title="Mail Body" className="mail-body"> - {mail.body}</span>
             </section>
-            {mail.sentAt && <span className="mail-sent-at">{getFormattedTime(mail.sentAt)}</span>}
-            {mail.createdAt && <span className="mail-sent-at">{getFormattedTime(mail.createdAt)}</span>}
+            {mail.sentAt && <span title="Sent At" className="mail-sent-at">{getFormattedTime(mail.sentAt)}</span>}
+            {mail.createdAt && <span title="Created At" className="mail-sent-at">{getFormattedTime(mail.createdAt)}</span>}
             <div className="hover-icons">
-                <span onClick={onDelMail} className="material-symbols-outlined hover-icon">delete</span>
-                <span onClick={onUpdateRead} className="material-symbols-outlined hover-icon">{mail.isRead ? "mark_email_unread" : "mark_email_read"}</span>
+                <span title="Delete Mail" onClick={onDelMail} className="material-symbols-outlined hover-icon">delete</span>
+                <span title={mail.isRead ? "Mark As Unread" : "Mark As Read"} onClick={onUpdateRead} className="material-symbols-outlined hover-icon">{mail.isRead ? "mark_email_unread" : "mark_email_read"}</span>
             </div>
         </div>
     )
