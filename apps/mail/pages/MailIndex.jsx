@@ -10,7 +10,7 @@ import { mailService } from "../services/mail.service.js"
 export function MailIndex() {
     const [mails, setMails] = useState(null)
     const [filterBy, setFilterBy] = useState({ status: 'inbox' })
-    const [sortBy, setSortBy] = useState()
+    const [sortBy, setSortBy] = useState({date: 1})
     const [isAdding, setIsAdding] = useState(false)
     const [isOpenSideBar, setIsOpenSideBar] = useState(false)
 
@@ -59,6 +59,7 @@ export function MailIndex() {
                 onSetSortBy={onSetSortBy}
             />
             <MailSideBar
+                mails={mails}
                 isOpenSideBar={isOpenSideBar}
                 onSetFilterBy={onSetFilterBy}
                 setIsAdding={setIsAdding}

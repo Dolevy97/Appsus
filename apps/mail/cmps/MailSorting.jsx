@@ -9,7 +9,7 @@ export function MailSorting({ mails, onSetSortBy }) {
     }
 
     return (
-        <section className="sort-filter-container">
+        <section className="sort-container">
 
             <div className="sort-icons">
                 <h4>Sort by:</h4>

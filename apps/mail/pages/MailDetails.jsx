@@ -4,6 +4,7 @@ const { useParams, Link } = ReactRouterDOM
 const { useEffect, useState, useRef } = React
 
 export function MailDetails() {
+
     const { mailId } = useParams()
     const [mail, setMail] = useState(null)
 
@@ -11,6 +12,7 @@ export function MailDetails() {
         mailService.get(mailId)
             .then(setMail)
     }, [])
+
 
     function getFormattedTime(time) {
         const date = new Date(time * 1000)

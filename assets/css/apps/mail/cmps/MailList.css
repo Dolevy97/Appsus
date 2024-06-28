@@ -2,10 +2,12 @@
 
 .mails-container {
     width: 90vw;
-    height: calc(100vh - 176px);
+    /* height: calc(100vh - 190px); */
+    height: 85.5vh;
 
     margin-block-start: .5em;
-    margin-left: 4.5em;
+    margin-left: auto;
+    margin-right: 1em;
     background-color: #ffffff;
     color: #202124;
     border-radius: 10px;
@@ -111,8 +113,12 @@
 }
 
 .mail-from {
+    position: relative;
     width: 168px;
-    padding-inline-end: 32px;
+    padding-inline-end: 2em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .mail-body {
@@ -122,6 +128,8 @@
 .mail-content {
     margin-right: auto;
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .mail-sent-at {

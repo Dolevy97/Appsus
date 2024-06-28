@@ -10,6 +10,11 @@ header {
     padding: 20px 0;
 }
 
+nav {
+    display: flex;
+    align-items: center;
+}
+
 nav a {
     margin: .5em;
 }
