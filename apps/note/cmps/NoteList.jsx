@@ -18,7 +18,7 @@ export function NoteList({ notes, onRemoveNote, onChangeColor, onDuplicateNote,o
 
     function onDuplicateNote(note) {
         const newNote = { ...note, id: '' }
-        console.log(newNote);
+       
         noteService
           .save(newNote)
           .then(onChangeNote)

@@ -57,7 +57,7 @@ function save(note) {
     if (note.id) {
         return storageService.put(NOTES_KEY, note)
     } else {
-        const newNote = _createNote(note.info.txt)
+        const newNote = _createNote(note.info.txt, note.style.backgroundColor)
         return storageService.post(NOTES_KEY, newNote)
     }
 }
@@ -68,19 +68,19 @@ function _saveNotesToStorage() {
 }
 
 
-function getEmptyNote(type, title = '') {
-    return { info:{txt:title}, type }
+function getEmptyNote(type, title = '', bgc = '#ffffff' ) {
+    return { info:{txt:title}, type , style:{ backgroundColor: bgc}}
 
 }
 
-function _createNote(title) {
+function _createNote(title, bgc ='#ffffff') {
     return {
         id: utilService.makeId(5),
         createdAt: Date.now(),
         type: 'NoteTxt',
         isPinned: false,
         style: {
-            backgroundColor: '#ffffff'
+            backgroundColor: bgc
         },
         info: {
             txt: title

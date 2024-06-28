@@ -19,6 +19,7 @@ export function AddNote({ onSaveNewNote }) {
             .then((note) => {
                 console.log('Note saved successfully:', note)
                 onSaveNewNote(note)
+                // setNoteToEdit(noteService.getEmptyNote())
             })
             .catch(err => console.log('err:', err))
     }
