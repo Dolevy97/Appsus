@@ -1,7 +1,15 @@
 .book-details {
     color:var(--gray3);
     text-shadow: 1px 1px 3px rgb(0 0 0 / 0.4);
+    margin-inline-start: 1.6em;
+    margin-block-start: 1.7em;
 }
+
+.reviews, .add-review{
+    margin-inline-start: 1.6em;
+    margin-block-start: 1.7em;
+}
+
 
 .book-details h2:first-of-type, .book-details h3:first-of-type, .book-details h4:first-of-type {
     margin: 0;
@@ -23,6 +31,7 @@
 
     opacity: .8;
     width: 300px;
+    height: auto;
 }
 
 .green-text {

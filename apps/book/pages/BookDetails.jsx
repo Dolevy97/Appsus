@@ -95,7 +95,7 @@ export function BookDetails() {
             <section className="book-details">
 
                 <img className="book-details-image" src={book.thumbnail} alt="" />
-                {book.thumbnail && book.listPrice.isOnSale && <img className="sale" src="./assets/img/saletag.png" alt="" />}
+                {book.thumbnail && book.listPrice.isOnSale && <img className="sale" src="./../assets/css/apps/book/img/saletag.png" alt="" />}
                 {!book.thumbnail && book.listPrice.isOnSale && <h1>This book is on sale!</h1>}
 
                 <h2>{book.title}</h2>
