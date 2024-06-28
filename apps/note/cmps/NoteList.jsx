@@ -79,8 +79,8 @@ export function NoteList({ notes, onRemoveNote, onChangeColor, onDuplicateNote, 
                 </div>
             )}
             <div className="note-list-container">
-
-            <h2 className="is-notpinned-title">Other Notes</h2>
+            { unpinnedNotes.length > 0 &&
+                <h2 className="is-notpinned-title">Other Notes</h2> }
                 <ul className="note-list">
                     {unpinnedNotes.map(note => (
                         <li key={note.id} className="note-item" style={note.style}>

@@ -57,10 +57,12 @@ function save(note) {
     if (note.id) {
         return storageService.put(NOTES_KEY, note)
     } else {
-        const newNote = _createNote(note.info.txt, note.style.backgroundColor)
-        return storageService.post(NOTES_KEY, newNote)
+        return storageService.post(NOTES_KEY, note)
     }
 }
+
+
+
 
 
 function _saveNotesToStorage() {
@@ -68,10 +70,35 @@ function _saveNotesToStorage() {
 }
 
 
-function getEmptyNote(type, title = '', bgc = '#ffffff' ) {
-    return { info:{txt:title}, type , style:{ backgroundColor: bgc}}
-
-}
+function getEmptyNote(type, title = '') {
+    const note = {
+      id: '',
+      info: { title },
+      isPinned: false,
+      style: { backgroundColor: 'white' },
+      type,
+    }
+  
+    switch (type) {
+      case 'NoteTxt':
+        note.info.txt = ''
+        break
+  
+      case 'NoteImg':
+      case 'NoteVideo':
+        note.info.url = ''
+        break
+  
+      case 'NoteTodos':
+        note.info.todos = []
+        break
+  
+      default:
+        break
+    }
+  
+    return note
+  }
 
 function _createNote(title, bgc ='#ffffff') {
     return {
