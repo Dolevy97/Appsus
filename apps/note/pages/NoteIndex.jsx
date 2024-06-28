@@ -76,29 +76,22 @@ export function NoteIndex() {
         })
     }
 
-   
-    function onDuplicateNote(note) {
-        const emptyNote = noteService.getEmptyNote()
-    
-        const newNote = {
-            ...emptyNote,
-            type: note.type, 
-            style: {
-                ...note.style, 
-                backgroundColor: note.style.backgroundColor, 
-            },
-            info: {
-                ...note.info, 
-                txt: note.info.txt, 
-            },
+    function onChangeNote(note) {
+        if (!note) {
+          loadNotes()
+          return
         }
-    
-        noteService.save(newNote)
-            .then(() => {
-                setNotes((prevNotes) => [...prevNotes, newNote] )
-            })
-            .catch((err) => console.log('Error duplicating note:', err))
-    }
+      
+        noteService
+          .save(note)
+          .then(() => {
+            loadNotes()
+          })
+          .catch((err) => console.log('err:', err))
+      }
+
+   
+  
 
 
     if (!notes) return <div className="loader-container"> <div className="loader"></div> </div>
@@ -113,7 +106,7 @@ export function NoteIndex() {
                     onRemoveNote={onRemoveNote}
                     onSelectNoteId={onSelectNoteId}
                     onChangeColor={onChangeColor}
-                    onDuplicateNote={onDuplicateNote}
+                    onChangeNote={onChangeNote}
                 />
                 {/* <NoteEdit
                      onRemoveNote={onRemoveNote}

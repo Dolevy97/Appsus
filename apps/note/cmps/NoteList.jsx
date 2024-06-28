@@ -6,19 +6,37 @@ import { ColorPicker } from "./ColorPicker.jsx"
 const { Link, Outlet } = ReactRouterDOM
 const { useState, useEffect, useRef } = React
 
-export function NoteList({ notes, onRemoveNote, onChangeColor, onDuplicateNote }) {
+export function NoteList({ notes, onRemoveNote, onChangeColor, onDuplicateNote,onChangeNote }) {
     const [colorPickerNoteId, setColorPickerNoteId] = useState(null)
     const [notesState, setNotesState] = useState([])
+
 
     useEffect(() => {
         setNotesState(notes)
     }, [notes])
 
 
-    function handlePinClick(note) {
-        console.log(note)
-    }
+    function onDuplicateNote(note) {
+        const newNote = { ...note, id: '' }
+        console.log(newNote);
+        noteService
+          .save(newNote)
+          .then(onChangeNote)
+          .catch((err) => console.log('err', err))
+      }
 
+
+    function handlePinClick(noteId) {
+        const updatedNotes = notesState.map(note => {
+            if (note.id === noteId) {
+                const updatedNote = { ...note, isPinned: !note.isPinned }
+                noteService.save(updatedNote) // Save the updated note
+                return updatedNote
+            }
+            return note
+        })
+        setNotesState(updatedNotes)
+    }
     return (
         <section className="note-list-container">
             <ul className="note-list">
@@ -28,8 +46,10 @@ export function NoteList({ notes, onRemoveNote, onChangeColor, onDuplicateNote }
                             <NotePreview note={note} />
                         </Link>
                         <div className="icones-display">
-                            <div className="pin-icon" onClick={(ev) => handlePinClick(note.id)}>
-                                <span className="material-symbols-outlined icone-hover">{note.isPinned ? 'keep' : 'keep'}</span>
+                            <div className="pin-icon" onClick={() => handlePinClick(note.id)}>
+                                <span className={`material-symbols-outlined icone-hover ${note.isPinned ? 'pinned' : 'unpinned'}`}>
+                                    {note.isPinned ? 'Keep_off' : 'Keep'}
+                                </span>
                             </div>
                             <section className="note-actions">
                                 <div className="other-icons">
