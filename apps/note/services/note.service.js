@@ -57,64 +57,42 @@ function save(note) {
     if (note.id) {
         return storageService.put(NOTES_KEY, note)
     } else {
+        console.log(note);
         return storageService.post(NOTES_KEY, note)
     }
 }
 
 
 
-
-
-function _saveNotesToStorage() {
-    storageService.save(NOTES_KEY, gDummyNotes)
-}
-
-
-function getEmptyNote(type, title = '') {
+function getEmptyNote(type="NoteTxt", txt = '') {
     const note = {
-      id: '',
-      info: { title },
-      isPinned: false,
-      style: { backgroundColor: 'white' },
-      type,
-    }
-  
-    switch (type) {
-      case 'NoteTxt':
-        note.info.txt = ''
-        break
-  
-      case 'NoteImg':
-      case 'NoteVideo':
-        note.info.url = ''
-        break
-  
-      case 'NoteTodos':
-        note.info.todos = []
-        break
-  
-      default:
-        break
-    }
-  
-    return note
-  }
-
-function _createNote(title, bgc ='#ffffff') {
-    return {
-        id: utilService.makeId(5),
-        createdAt: Date.now(),
-        type: 'NoteTxt',
+        id: '', 
+        info: {},
         isPinned: false,
-        style: {
-            backgroundColor: bgc
-        },
-        info: {
-            txt: title
-        }
-    }
-  }
+        style: { backgroundColor: 'white' },
+        type ,
+    };
 
+    switch (type) {
+        case 'NoteTxt':
+            note.info.txt = txt;
+            break;
+
+        case 'NoteImg':
+        case 'NoteVideo':
+            note.info.url = '';
+            break;
+
+        case 'NoteTodos':
+            note.info.todos = [];
+            break;
+
+        default:
+            break;
+    }
+
+    return note;
+}
 
 function _createNotes() {
     gDummyNotes = localStorageService.loadFromStorage(NOTES_KEY)
