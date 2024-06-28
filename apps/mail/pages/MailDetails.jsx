@@ -35,7 +35,7 @@ export function MailDetails() {
                 <div className="header-left">
                     <h3 className="mail-details-subject">{mail.subject}</h3>
                     <section className="to-from-container">
-                        <img className="from-profile-img" src="../assets/imgs/default_profile.png" alt="" />
+                        <img className="from-profile-img" src="../../assets/imgs/default_profile.png" alt="" />
                         <div className="to-from">
                             <p className="mail-details-from">{mail.from}</p>
                             <p className="mail-details-to">to me</p>
