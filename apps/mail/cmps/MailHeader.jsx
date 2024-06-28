@@ -12,6 +12,13 @@ export function MailHeader({ editId, setIsEditing, isEditing, setFilterBy, setMa
         setMails(updatedMails)
     }
 
+    function onSetDraft(updatedDraft) {
+        var updatedMails = mails.filter(mail => mail.id !== updatedDraft.id)
+        // setMails(updatedMails)
+        updatedMails = [...updatedMails, updatedDraft]
+        setMails(updatedMails)
+    }
+
 
     return (
         <header className="mail-header">
@@ -33,6 +40,7 @@ export function MailHeader({ editId, setIsEditing, isEditing, setFilterBy, setMa
                 setIsEditing={setIsEditing}
                 isEditing={isEditing}
                 onSetMail={onSetMail}
+                onSetDraft={onSetDraft}
                 editId={editId}
             />
         </header>
