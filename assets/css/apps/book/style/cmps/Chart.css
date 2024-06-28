@@ -1,0 +1,47 @@
+  .chart {
+      display: table;
+      table-layout: fixed;
+      width: 70%;
+      max-width: 800px;
+      height: 200px;
+      margin: 0 auto;
+      margin-bottom: 8em;
+      background-image: linear-gradient(to top, rgba(0, 0, 0, 0.1) 2%, rgba(0, 0, 0, 0) 2%);
+      background-size: 100% 50px;
+      background-position: left top;
+  }
+
+  .chart li {
+      position: relative;
+      display: table-cell;
+      vertical-align: bottom;
+      height: 200px;
+      text-align: center;
+  }
+
+  .chart span {
+      margin: 0 1em;
+      display: block;
+      background: rgba(209, 236, 250, 0.75);
+      animation: draw 1s ease-in-out;
+      font-size: .9em;
+  }
+
+  .chart span:before {
+      position: absolute;
+      content: attr(title);
+
+      left: 0;
+      right: 0;
+      top: 105%;
+    
+      display: block;
+      text-align: center;
+      word-wrap: break-word;
+  }
+
+  @keyframes draw {
+      0% {
+          height: 0;
+      }
+  }
