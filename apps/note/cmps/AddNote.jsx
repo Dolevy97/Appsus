@@ -14,6 +14,7 @@ export function AddNote({ onSaveNewNote }) {
 
     function onSaveNote(ev) {
         ev.preventDefault()
+        console.log(noteToEdit)
         noteService.save(noteToEdit)
             .then((note) => {
                 console.log('Note saved successfully:', note)
@@ -26,7 +27,8 @@ export function AddNote({ onSaveNewNote }) {
     function handleChange({ target }) {
         const field = target.name
         let value = target.value
-
+        console.log(field);
+        console.log(value);
         switch (target.type) {
             case 'number':
             case 'range':
@@ -41,26 +43,30 @@ export function AddNote({ onSaveNewNote }) {
                 break;
         }
 
-        setNoteToEdit(prevNote => ({ ...prevNote, [field]: value }))
+        setNoteToEdit(prevNote => ({
+            ...prevNote,
+            info: {
+                ...prevNote.info,
+                [field]: value
+            }
+        }))
     }
 
-
-
-    const { title } = noteToEdit
+    const { info } = noteToEdit
 
     return (
         <section className="add-note-section" >
             <div className="add-note-container">
-            {/* <Accordion title="Take a note"> */}
+                {/* <Accordion title="Take a note"> */}
                 <form onSubmit={onSaveNote}>
                     <label htmlFor="byText"></label>
                     <input
                         type="text"
                         id="byText"
-                        name="title"
+                        name="txt"
                         className="input add-note-input"
                         placeholder="Take a note"
-                        onChange={handleChange} value={title}
+                        onChange={handleChange} value={info.txt || ''}
                     />
 
                     <div className="submit-icones">
