@@ -1,14 +1,17 @@
 const { useState, useEffect } = React
 import { mailService } from "../services/mail.service.js";
 
-export function MailCompose({ setIsAdding, isAdding, onSetMail }) {
-    const [user, setUser] = useState(null)
-    const [newMail, setNewMail] = useState(mailService.getEmptyMail())
+export function DraftEdit({ editId, setIsEditing, isEditing, onSetMail }) {
+    const [draftToEdit, setDraftToEdit] = useState()
 
     useEffect(() => {
-        mailService.getUser()
-            .then(setUser)
-    }, [])
+        if (isEditing) {
+            mailService.get(editId).then(draft => {
+                console.log(draft)
+            })
+        }
+
+    }, [isEditing])
 
     function handleChange({ target }) {
         const field = target.name
@@ -30,58 +33,36 @@ export function MailCompose({ setIsAdding, isAdding, onSetMail }) {
             default:
                 break;
         }
-        setNewMail(prevMail => ({ ...prevMail, [field]: value }))
-    }
-
-    function onAddMail(ev) {
-        ev.preventDefault()
-        const mailToAdd = { ...newMail, from: user.email, sentAt: Math.floor(Date.now() / 1000) }
-        if (mailToAdd.subject === '' || mailToAdd.body === '') {
-            const verifySend = confirm('Send this message without a subject or text in the body?')
-            if (verifySend) {
-                mailService.save(mailToAdd)
-                    .then(mail => {
-                        setNewMail(mailService.getEmptyMail())
-                        setIsAdding(false)
-                        onSetMail(mail)
-                    })
-            }
-        } else {
-            mailService.save(mailToAdd)
-                .then(mail => {
-                    setNewMail(mailService.getEmptyMail())
-                    setIsAdding(false)
-                    onSetMail(mail)
-                })
-        }
+        setDraftToEdit(prevMail => ({ ...prevMail, [field]: value }))
     }
 
     function onSaveDraft() {
-        mailService.getUser()
-            .then(user => {
-                newMail.from = user.email
-                newMail.createdAt = Math.floor(Date.now() / 1000)
-                mailService.save(newMail)
-                    .then(mail => {
-                        setNewMail(mailService.getEmptyMail())
-                        setIsAdding(false)
-                        onSetMail(mail)
-                    })
-            })
+        // console.log(editId)
+        // mailService.save(mailToEdit)
+        //     .then(mail => {
+        //         setMailToEdit()
+        //         setIsEditing(false)
+        //         onSetMail(mail)
+        //         console.log(mail)
+        //     })
+    }
+
+    function onSaveAsMail(ev) {
+        ev.preventDefault()
     }
 
     return (
-        isAdding &&
+        isEditing &&
         <section className="compose-mail">
-            <form onSubmit={onAddMail} className="compose-form-container">
+            <form onSubmit={onSaveAsMail} className="compose-form-container">
                 <article className="title-container">
                     <p className="input-title">New Message</p>
                     <span title="Save & Close" onClick={() => onSaveDraft()} className="material-symbols-outlined btn-close">close</span>
                 </article>
 
-                <article className="from-container">
+                {/* <article className="from-container">
                     <p>From <span className="user-email">{`${user.email}`}</span></p>
-                </article>
+                </article> */}
 
                 <article className="input-to">
                     <label htmlFor="mail-to"></label>

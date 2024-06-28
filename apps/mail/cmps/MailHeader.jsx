@@ -1,10 +1,11 @@
 const { useState } = React
+import { DraftEdit } from "./DraftEdit.jsx";
 import { MailCompose } from "./MailCompose.jsx";
 import { MailFilter } from "./MailFilter.jsx";
 
 
 
-export function MailHeader({ setFilterBy, setMails, mails, onOpenSideBar, setIsAdding, isAdding }) {
+export function MailHeader({ editId, setIsEditing, isEditing, setFilterBy, setMails, mails, onOpenSideBar, setIsAdding, isAdding }) {
 
     function onSetMail(updatedMail) {
         const updatedMails = [...mails, updatedMail]
@@ -27,6 +28,12 @@ export function MailHeader({ setFilterBy, setMails, mails, onOpenSideBar, setIsA
                 setIsAdding={setIsAdding}
                 isAdding={isAdding}
                 onSetMail={onSetMail}
+            />
+            <DraftEdit
+                setIsEditing={setIsEditing}
+                isEditing={isEditing}
+                onSetMail={onSetMail}
+                editId={editId}
             />
         </header>
     )

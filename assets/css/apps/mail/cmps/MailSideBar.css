@@ -6,7 +6,7 @@
 
     width: 4em;
     height: calc(100vh - 168px);
-    
+
     color: #202124;
     background-color: #f6f8fc;
     user-select: none;
@@ -64,7 +64,7 @@
     cursor: pointer;
 }
 
-.title:hover .span-icon{
+.title:hover .span-icon {
     background-color: rgba(32, 33, 36, 0.06);
 }
 
@@ -134,9 +134,9 @@
 }
 
 .compose-title {
-    display:none;
+    display: none;
 
     position: absolute;
     top: 1.6em;
-    left: 3.5em;
+    left: 4.2em;
 }
