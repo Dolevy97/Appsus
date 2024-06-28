@@ -96,6 +96,23 @@ function _createNotes() {
             // text notes
             {
                 id: 'n101',
+                createdAt: Date.now(),
+                type: 'NoteTodos',
+                style: {
+                    backgroundColor: '#f39f76'
+                },
+                isPinned: false,
+                info: {
+                    title: 'Get my stuff together',
+                    todos: [
+                        { txt: 'Driving license', doneAt: null },
+                        { txt: 'Coding power', doneAt: 187111111 }
+                    ]
+                }
+            },
+            
+            {
+                id: 'n102',
                 createdAt:  Date.now(),
                 type: 'NoteTxt',
                 isPinned: true,
@@ -103,11 +120,24 @@ function _createNotes() {
                     backgroundColor: '#f6e2dd'
                 },
                 info: {
-                    txt: 'Fullstack Me Baby!'
+                    txt: 'Buy eggs!'
                 }
             },
             {
-                id: 'n102',
+                id: 'n103',
+                createdAt: Date.now(),
+                type: 'NoteImg',
+                isPinned: false,
+                info: {
+                    url: 'https://www.stemsmarket.com/pick-up/wp-content/uploads/sites/2/2018/06/gerb_enjoy_xl.jpg',
+                    title: 'Bobi and Me'
+                },
+                style: {
+                    backgroundColor: '#f39f76'
+                }
+            },
+            {
+                id: 'n104',
                 createdAt:  Date.now(),
                 type: 'NoteTxt',
                 isPinned: true,
@@ -115,11 +145,11 @@ function _createNotes() {
                     backgroundColor: '#e2f6d3'
                 },
                 info: {
-                    txt: 'Fullstack Me Baby!'
+                    txt: 'Buy milk and honey!'
                 }
             },
             {
-                id: 'n103',
+                id: 'n105',
                 createdAt:  Date.now(),
                 type: 'NoteTxt',
                 isPinned: true,
@@ -131,7 +161,7 @@ function _createNotes() {
                 }
             },
             {
-                id: 'n104',
+                id: 'n106',
                 createdAt:  Date.now(),
                 type: 'NoteTxt',
                 isPinned: true,
@@ -144,7 +174,7 @@ function _createNotes() {
             },
             // image notes
             {
-                id: 'n105',
+                id: 'n107',
                 createdAt: Date.now(),
                 type: 'NoteImg',
                 isPinned: false,
@@ -158,7 +188,7 @@ function _createNotes() {
             },
             // todos notes
             {
-                id: 'n106',
+                id: 'n108',
                 createdAt: Date.now(),
                 type: 'NoteTodos',
                 style: {

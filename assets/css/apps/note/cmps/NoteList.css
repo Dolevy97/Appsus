@@ -3,18 +3,19 @@
 .note-list-container {
    margin-block-start: 3em;
    position: relative;
-   padding: 20px;
+   padding: 10px;
+   width: 90%;
+   max-width: 930px; 
+   margin: auto; 
 }
 
 .note-list {
-   display: flex;
-   flex-wrap: wrap;
-   gap: 10px; 
-   padding: 5px;
-   justify-content: center;
-   width: 100%; 
-   max-width: 1000px; 
-   margin: auto; 
+   column-count: 3;
+   column-width: 140px;
+   column-gap: 10px;
+   margin-block-end: 10px;
+   width: 100%; /* Full width within the container */
+   /* padding-block-end: 50px; */
    list-style-type: none;
    transition: 0.6s ease;
 }
@@ -24,45 +25,50 @@
    display: flex;
    flex-direction: column;
    justify-content: space-between;
-   padding: 20px;
-   margin-bottom: 10px;
+   padding: 10px;
+   margin-bottom: 20px; /* Increased margin bottom */
    border-radius: 8px;
    transition: 0.6s ease;
-   width: 240px;
-   height: auto; 
+   width: 240px; 
+   height: auto;
+   min-height: 100px; 
+   overflow: hidden;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
-   overflow: hidden; 
 }
 
-.note-item:hover{
-   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+.note-item:hover {
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .note-preview {
    transition: 0.6s ease;
 }
 
+/* inside cont */
 .note-actions {
    display: flex;
    justify-content: space-between;
    align-items: center;
    position: absolute;
    left: 10px;
-   bottom: 4px;
-   width: calc(100% - 30px); 
-   margin-top: 10px;
+   bottom: 10px; 
+   width: calc(100% - 20px); 
    transition: 0.6s ease;
 }
 
 .pin-icon {
    position: absolute;
-   top: 10px; 
+   top: 10px;
    right: 10px;
 }
 
 .other-icons {
    display: flex;
-   gap: 5px;
+   align-items: center; 
+   margin-left: -5px;
+
+   gap: 10px; 
 }
 
 .icones-display {
@@ -79,11 +85,11 @@
    display: flex;
    flex-wrap: wrap;
    position: absolute;
-   bottom: 4%; 
-   left: 0; 
+   bottom: 10px; 
+   left: 10px; 
    transform: translateX(20%);
    background: white;
-   padding: 2px;
+   padding: 5px;
    border: 1px solid #ccc;
    border-radius: 8px;
    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
@@ -101,20 +107,33 @@
 }
 
 .color-option:hover {
-   box-shadow: inset 0 0 0 1px black; 
+   box-shadow: inset 0 0 0 1px black;
 }
 
 .icone-hover {
    cursor: pointer;
-   padding: 4px; 
+   padding: 6px; 
 }
 
 .icone-hover:hover {
-   border-radius: 50%; 
+   border-radius: 50%;
    background-color: rgba(218, 218, 218, 0.3);
 }
 
-.is-notpinned-title ,.is-pinned-title{
-   font-weight: 50;
+.is-notpinned-title,
+.is-pinned-title {
+   font-weight: 500;
    text-align: center;
+}
+
+.note-item img {
+
+   width: 100%;
+   height: auto;
+   border-radius: 8px;
+   margin-bottom: 8px; 
+}
+
+.img-title{
+   margin-bottom: 40px;
 }
