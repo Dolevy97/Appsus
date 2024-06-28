@@ -1,0 +1,39 @@
+.add-review-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .5em;
+
+    width: fit-content;
+
+    margin-block: 1em;
+    padding: 2em;
+
+    border-radius: 5px;
+    box-shadow: 1px 1px 4px 1px black;
+}
+
+.review-container {
+
+    margin-block: 1em;
+    padding: .3em 1em;
+    width: fit-content;
+
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+.cmp-type {
+    display: flex;
+}
+
+.star {
+    display: inline-block;
+    transition: scale .5s;
+}
+
+.star:hover {
+    scale: 1.2;
+    cursor: pointer;
+}

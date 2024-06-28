@@ -1,0 +1,14 @@
+.book-edit-container {
+    text-align: center;
+}
+
+.book-edit-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .5em;
+
+    padding: 1.5em;
+    height: 20vh;
+}

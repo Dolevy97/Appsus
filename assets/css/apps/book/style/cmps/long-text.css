@@ -1,0 +1,11 @@
+.long-txt {
+    font-family: 'Edu VIC WA NT Beginner', cursive;
+    letter-spacing: 0.02em;
+    margin-block: 1em;
+}
+
+.show-more {
+    text-decoration: underline;
+    font-weight: 600;
+    cursor: pointer;
+}

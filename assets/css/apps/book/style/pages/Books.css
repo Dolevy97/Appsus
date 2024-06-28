@@ -1,0 +1,37 @@
+.books-container {
+    display: flex;
+    align-items: start;
+    flex-wrap: wrap;
+    gap: 1.5em;
+
+    margin-block: 1em;
+}
+
+.book-container {
+    transition: scale .3s;
+}
+
+.book-container:hover {
+    scale: 1.05;
+    cursor: pointer;
+}
+
+.book-container p {
+    font-weight: 600;
+    margin-block-end: .5em;
+}
+
+.book-thumbnail {
+    height: 250px;
+}
+
+.btn-add {
+    display: block;
+    margin: 1em auto;
+    background-color: var(--clr2);
+    box-shadow: 0 1px 4px black;
+}
+
+.btn-add:hover {
+    background-color: var(--clr1);
+}

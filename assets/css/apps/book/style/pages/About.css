@@ -1,0 +1,9 @@
+.about-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 80vw;
+    height: 80vh;
+}
