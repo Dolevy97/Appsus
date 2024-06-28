@@ -3,7 +3,6 @@
 
 
 export function NotePreview({ note }) {
-
     const { type, info } = note
 
     let content
@@ -13,7 +12,6 @@ export function NotePreview({ note }) {
                 {info.txt}
             </div>
         )
-
     } else if (type === 'NoteImg') {
         content = (
             <div className="photo note-preview" style={note.style}>
@@ -34,15 +32,26 @@ export function NotePreview({ note }) {
                 </ul>
             </div>
         )
+    } else if (type === 'NoteVideo') {
+        content = (
+            <div className="video note-preview" style={note.style}>
+                <h4>{info.title}</h4>
+                <iframe
+                    className="video"
+                    height="235"
+                    src={info.url.replace('watch?v=', 'embed/')}
+                    frameBorder="0"
+                    allowFullScreen
+                ></iframe>
+            </div>
+        )
     }
     return (
-        <article className="note-preview" >
+        <article className="note-preview">
             {content}
         </article>
     )
 }
-
-
 
 
 

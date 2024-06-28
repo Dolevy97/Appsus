@@ -15,6 +15,7 @@ export const noteService = {
     getDefaultFilter,
     save,
     getEmptyNote,
+    getEmptyTodo,
 }
 
 function query(filterBy = {}) {
@@ -57,7 +58,7 @@ function save(note) {
     if (note.id) {
         return storageService.put(NOTES_KEY, note)
     } else {
-        console.log(note);
+        console.log(note)
         return storageService.post(NOTES_KEY, note)
     }
 }
@@ -71,28 +72,33 @@ function getEmptyNote(type="NoteTxt", txt = '') {
         isPinned: false,
         style: { backgroundColor: 'white' },
         type ,
-    };
+    }
 
     switch (type) {
         case 'NoteTxt':
-            note.info.txt = txt;
-            break;
+            note.info.txt = txt
+            break
 
         case 'NoteImg':
         case 'NoteVideo':
-            note.info.url = '';
-            break;
+            note.info.url = ''
+            break
 
         case 'NoteTodos':
-            note.info.todos = [];
-            break;
+            note.info.todos = []
+            break
 
         default:
-            break;
+            break
     }
 
-    return note;
+    return note
 }
+
+
+function getEmptyTodo() {
+    return { txt: '', doneAt: null, id: utilService.makeId() }
+  }
 
 function _createNotes() {
     gDummyNotes = localStorageService.loadFromStorage(NOTES_KEY)
@@ -134,7 +140,7 @@ function _createNotes() {
                 type: 'NoteImg',
                 isPinned: false,
                 info: {
-                    url: 'https://www.stemsmarket.com/pick-up/wp-content/uploads/sites/2/2018/06/gerb_enjoy_xl.jpg',
+                    url: 'https://img.freepik.com/free-photo/vibrant-colors-nature-close-up-wet-purple-daisy-generated-by-artificial-intellingence_25030-63819.jpg',
                     title: 'Bobi and Me'
                 },
                 style: {

@@ -59,11 +59,10 @@ export function AddNote({ onSaveNewNote }) {
 
     function handleNoteTypeChange(type) {
         setNoteType(type)
-        setNoteToEdit(noteService.getEmptyNote())
+        setNoteToEdit(noteService.getEmptyNote(type)) 
     }
 
     const { info } = noteToEdit
-
     return (
         <section className="add-note-section">
             <div className="add-note-container">
@@ -90,11 +89,23 @@ export function AddNote({ onSaveNewNote }) {
                             value={info.url || ''}
                         />
                     )}
+                    {noteType === 'NoteVideo' && (
+                        <input
+                            type="url"
+                            id="byVideo"
+                            name="url"
+                            className="input add-note-input"
+                            placeholder="Enter YouTube video URL"
+                            onChange={handleChange}
+                            value={info.url || ''}
+                        />
+                    )}
 
                     <div className="submit-icons">
                         <button className="button-reset" type="submit"><span className="material-symbols-outlined">add</span></button>
                         <span className="material-symbols-outlined" onClick={() => handleNoteTypeChange('NoteTxt')}> text_fields </span>
                         <span className="material-symbols-outlined" onClick={() => handleNoteTypeChange('NoteImg')}> image </span>
+                        <span className="material-symbols-outlined" onClick={() => handleNoteTypeChange('NoteVideo')}> youtube_activity </span>
                     </div>
                 </form>
             </div>
@@ -103,16 +114,3 @@ export function AddNote({ onSaveNewNote }) {
 
 }
 
-
-// function DynamicCmp(props) {
-//     switch (props.cmpType) {
-//         case 'hello':
-//             return <Hello {...props} />
-//         case 'goodbye':
-//             return <GoodBye {...props} />
-//         case 'welcomeBack':
-//             return <WelcomeBack {...props} />
-//         default:
-//             return null
-//     }
-// }
