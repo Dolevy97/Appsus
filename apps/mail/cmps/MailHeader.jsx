@@ -19,7 +19,7 @@ export function MailHeader({ setFilterBy, setMails, mails, onOpenSideBar, setIsA
                     <span className="material-symbols-outlined hamburger-icon">menu</span>
                 </article>
                 <article className="logo-container">
-                    <img className="logo" src="../../../assets/imgs/gmail.png" alt="" />
+                    <img className="logo" src="./../../assets/imgs/gmail.png" alt="" />
                 </article>
             </section>
             <MailFilter setFilterBy={setFilterBy} />
