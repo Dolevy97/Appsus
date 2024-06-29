@@ -60,6 +60,11 @@
     margin-bottom: 3em;
 }
 
+.links {
+    display: flex;
+    gap: .5em;
+}
+
 /* .social-container .links {
     margin-left: auto;
 }
