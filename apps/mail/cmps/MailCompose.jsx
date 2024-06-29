@@ -24,6 +24,10 @@ export function MailCompose({ setIsAdding, isAdding, onSetMail }) {
         }
     }, [searchParams])
 
+    useEffect(() => {
+        setSearchParams(newMail)
+    }, [newMail])
+
     function handleChange({ target }) {
         const field = target.name
         let value = target.value
@@ -86,11 +90,6 @@ export function MailCompose({ setIsAdding, isAdding, onSetMail }) {
 
     function onSendToNote() {
         const newNote = noteService.getEmptyNote()
-        //         const formattedMailToNote = `From: ${user.email}
-        // To: ${newMail.to}
-        // Subject: ${newMail.subject}
-        // Body: ${newMail.body}
-        //         `
         const formattedMailToNote = newMail.body
         newNote.info.txt = formattedMailToNote
         noteService.save(newNote)
@@ -102,7 +101,7 @@ export function MailCompose({ setIsAdding, isAdding, onSetMail }) {
 
     if (!newMail || !user) return
 
-    const { body, subject, to } = defaultMail
+    const { body, subject, to } = newMail
 
     return (
         isAdding &&
