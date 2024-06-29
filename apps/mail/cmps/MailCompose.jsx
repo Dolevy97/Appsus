@@ -1,9 +1,13 @@
 const { useState, useEffect } = React
 import { mailService } from "../services/mail.service.js";
+import { noteService } from "../../note/services/note.service.js";
+const { useNavigate } = ReactRouterDOM
 
 export function MailCompose({ setIsAdding, isAdding, onSetMail }) {
     const [user, setUser] = useState(null)
     const [newMail, setNewMail] = useState(mailService.getEmptyMail())
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         mailService.getUser()
@@ -70,6 +74,21 @@ export function MailCompose({ setIsAdding, isAdding, onSetMail }) {
             })
     }
 
+    function onSendToNote() {
+        const newNote = noteService.getEmptyNote()
+        //         const formattedMailToNote = `From: ${user.email}
+        // To: ${newMail.to}
+        // Subject: ${newMail.subject}
+        // Body: ${newMail.body}
+        //         `
+        const formattedMailToNote = newMail.body
+        newNote.info.txt = formattedMailToNote
+        noteService.save(newNote)
+            .then(() => {
+                navigate('/note')
+            })
+    }
+
     return (
         isAdding &&
         <section className="compose-mail">
@@ -97,8 +116,12 @@ export function MailCompose({ setIsAdding, isAdding, onSetMail }) {
                 </textarea>
 
                 <section className="compose-footer">
+
                     <button className="btn-send">Send</button>
-                    <button className="mobile-btn-send"><span class="material-symbols-outlined">send</span></button>
+                    <button className="mobile-btn-send"><span className="material-symbols-outlined">send</span></button>
+                    <div onClick={onSendToNote} title="Send to keep" className="send-to-keep">
+                        <span className="material-symbols-outlined">note_stack</span>
+                    </div>
                     <span title="Discard draft" onClick={() => setIsAdding(false)} className="material-symbols-outlined discard-draft-icon">delete</span>
                 </section>
             </form>

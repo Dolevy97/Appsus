@@ -38,3 +38,23 @@
     cursor: pointer;
     scale: 1.1;
 }
+
+
+@media (max-width: 480px) {
+    .about {
+        margin-block-start: 7.5em;
+        padding-inline: 2em;
+    }
+    .pixel-img {
+        height: 120px;
+    }
+
+    .social-container {
+        width: 70px;
+    }
+    
+    .social-logo {
+        width: 25px;
+        height: 25px;
+    }
+}

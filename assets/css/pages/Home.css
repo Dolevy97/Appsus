@@ -1,9 +1,46 @@
 /* home */
 
-h2.logo {
-  padding-inline-start: .5em;
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  gap: 2em;
+
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
 
+.home h1 {
+  font-style: italic;
+  font-size: .9em;
+}
+
+.home h2 {
+  font-size: 3em;
+  text-shadow: 0px 0px 10px #ffab3e;
+}
+
+.home-logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  border: 1px solid rgb(0 0 0 / 0.2);
+  box-shadow: 0 0 10px 2px black;
+}
+
+.home-horse-logo {
+  height: 180px;
+  object-fit: contain;
+}
+
+
+/* Loader */
 
 .loader-container {
   display: flex;
