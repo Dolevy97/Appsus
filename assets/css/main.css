@@ -45,3 +45,8 @@
 @import './cmps/UserMsg.css';
 @import './cmps/AppHeader.css';
 @import './cmps/accordion.css';
+
+
+/* Books */
+
+@import './apps/book/style/bookMain.css'

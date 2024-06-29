@@ -5,13 +5,18 @@ import { MailFilter } from "./MailFilter.jsx";
 
 
 
-export function MailHeader({ editId, setIsEditing, isEditing, setFilterBy, setMails, mails, onOpenSideBar, setIsAdding, isAdding }) {
+export function MailHeader({ onChangeFolder, editId, setIsEditing, isEditing, setFilterBy, setMails, mails, onOpenSideBar, setIsAdding, isAdding }) {
 
     function onSetMail(updatedMail) {
         const updatedMails = [...mails, updatedMail]
         setMails(updatedMails)
     }
 
+    function onSetDraft(updatedDraft) {
+        var updatedMails = mails.filter(mail => mail.id !== updatedDraft.id)
+        updatedMails = [...updatedMails, updatedDraft]
+        setMails(updatedMails)
+    }
 
     return (
         <header className="mail-header">
@@ -33,7 +38,9 @@ export function MailHeader({ editId, setIsEditing, isEditing, setFilterBy, setMa
                 setIsEditing={setIsEditing}
                 isEditing={isEditing}
                 onSetMail={onSetMail}
+                onSetDraft={onSetDraft}
                 editId={editId}
+                onChangeFolder={onChangeFolder}
             />
         </header>
     )

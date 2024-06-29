@@ -15,6 +15,7 @@ export function MailIndex() {
     const [isOpenSideBar, setIsOpenSideBar] = useState(false)
     const [isEditing, setIsEditing] = useState(false)
     const [editId, setEditId] = useState(null)
+    const [currFolder, setCurrFolder] = useState('inbox')
 
     const debounceLoadBooks = useRef(utilService.debounce(loadMails, 300))
 
@@ -42,6 +43,11 @@ export function MailIndex() {
         setIsOpenSideBar(prev => !prev)
     }
 
+    function onChangeFolder(folder) {
+        onSetFilterBy(folder)
+        setCurrFolder(folder.status)
+    }
+
     if (!mails) return <div className="loader-container"> <div className="loader"></div></div>
 
     return (
@@ -56,6 +62,7 @@ export function MailIndex() {
                 setIsEditing={setIsEditing}
                 isEditing={isEditing}
                 editId={editId}
+                onChangeFolder={onChangeFolder}
             />
             <MailSorting
                 mails={mails}
@@ -68,6 +75,8 @@ export function MailIndex() {
                 onSetFilterBy={onSetFilterBy}
                 setIsAdding={setIsAdding}
                 isAdding={isAdding}
+                onChangeFolder={onChangeFolder}
+                currFolder={currFolder}
             />
             <MailList
                 mails={mails}

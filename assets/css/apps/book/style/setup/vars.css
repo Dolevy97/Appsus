@@ -1,0 +1,20 @@
+/* Coolors Link: https://coolors.co/palette/03045e-023e8a-0077b6-0096c7-00b4d8-48cae4-90e0ef-ade8f4-caf0f8 */
+
+:root {
+  --clr1: #f6f8fc;
+  --clr2: #48CAE4;
+  --clr3: #90E0EF;
+  --clr4: #9DFFBD;
+  --clr5: #FFCCCB;
+  --clr6: #1098b0;
+
+  --clr1bg: #202124;
+  --clr1bg-light: rgb(205, 221, 200);
+  --clr2bg: #ADE8F4;
+  --clr2bg-light: rgb(205, 221, 200);
+
+  --gray1: rgb(240, 240, 240);
+  --gray2: rgb(155, 155, 155);
+  --gray3: rgb(50, 50, 50);
+
+}

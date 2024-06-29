@@ -1,14 +1,12 @@
 const { useState, useEffect } = React
 import { mailService } from "../services/mail.service.js";
 
-export function DraftEdit({ editId, setIsEditing, isEditing, onSetMail }) {
+export function DraftEdit({ onChangeFolder, onSetDraft, editId, setIsEditing, isEditing, onSetMail }) {
     const [draftToEdit, setDraftToEdit] = useState()
 
     useEffect(() => {
         if (isEditing) {
-            mailService.get(editId).then(draft => {
-                console.log(draft)
-            })
+            mailService.get(editId).then(setDraftToEdit)
         }
 
     }, [isEditing])
@@ -37,19 +35,30 @@ export function DraftEdit({ editId, setIsEditing, isEditing, onSetMail }) {
     }
 
     function onSaveDraft() {
-        // console.log(editId)
-        // mailService.save(mailToEdit)
-        //     .then(mail => {
-        //         setMailToEdit()
-        //         setIsEditing(false)
-        //         onSetMail(mail)
-        //         console.log(mail)
-        //     })
+        mailService.save(draftToEdit)
+            .then(draft => {
+                setDraftToEdit()
+                setIsEditing(false)
+                onSetDraft(draft)
+            })
     }
 
     function onSaveAsMail(ev) {
         ev.preventDefault()
+        delete draftToEdit.createdAt
+        draftToEdit.sentAt = Math.floor(Date.now() / 1000)
+        mailService.save(draftToEdit)
+            .then(mail => {
+                setDraftToEdit(null)
+                setIsEditing(false)
+                onSetDraft(mail)
+                onChangeFolder({ status: 'sent' })
+            })
     }
+
+    if (!draftToEdit) return
+
+    const { to, subject, body } = draftToEdit
 
     return (
         isEditing &&
@@ -66,15 +75,15 @@ export function DraftEdit({ editId, setIsEditing, isEditing, onSetMail }) {
 
                 <article className="input-to">
                     <label htmlFor="mail-to"></label>
-                    <input onChange={handleChange} required id="mail-to" type="email" name="to" placeholder="To" />
+                    <input value={to} onChange={handleChange} required id="mail-to" type="email" name="to" placeholder="To" />
                 </article>
 
                 <article className="input-subject">
                     <label htmlFor="subject"></label>
-                    <input onChange={handleChange} id="subject" type="text" name="subject" placeholder="Subject" />
+                    <input value={subject} onChange={handleChange} id="subject" type="text" name="subject" placeholder="Subject" />
                 </article>
 
-                <textarea onChange={handleChange} className="input-textarea" name="body" id="body">
+                <textarea value={body} onChange={handleChange} className="input-textarea" name="body" id="body">
                 </textarea>
 
                 <section className="compose-footer">

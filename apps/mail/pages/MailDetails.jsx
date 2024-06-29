@@ -7,10 +7,12 @@ export function MailDetails() {
 
     const { mailId } = useParams()
     const [mail, setMail] = useState(null)
+    const [user, setUser] = useState(null)
 
     useEffect(() => {
         mailService.get(mailId)
             .then(setMail)
+        mailService.getUser().then(setUser)
     }, [])
 
 
@@ -26,8 +28,9 @@ export function MailDetails() {
         }).format(date)
     }
 
-    if (!mail) return <div className="loader-container"><div className="loader"></div> </div>
 
+    if (!mail) return <div className="loader-container"><div className="loader"></div> </div>
+    if (!user) return
     return (
         <section className="mail-details-container">
             <Link to="/mail"><button className="btn-back">
@@ -39,8 +42,10 @@ export function MailDetails() {
                     <section className="to-from-container">
                         <img className="from-profile-img" src="./assets/imgs/defaultprofile.png" alt="" />
                         <div className="to-from">
-                            <p className="mail-details-from">{mail.from}</p>
-                            <p className="mail-details-to">to me</p>
+                            {user.email === mail.to && <p className="mail-details-from">{mail.from}</p>}
+                            {user.email === mail.from && <p className="mail-details-from">{mail.from}</p>}
+                            {user.email === mail.to && <p className="mail-details-to">to me</p>}
+                            {user.email === mail.from && <p className="mail-details-to">to {mail.to}</p>}
                         </div>
                     </section>
                 </div>
