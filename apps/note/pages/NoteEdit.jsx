@@ -149,12 +149,12 @@ export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor,
 
                         <div className='edit-note-section '>
                             <form onSubmit={onSaveNote}>
-                                <input
+                                <input style={note.style}
                                     value={info.title}
                                     onChange={handleChange}
                                     name="title"
                                     type="text"
-                                    className="input add-note-input-title"
+                                    className="input edit-note-input-title"
                                     placeholder="Title"
                                 />
                                 {noteType === 'NoteTxt' && (
@@ -192,10 +192,10 @@ export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor,
                                 )}
                                 {noteType === 'NoteTodos' && (
                                     <div>
-                                        <input
+                                        <input style={note.style}
                                             type="text"
                                             name="todos"
-                                            className="input add-note-input"
+                                            className=" edit-todo-input1"
                                             placeholder="Enter comma(,) for each new todo"
                                             onChange={handleTodoInputChange}
                                             onBlur={handleTodoInputBlur}

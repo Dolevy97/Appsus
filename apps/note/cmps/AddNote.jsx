@@ -178,7 +178,7 @@ export function AddNote({ onSaveNewNote }) {
                         <span className="material-symbols-outlined sb2" onClick={() => handleNoteTypeChange('NoteTxt')}> text_fields </span>
                         <span className="material-symbols-outlined sb3" onClick={() => handleNoteTypeChange('NoteImg')}> image </span>
                         <span className="material-symbols-outlined sb4" onClick={() => handleNoteTypeChange('NoteVideo')}> youtube_activity </span>
-                        <span className="material-symbols-outlined" onClick={() => handleNoteTypeChange('NoteTodos')} >list_alt </span>
+                        <span className="material-symbols-outlined sb5 " onClick={() => handleNoteTypeChange('NoteTodos')} >list_alt </span>
 
                     </div>
                 </form>

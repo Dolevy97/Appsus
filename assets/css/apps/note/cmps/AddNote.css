@@ -8,10 +8,10 @@
 
 .add-note-container {
     position: relative;
-    padding: 10px;
+    padding: 10px 12px;
     width: 70vw;
     max-width: 500px;
-    height: 72px;
+    height: 90px;
     -webkit-box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.41);
     -moz-box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.41);
     box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.41);
@@ -22,13 +22,12 @@
 
 .add-note-input {
     flex: 1;
-    line-height: 2em;
+    line-height: 2.6em;
     font-size: 1em;
-    background-color: #ffffff !important ;
+    background-color: #ffffff !important;
     border: none;
     width: 94%;
-
-
+    color: var(--textbar-clr-note);
 }
 
 .add-note-input::placeholder {
@@ -43,8 +42,8 @@
 
 .submit-icons {
     position: absolute;
-    bottom: 10px;
-    right: 14px;
+    bottom: 6px;
+    right: 8px;
     display: flex;
     justify-content: right;
     gap: 15px;
@@ -56,14 +55,16 @@
 .sb1,
 .sb2,
 .sb3,
-.sb4 {
+.sb4,
+.sb5 {
     padding: 1px;
 }
 
 .sb1:hover,
 .sb2:hover,
 .sb3:hover,
-.sb4:hover {
+.sb4:hover,
+.sb5:hover{
     border-radius: 50%;
     background-color: var(--hover-btn-note);
 }
@@ -106,7 +107,7 @@
 .dummy-addNote {
     cursor: pointer;
 
-    padding: 10px;
+    padding: 10px 12px;
     width: 70vw;
     max-width: 500px;
     height: 36px;
@@ -124,8 +125,8 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    right: 14px;
-    top: 10px;
+    right: 8px;
+    top: 5px;
     cursor: pointer;
 
     height: 24px;
@@ -135,4 +136,17 @@
 .close-addnote:hover {
     border-radius: 50%;
     background-color: var(--hover-btn-note);
+}
+
+.add-note-input-title {
+    flex: 1;
+    line-height: 1.4em;
+    font-size: 1.4em;
+    font-weight:500;
+    color: var(--textbar-clr-note);
+    background-color: #ffffff !important;
+    border: none;
+    width: 94%;
+    
+
 }
