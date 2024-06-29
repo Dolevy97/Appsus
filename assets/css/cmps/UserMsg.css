@@ -1,21 +1,43 @@
 .user-msg {
-    background-color: lightgray;
-    padding: 1em;
     position: absolute;
-    top: 1em;
-    right: 1em;
+    left: 1.5em;
+    bottom: 1.5em;
+
+    color: #fff;
+    background-color: #202124;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 3px 0px, rgba(60, 64, 67, 0.15) 0px 4px 8px 3px;
+    padding: 1em;
+
+    width: 348px;
+
+    border-radius: 4px;
+    z-index: 100;
+}
+
+.user-msg p {
+    margin: 0;
 }
 
 .user-msg.success {
-    background-color: lightgreen;
+    background-color: var(--clr4);
 }
 
 .user-msg.error {
-    background-color: lightpink;
+    background-color: var(--clr5);
 }
 
-
-.user-msg button{
-    float: right;
-    margin: 1em;
+.user-msg.mail {
+    color: #fff;
+    background-color: #202124;
 }
+
+.user-msg button {
+    position: absolute;
+    right: 1em;
+    top: 18.5px;
+
+    color: white;
+    background-color: inherit;
+    border: none;
+}
+

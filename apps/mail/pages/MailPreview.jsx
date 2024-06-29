@@ -1,4 +1,5 @@
 const { useEffect, useState } = React
+import { showGmailMsg } from "../../../services/event-bus.service.js"
 import { mailService } from "../services/mail.service.js"
 
 const { useNavigate } = ReactRouterDOM
@@ -6,6 +7,8 @@ const { useNavigate } = ReactRouterDOM
 export function MailPreview({ setEditId, setIsEditing, mail, getFormattedTime, onSetMail, onDeleteMail }) {
     const navigate = useNavigate()
     const [user, setUser] = useState()
+
+
 
     useEffect(() => {
         mailService.getUser().then(setUser)
@@ -23,7 +26,10 @@ export function MailPreview({ setEditId, setIsEditing, mail, getFormattedTime, o
         ev.stopPropagation()
         const newMail = { ...mail, isRead: !mail.isRead }
         mailService.save(newMail)
-            .then(onSetMail)
+            .then(mail => {
+                onSetMail(mail)
+                showGmailMsg(`Conversation marked as ${mail.isRead ? 'read' : 'unread'}`)
+            })
             .catch(err => console.log('Oh no! err:', err))
     }
 
