@@ -71,10 +71,10 @@
 
 
 .button-note-reset {
+    
     background: none;
     border: none;
-    padding: 0;
-    margin: 0;
+    margin: 8px 0;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
