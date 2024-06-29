@@ -122,7 +122,11 @@
 
 .is-notpinned-title,
 .is-pinned-title {
-   font-weight: 500;
+   font-weight: 400;
+   font-family: "Google Sans", "WorkSans-Light", RobotoDraft, Helvetica, Arial, sans-serif;
+
+   color: var(--textbar-clr-note);
+
    text-align: center;
 }
 
