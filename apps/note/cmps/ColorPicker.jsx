@@ -1,9 +1,16 @@
 
 
 const { useState, useEffect, useRef } = React
+const { Link, useParams, useNavigate } = ReactRouterDOM
 
 
 export function ColorPicker({ onChangeColor }) {
+
+
+  const {noteId}= useParams()
+
+
+
   const colors = [
     'white',
     '#f6e2dd',
@@ -26,7 +33,7 @@ export function ColorPicker({ onChangeColor }) {
 
 
   return (
-    <div className="color-picker icones-display">
+    <div className={`color-picker ${noteId ? 'icones-display-edit':'icones-display'}`}>
       {colors.map((color) => (
         <div
           key={color}

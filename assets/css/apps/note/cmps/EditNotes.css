@@ -13,7 +13,6 @@
 
 }
 
-
 .edit-note-input {
   font-size: 24px;
   margin-top: 15px;
@@ -22,10 +21,19 @@
   border: none;
 }
 
+.edit-note-section-for-input{
+  width: 90%;
+}
+
 .edit-note-input-url {
   margin-left: 10px;
   font-size: 16px;
   margin-top: 15px;
-  width: 140%;
+  width: 100%;
   border: none;
+}
+
+.icones-display-edit{
+
+  
 }

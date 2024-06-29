@@ -9,7 +9,7 @@ const { Link, useParams, useNavigate } = ReactRouterDOM
 const { useState, useEffect, useRef } = React
 
 
-export function NoteEdit({ onSaveNewNote ,onRemoveNote, onChangeColor, onDuplicateNote, onChangeNote }) {
+export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor, onDuplicateNote, onChangeNote }) {
     const { noteId } = useParams()
     const [note, setNote] = useState(null)/// paly with the note 
     const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
@@ -19,7 +19,6 @@ export function NoteEdit({ onSaveNewNote ,onRemoveNote, onChangeColor, onDuplica
     //icones
     const [colorPickerNoteId, setColorPickerNoteId] = useState(null)
 
-   
 
     useEffect(() => {
         if (noteId) {
@@ -37,7 +36,7 @@ export function NoteEdit({ onSaveNewNote ,onRemoveNote, onChangeColor, onDuplica
     }, [noteId])
 
 
-///add to edit
+    ///add to edit
     function onSaveNote(ev) {
         ev.preventDefault()
         const updatedNote = { ...noteToEdit, type: noteType }
@@ -78,16 +77,16 @@ export function NoteEdit({ onSaveNewNote ,onRemoveNote, onChangeColor, onDuplica
     }
 
 
-///all icones
+    ///all icones
 
-function onDuplicateNote(note) {
-    const newNote = { ...note, id: '' }
+    function onDuplicateNote(note) {
+        const newNote = { ...note, id: '' }
 
-    noteService
-        .save(newNote)
-        .then(onChangeNote)
-        .catch((err) => console.log('err', err))
-}
+        noteService
+            .save(newNote)
+            .then(onChangeNote)
+            .catch((err) => console.log('err', err))
+    }
 
 
 
@@ -100,7 +99,7 @@ function onDuplicateNote(note) {
             <h2><Link to="/note"> {noteId && (<div className="main-screen"> </div>)}</Link></h2>
             {noteId && (
                 <div style={note.style} className="edit-note-container">
-                    <div >
+                    <div className  = "edit-note-section-for-input ">
 
                         <div className='edit-note-section '>
                             <form onSubmit={onSaveNote}>
@@ -146,19 +145,19 @@ function onDuplicateNote(note) {
                         </div>
 
                         <div className="icones-display-edit">
-                                 
-                                    <section className="note-actions-edit">
-                                        <div className="other-icons-edit">
-                                            <span onClick={() => setColorPickerNoteId(noteId)} className="material-symbols-outlined icone-hover">palette</span>
-                                            <span onClick={() => { onRemoveNote(noteId), navigate('/note') }} className="material-symbols-outlined icone-hover">delete</span>
-                                            <span onClick={() => onDuplicateNote(note)} className="material-symbols-outlined icone-hover">content_copy</span>
-                                            <span className="material-symbols-outlined icone-hover">mail</span>
-                                        </div>
-                                    </section>
+
+                            <section className="note-actions-edit">
+                                <div className="other-icons-edit">
+                                    <span onClick={() => setColorPickerNoteId(noteId)} className="material-symbols-outlined icone-hover">palette</span>
+                                    <span onClick={() => { onRemoveNote(noteId), navigate('/note') }} className="material-symbols-outlined icone-hover">delete</span>
+                                    <span onClick={() => onDuplicateNote(note)} className="material-symbols-outlined icone-hover">content_copy</span>
+                                    <span className="material-symbols-outlined icone-hover">mail</span>
                                 </div>
-                                {colorPickerNoteId === noteId && (
-                                    <ColorPicker onChangeColor={(color) => onChangeColor(noteId, color, setColorPickerNoteId)} />
-                                )}
+                            </section>
+                        </div>
+                        {colorPickerNoteId === noteId && (
+                            <ColorPicker onChangeColor={(color) => onChangeColor(noteId, color, setColorPickerNoteId)} />
+                        )}
                     </div>
 
                 </div>)}
