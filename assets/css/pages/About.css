@@ -16,3 +16,25 @@
     height: 200px;
     object-fit: contain;
 }
+
+.social-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    width: 100px;
+    margin: auto;
+}
+
+.social-logo {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+
+    transition: scale .2s;
+}
+
+.social-logo:hover {
+    cursor: pointer;
+    scale: 1.1;
+}
