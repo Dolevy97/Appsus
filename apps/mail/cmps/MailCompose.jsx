@@ -98,6 +98,7 @@ export function MailCompose({ setIsAdding, isAdding, onSetMail }) {
 
                 <section className="compose-footer">
                     <button className="btn-send">Send</button>
+                    <button className="mobile-btn-send"><span class="material-symbols-outlined">send</span></button>
                     <span title="Discard draft" onClick={() => setIsAdding(false)} className="material-symbols-outlined discard-draft-icon">delete</span>
                 </section>
             </form>

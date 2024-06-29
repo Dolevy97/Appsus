@@ -11,7 +11,7 @@ export function MailSideBar({ onChangeFolder, currFolder, isAdding, setIsAdding 
     return (
         <section ref={sideRef} className="side-bar">
             <section onClick={onCompose} className="compose-container">
-                <i className="material-symbols-outlined">edit</i>
+                <i className="material-symbols-outlined edit-icon">edit</i>
             </section>
             <div className="compose-title">Compose</div>
 

@@ -16,7 +16,7 @@
 }
 
 @media(max-width: 720px) {
-    .app-header {
+    .book-app-header {
         color: var(--clr2bg);
     }
 }

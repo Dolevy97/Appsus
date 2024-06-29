@@ -93,3 +93,18 @@
 .filter-icon:hover {
     cursor: pointer
 }
+
+@media (max-width: 480px) {
+    .filter-container {
+        width: 90vw;
+        margin: auto;
+    }
+
+    .filter-input {
+        padding-inline-start: 3em;
+    }
+
+    .search-icon {
+        display: none
+    }
+}

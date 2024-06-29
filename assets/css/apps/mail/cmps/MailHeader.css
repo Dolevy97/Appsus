@@ -39,19 +39,19 @@
     object-fit: contain;
 }
 
-.hamburger-icon {
+.menu-container {
     position: relative;
 }
 
-.hamburger-icon:hover {
+.menu-container:hover {
     cursor: pointer;
 }
 
-.hamburger-icon::before {
+.menu-container::before {
     content: '';
     position: absolute;
-    top: -8px;
-    left: -8px;
+    top: 2px;
+    left: 0px;
 
     border-radius: 50%;
 
@@ -62,6 +62,23 @@
     transition: scale .1s;
 }
 
-.hamburger-icon:hover::before {
+.menu-container:hover::before {
     scale: 1;
+}
+
+@media (max-width: 480px) {
+    .logo-container {
+        display: none;
+    }
+
+    .logo-menu-container {
+        width: 0;
+    }
+
+
+    .menu-container {
+        position: absolute;
+        left: 1.5em;
+        z-index: 10;
+    }
 }

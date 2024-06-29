@@ -22,3 +22,10 @@
 .sort-icon:hover {
     cursor: pointer;
 }
+
+@media (max-width: 480px) {
+    .sort-container {
+        width: 50vw;
+        padding-inline-start: .5em;
+    }
+}
