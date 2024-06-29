@@ -11,6 +11,8 @@
 /* Pages */
 
 @import './pages/Home.css';
+@import './pages/About.css';
+
 
 /* Apps */
 
@@ -38,7 +40,6 @@
 @import './apps/mail/cmps/MailCompose.css';
 @import './apps/mail/cmps/MailSorting.css';
 @import './apps/mail/cmps/MailSideBar.css';
-
 
 /* Cmps */
 
