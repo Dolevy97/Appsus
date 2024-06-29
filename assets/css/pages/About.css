@@ -4,9 +4,9 @@
     align-items: center;
     justify-content: center;
     gap: 2em;
-    height: 50vh;
+    height: 70vh;
     text-align: center;
-    margin-block-start: 6em;
+    margin-block-start: 10vh;
     
     padding-inline: 2em;
 }
@@ -64,5 +64,12 @@
     .social-logo {
         width: 25px;
         height: 25px;
+    }
+}
+
+@media (max-height: 860px) {
+    .about  {
+        font-size: .8em;
+        gap: .5em;
     }
 }
