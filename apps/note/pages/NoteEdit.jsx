@@ -195,7 +195,7 @@ export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor,
                                         <input style={note.style}
                                             type="text"
                                             name="todos"
-                                            className=" edit-todo-input1"
+                                            className="input edit-todo-input1"
                                             placeholder="Enter comma(,) for each new todo"
                                             onChange={handleTodoInputChange}
                                             onBlur={handleTodoInputBlur}
