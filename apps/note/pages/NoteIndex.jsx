@@ -34,7 +34,12 @@ export function NoteIndex() {
     }
 
     function onSaveNewNote(note) {
-        setNotes((prevNotes) => [note, ...prevNotes])
+        setNotes((prevNotes) => {
+            const updatedNotes = prevNotes.map(prevNote =>
+                prevNote.id === note.id ? note : prevNote
+            )
+            return [note, ...updatedNotes.filter(prevNote => prevNote.id !== note.id)]
+        })
     }
 
     function onSelectNoteId(noteId) {
@@ -105,12 +110,14 @@ export function NoteIndex() {
                     onChangeColor={onChangeColor}
                     onChangeNote={onChangeNote}
                 />
-                {/* <NoteEdit
-                     onRemoveNote={onRemoveNote}
-                     onSelectNoteId={onSelectNoteId}
-                     onChangeColor={onChangeColor}
-                     onDuplicateNote={onDuplicateNote}
-                /> */}
+                <NoteEdit
+                    onRemoveNote={onRemoveNote}
+                    onSelectNoteId={onSelectNoteId}
+                    onChangeColor={onChangeColor}
+                    onChangeNote={onChangeNote}
+
+                    onSaveNewNote={onSaveNewNote}
+                />
             </React.Fragment>
         </section>
 

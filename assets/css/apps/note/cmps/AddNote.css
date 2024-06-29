@@ -7,7 +7,7 @@
 
 
 .add-note-container {
-    position: relative; 
+    position: relative;
     padding: 10px;
     width: 70vw;
     max-width: 500px;
@@ -24,12 +24,14 @@
     flex: 1;
     line-height: 2em;
     font-size: 1em;
-    background-color: inherit;
+    background-color: #ffffff !important ;
     border: none;
+    width: 94%;
+
+
 }
 
 .add-note-input::placeholder {
-    color: var(--textbar-clr-note);
     opacity: 1;
     width: auto;
 }
@@ -40,27 +42,34 @@
 }
 
 .submit-icons {
-    position: absolute; 
-    bottom: 10px; 
-    right: 14px; 
+    position: absolute;
+    bottom: 10px;
+    right: 14px;
     display: flex;
     justify-content: right;
     gap: 15px;
     cursor: pointer;
-  
- 
+
+
 }
 
-.sb1,.sb2,.sb3,.sb4{
-padding: 1px;
+.sb1,
+.sb2,
+.sb3,
+.sb4 {
+    padding: 1px;
 }
-.sb1:hover,.sb2:hover,.sb3:hover,.sb4:hover{
+
+.sb1:hover,
+.sb2:hover,
+.sb3:hover,
+.sb4:hover {
     border-radius: 50%;
-    background-color:var(--hover-btn-note); 
+    background-color: var(--hover-btn-note);
 }
 
 
-.button-reset {
+.button-note-reset {
     background: none;
     border: none;
     padding: 0;
@@ -74,7 +83,7 @@ padding: 1px;
 
 .add-note-container {
     display: none;
-   
+
 }
 
 .add-note-visible {
@@ -110,7 +119,7 @@ padding: 1px;
     color: var(--textbar-clr-note);
 }
 
-.close-addnote{
+.close-addnote {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -118,12 +127,12 @@ padding: 1px;
     right: 14px;
     top: 10px;
     cursor: pointer;
-  
+
     height: 24px;
     width: 24px;
 }
 
 .close-addnote:hover {
     border-radius: 50%;
-    background-color:var(--hover-btn-note);
- }
+    background-color: var(--hover-btn-note);
+}

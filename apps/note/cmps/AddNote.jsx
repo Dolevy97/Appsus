@@ -9,6 +9,7 @@ import { noteService } from "../services/note.service.js"
 export function AddNote({ onSaveNewNote }) {
     const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
     const [noteType, setNoteType] = useState('NoteTxt')
+    
     const [isAddOpen, setIsAddOpen] = useState(false)
     const containerRef = useRef(null)
 
@@ -133,7 +134,7 @@ export function AddNote({ onSaveNewNote }) {
 
                     <span className="close-addnote" onClick={onCloseAdd}>X</span>
                     <div className="submit-icons">
-                        <button className="button-reset" type="submit"><span className="material-symbols-outlined sb1">add</span></button>
+                        <button className="button-note-reset" type="submit"><span className="material-symbols-outlined sb1 ">add</span></button>
                         <span className="material-symbols-outlined sb2" onClick={() => handleNoteTypeChange('NoteTxt')}> text_fields </span>
                         <span className="material-symbols-outlined sb3" onClick={() => handleNoteTypeChange('NoteImg')}> image </span>
                         <span className="material-symbols-outlined sb4" onClick={() => handleNoteTypeChange('NoteVideo')}> youtube_activity </span>
