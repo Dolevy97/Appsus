@@ -8,20 +8,19 @@ export function About() {
 
         <h4>Thank you for visiting AppSus. We hope you enjoy exploring our site as much as we enjoyed building it!</h4>
 
-        <div className="images-container">
-            <section className="dolev-image">
-                <img className="pixel-img" src="./../assets/imgs/DolevPixel.png" alt="" />
-                <div className="social-container">
-                    <a href="https://www.linkedin.com/in/dolev-levy-658436223/" target="_blank"><img className="social-logo" src="./../assets/imgs/linkedin-logo.png" alt="" /></a>
-                    <a href="https://github.com/Dolevy97" target="_blank"><img className="social-logo" src="./../assets/imgs/github-logo.png" alt="" /></a>
-                </div>
+        <img className="pixel-img" src="./../assets/imgs/About Image.png" alt="" />
+        <div className="social-container">
+            <h3>Dolev Levy:</h3>
+            <section className="links">
+            <a href="https://www.linkedin.com/in/dolev-levy-658436223/" target="_blank"><img className="social-logo" src="./../assets/imgs/linkedin-logo.png" alt="" /></a>
+            <a href="https://github.com/Dolevy97" target="_blank"><img className="social-logo" src="./../assets/imgs/github-logo.png" alt="" /></a>
             </section>
-            <section className="yona-image">
-                <img className="pixel-img" src="./../assets/imgs/DolevPixel.png" alt="" />
-                <div className="social-container">
-                    <a href="https://www.linkedin.com/in/yonatan-hershko-022718255/" target="_blank"><img className="social-logo" src="./../assets/imgs/linkedin-logo.png" alt="" /></a>
-                    <a href="https://github.com/yonatanhershko" target="_blank"><img className="social-logo" src="./../assets/imgs/github-logo.png" alt="" /></a>
-                </div>
+        </div>
+        <div className="social-container">
+            <h3>Yonatan Hershko:</h3>
+            <section className="links">
+                <a href="https://www.linkedin.com/in/yonatan-hershko-022718255/" target="_blank"><img className="social-logo" src="./../assets/imgs/linkedin-logo.png" alt="" /></a>
+                <a href="https://github.com/yonatanhershko" target="_blank"><img className="social-logo" src="./../assets/imgs/github-logo.png" alt="" /></a>
             </section>
         </div>
     </section>
