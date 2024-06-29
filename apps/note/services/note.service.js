@@ -97,8 +97,8 @@ function getEmptyNote(type="NoteTxt", txt = '') {
 
 
 function getEmptyTodo() {
-    return { txt: '', doneAt: null, id: utilService.makeId() }
-  }
+    return { txt: '', doneAt: null, id: utilService.makeId()}
+}
 
 function _createNotes() {
     gDummyNotes = localStorageService.loadFromStorage(NOTES_KEY)

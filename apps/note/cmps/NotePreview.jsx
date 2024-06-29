@@ -1,11 +1,15 @@
 
 
 
-
 export function NotePreview({ note }) {
     const { type, info } = note
 
     let content
+
+  
+
+
+
     if (type === 'NoteTxt') {
         content = (
             <div className="text note-preview" style={note.style}>
@@ -19,19 +23,23 @@ export function NotePreview({ note }) {
                 <h4 className="img-title">{info.title}</h4>
             </div>
         )
-    } else if (type === 'NoteTodos') {
+    }  else if (type === 'NoteTodos') {
         content = (
-            <div className="todo note-preview" style={note.style}>
+            <div className="todo-note-preview" style={note.style}>
                 <h4>{info.title}</h4>
                 <ul>
                     {info.todos.map((todo, idx) => (
                         <li key={idx}>
-                            {todo.txt} {todo.doneAt ? '(Done)' : '(Pending)'}
+                            <input
+                                type="checkbox"
+                          
+                            />
+                            {todo.txt}
                         </li>
                     ))}
                 </ul>
             </div>
-        )
+        );
     } else if (type === 'NoteVideo') {
         content = (
             <div className="video note-preview" style={note.style}>

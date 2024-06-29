@@ -8,6 +8,8 @@ import { noteService } from "../services/note.service.js"
 
 export function AddNote({ onSaveNewNote }) {
     const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
+    const [newTodoInput, setNewTodoInput] = useState('')
+
     const [noteType, setNoteType] = useState('NoteTxt')
     
     const [isAddOpen, setIsAddOpen] = useState(false)
@@ -73,6 +75,46 @@ export function AddNote({ onSaveNewNote }) {
         }))
     }
 
+    function handleTodoInputChange(event) {
+        setNewTodoInput(event.target.value);
+    }
+
+
+    function handleTodoInputBlur() {
+        const listTodos = newTodoInput.split(',').map(txt => ({ txt: txt.trim(), doneAt: null }));
+        setNoteToEdit(prevNote => ({
+            ...prevNote,
+            info: {
+                ...prevNote.info,
+                todos: [...(prevNote.info.todos || []), ...listTodos]
+            }
+        }));
+        setNewTodoInput('');
+    }
+
+
+    function handleCheckboxChange(todoIdx) {
+        setNoteToEdit(prevNote => {
+            const updatedTodos = prevNote.info.todos.map((todo, idx) => {
+                if (idx === todoIdx) {
+                    return {
+                        ...todo,
+                        doneAt: todo.doneAt ? null : Date.now() // Toggle doneAt value
+                    };
+                }
+                return todo;
+            });
+            return {
+                ...prevNote,
+                info: {
+                    ...prevNote.info,
+                    todos: updatedTodos
+                }
+            };
+        });
+    }
+
+
     function handleNoteTypeChange(type) {
         setNoteType(type)
         setNoteToEdit(noteService.getEmptyNote(type))
@@ -86,6 +128,7 @@ export function AddNote({ onSaveNewNote }) {
     function onCloseAdd() {
         setIsAddOpen(false)
     }
+
 
  
 
@@ -131,6 +174,19 @@ export function AddNote({ onSaveNewNote }) {
                             value={info.url || ''}
                         />
                     )}
+               {noteType === 'NoteTodos' && (
+                        <div>
+                            <input
+                                type="text"
+                                name="todos"
+                                className="input add-note-input"
+                                placeholder="Enter comma(,) for each todo"
+                                onChange={handleTodoInputChange}
+                                onBlur={handleTodoInputBlur}
+                                value={newTodoInput}
+                            />
+                        </div>
+                    )}
 
                     <span className="close-addnote" onClick={onCloseAdd}>X</span>
                     <div className="submit-icons">
@@ -138,6 +194,8 @@ export function AddNote({ onSaveNewNote }) {
                         <span className="material-symbols-outlined sb2" onClick={() => handleNoteTypeChange('NoteTxt')}> text_fields </span>
                         <span className="material-symbols-outlined sb3" onClick={() => handleNoteTypeChange('NoteImg')}> image </span>
                         <span className="material-symbols-outlined sb4" onClick={() => handleNoteTypeChange('NoteVideo')}> youtube_activity </span>
+                        <span className="material-symbols-outlined" onClick={() => handleNoteTypeChange('NoteTodos')} >list_alt </span>
+
                     </div>
                 </form>
             </div>
