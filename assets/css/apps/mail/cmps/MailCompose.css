@@ -219,4 +219,9 @@ input:focus-visible,
         border: none;
         background-color: inherit;
     }
+
+    .send-to-keep {
+        top: .05em;
+        right: 10.5em;
+    }
 }

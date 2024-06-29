@@ -4,9 +4,19 @@
 
     padding: 20px 0;
     border-bottom: 2px solid white;
-    
+
     background: #F0D6B3;
     font-family: "WorkSans-Regular", sans-serif;
+}
+
+.app-logo-container {
+    height: 80px;
+    width: 80px;
+    margin-inline-start: 1em;
+}
+
+.app-logo {
+    border-radius: 50%;
 }
 
 nav {
@@ -60,7 +70,7 @@ nav a.active {
     nav.open {
         display: flex;
         position: absolute;
-        top: 3em;
+        top: 7.5em;
 
         flex-direction: column;
         align-items: center;

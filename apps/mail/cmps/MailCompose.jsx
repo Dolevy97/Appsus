@@ -19,9 +19,7 @@ export function MailCompose({ setIsAdding, isAdding, onSetMail }) {
     }, [])
 
     useEffect(() => {
-        if (searchParams.size > 0) {
-            setIsAdding(true)
-        }
+        if (defaultMail.body || defaultMail.subject) setIsAdding(true)
     }, [searchParams])
 
     useEffect(() => {
