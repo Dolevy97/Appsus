@@ -4,7 +4,7 @@ export function MailList({ mails, setMails, setIsEditing, setEditId }) {
 
 
     function getFormattedTime(time) {
-        if (!time) return
+        if (time === null) return 
         const date = new Date(time * 1000)
         const today = Math.floor(Date.now() / 1000)
         const day = 60 * 60 * 24

@@ -81,7 +81,7 @@ export function MailPreview({ setEditId, setIsEditing, mail, getFormattedTime, o
                 <span title="Mail Subject" className="mail-subject">{mail.subject}</span>
                 <span title="Mail Body" className="mail-body"> - {mail.body}</span>
             </section>
-            {mail.sentAt && <span title="Sent At" className="mail-sent-at">{getFormattedTime(mail.sentAt)}</span>}
+            {/* {mail.sentAt && <span title="Sent At" className="mail-sent-at">{getFormattedTime(mail.sentAt)}</span>} */}
             {mail.createdAt && <span title="Created At" className="mail-sent-at">{getFormattedTime(mail.createdAt)}</span>}
             <div className="hover-icons">
                 <span title="Delete Mail" onClick={onDelMail} className="material-symbols-outlined hover-icon">delete</span>

@@ -11,7 +11,7 @@ export function UserMsg() {
         const onRemoveListener = eventBusService.on('show-user-msg', msg => {
             clearTimeout(timeoutIdRef.current)
             setMsg(msg)
-            timeoutIdRef.current = setTimeout(closeMsg, 200000);
+            timeoutIdRef.current = setTimeout(closeMsg, 5000);
         })
 
         return () => onRemoveListener()
