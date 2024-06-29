@@ -86,7 +86,9 @@ export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor,
     }
 
     function handleTodoInputBlur() {
-        const listTodos = newTodoInput.split(',').map(txt => ({ txt: txt.trim(), doneAt: null }))
+        var listTodos = newTodoInput.split(',')
+        const cleanListTodos = listTodos.filter(Boolean)//thats a cool booly
+        listTodos = cleanListTodos.map(txt => ({ txt: txt.trim(), doneAt: null }))
         setNoteToEdit(prevNote => ({
             ...prevNote,
             info: {

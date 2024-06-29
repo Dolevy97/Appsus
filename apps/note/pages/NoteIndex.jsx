@@ -43,15 +43,11 @@ export function NoteIndex() {
 
     function onRemoveNote(noteId) {
         noteService.remove(noteId).then(() => {
-            setNotes((prevNotes) => {
-                prevNotes.filter((note) => note.id !== noteId)
-                
-                showGmailMsg('Note ')
-            })
+            setNotes((prevNotes) => prevNotes.filter((note) => note.id !== noteId))
+            showGmailMsg('Note Deleted Successfully🦔')
         })
     }
 
-console.log(notes);
 
     function onSetFilter(filterBy) {
         setFilterBy({ ...filterBy })
