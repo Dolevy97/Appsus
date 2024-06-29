@@ -40,7 +40,7 @@ export function ColorPicker({ onChangeColor }) {
           className={`color-option ${pickedColor === color ? 'selected' : ''}`}
           style={
             { backgroundColor: color }}
-          onClick={(ev) => onColorPickerClick(ev, color)}
+          onClick={(ev) => onColorPickerClick(ev, color) }
         ></div>
       ))}
     </div>

@@ -138,7 +138,7 @@ export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor, onDuplica
                                 )}
 
 
-                                <div className="submit-icons">
+                                <div className="submit-icons-edit">
                                     <button className="button-note-reset" type="submit"><span className="material-symbols-outlined sb1 ">add</span></button>
                                 </div>
                             </form>
