@@ -32,7 +32,14 @@ export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor,
     }, [noteId])
 
 
-    ///add to edit
+
+    function onSendToMail(note) {
+        const sendNewNote = note.info.title
+        navigate(`/mail/?body=${sendNewNote}`)
+ 
+     }
+
+///From add to edit
     function onSaveNote(ev) {
         ev.preventDefault()
         const updatedNote = { ...noteToEdit, type: noteType }
@@ -191,17 +198,18 @@ export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor,
                                     />
                                 )}
                                 {noteType === 'NoteTodos' && (
-                                    <div>
+                                    <div className ="edit-todo-container">
                                         <input style={note.style}
                                             type="text"
                                             name="todos"
                                             className="input edit-todo-input1"
-                                            placeholder="Enter comma(,) for each new todo"
+                                            placeholder="Add List item"
                                             onChange={handleTodoInputChange}
                                             onBlur={handleTodoInputBlur}
                                             value={newTodoInput}
                                         />
-                                        <ul>
+            
+                                        <ul className ="edit-todo-list">
                                             {(info.todos || []).map((todo, idx) => (
                                                 <li key={idx}>
                                                     <input
@@ -209,7 +217,7 @@ export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor,
                                                         checked={!!todo.doneAt}
                                                         onChange={() => handleCheckboxChange(idx)}
                                                     />
-                                                    {todo.txt}
+                                                    <span>{todo.txt}</span>
                                                 </li>
                                             ))}
                                         </ul>
@@ -222,21 +230,19 @@ export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor,
                         </div>
 
                         <div className="icones-display-edit">
-
                             <section className="note-actions-edit">
                                 <div className="other-icons-edit">
                                     <span onClick={() => setColorPickerNoteId(noteId)} className="material-symbols-outlined icone-hover">palette</span>
                                     <span onClick={() => { onRemoveNote(noteId), navigate('/note') }} className="material-symbols-outlined icone-hover">delete</span>
                                     <span onClick={() => onDuplicateNote(note)} className="material-symbols-outlined icone-hover">content_copy</span>
-                                    <span className="material-symbols-outlined icone-hover">mail</span>
-                                </div>
+                                    <span onClick={() => onSendToMail(note)} className="material-symbols-outlined icone-hover">mail</span>
+                                    </div>
                             </section>
                         </div>
                         {colorPickerNoteId === noteId && (
                             <ColorPicker onChangeColor={(color) => onChangeColor(noteId, color, setColorPickerNoteId)} />
                         )}
                     </div>
-
                 </div>)}
         </section>
     )

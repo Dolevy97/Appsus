@@ -1,0 +1,63 @@
+.note-item img {
+
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.img-title {
+    margin-bottom: 40px;
+}
+
+.note-preview .video {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+    margin-bottom: 40px;
+}
+
+.note-preview .video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.todo-note-preview {
+    margin-bottom: 40px;
+
+}
+
+.note-todo-title {
+    margin-bottom: 10px;
+}
+
+.note-todo {
+    list-style-type: none;
+}
+
+
+.edit-todo-container {
+    margin-bottom: 4em;
+
+}
+
+
+
+
+
+.edit-todo-list li input[type="checkbox"] {
+    margin-right: 6px;
+
+}
+
+.edit-todo-list li input[type="checkbox"]:checked+span {
+    text-decoration: line-through;
+    color: #2e2e2e;
+}
