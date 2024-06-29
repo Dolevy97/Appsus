@@ -3,7 +3,8 @@
     bottom: 0;
     right: 3.75em;
 
-    width: 590px;
+    width: 65vw;
+    max-width: 590px;
 
     background-color: #fff;
     border-radius: 8px 8px 0 0;
@@ -161,4 +162,43 @@ input:focus-visible,
 
 .discard-draft-icon:hover::before {
     scale: 1;
+}
+
+.mobile-btn-send {
+    display: none;
+}
+
+@media (max-width: 480px) {
+    .compose-mail {
+        height: 100vh;
+        width: 100vw;
+        right: 0;
+        z-index: 20;
+    }
+
+    .btn-send {
+        display: none;
+    }
+
+    .btn-close {
+        right: 2.2em;
+        scale: 1;
+    }
+
+    .discard-draft-icon {
+        top: .05em;
+        right: 4em;
+    }
+
+    .mobile-btn-send {
+        display: block;
+
+        position: absolute;
+        right: 0;
+        top: .5em;
+
+        outline: none;
+        border: none;
+        background-color: inherit;
+    }
 }
