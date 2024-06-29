@@ -22,7 +22,7 @@
 
 .add-note-input {
     flex: 1;
-    line-height: 1em;
+    line-height: 2em;
     font-size: 1em;
     background-color: inherit;
     border: none;
@@ -45,8 +45,21 @@
     right: 14px; 
     display: flex;
     justify-content: right;
-    gap: 10px;
+    gap: 15px;
+    cursor: pointer;
+  
+ 
 }
+
+.sb1,.sb2,.sb3,.sb4{
+padding: 1px;
+}
+.sb1:hover,.sb2:hover,.sb3:hover,.sb4:hover{
+    border-radius: 50%;
+    background-color:var(--hover-btn-note); 
+}
+
+
 .button-reset {
     background: none;
     border: none;
@@ -96,3 +109,21 @@
     border-radius: 8px;
     color: var(--textbar-clr-note);
 }
+
+.close-addnote{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 14px;
+    top: 10px;
+    cursor: pointer;
+  
+    height: 24px;
+    width: 24px;
+}
+
+.close-addnote:hover {
+    border-radius: 50%;
+    background-color:var(--hover-btn-note);
+ }

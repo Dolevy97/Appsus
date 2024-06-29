@@ -117,7 +117,7 @@
 
 .icone-hover:hover {
    border-radius: 50%;
-   background-color: rgba(218, 218, 218, 0.3);
+   background-color: var(--hover-btn-note);
 }
 
 .is-notpinned-title,
@@ -140,12 +140,12 @@
 
 .note-preview .video {
    position: relative;
-   padding-bottom: 56.25%; /* 16:9 aspect ratio */
+   padding-bottom: 56.25%; 
    height: 0;
    overflow: hidden;
    max-width: 100%;
    background: #000;
-   margin-bottom: 40px; /* Additional space for icons */
+   margin-bottom: 40px; 
 }
 
 .note-preview .video iframe {

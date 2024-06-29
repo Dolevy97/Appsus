@@ -131,12 +131,12 @@ export function AddNote({ onSaveNewNote }) {
                         />
                     )}
 
-                    <span onClick={onCloseAdd}>X</span>
+                    <span className="close-addnote" onClick={onCloseAdd}>X</span>
                     <div className="submit-icons">
-                        <button className="button-reset" type="submit"><span className="material-symbols-outlined">add</span></button>
-                        <span className="material-symbols-outlined" onClick={() => handleNoteTypeChange('NoteTxt')}> text_fields </span>
-                        <span className="material-symbols-outlined" onClick={() => handleNoteTypeChange('NoteImg')}> image </span>
-                        <span className="material-symbols-outlined" onClick={() => handleNoteTypeChange('NoteVideo')}> youtube_activity </span>
+                        <button className="button-reset" type="submit"><span className="material-symbols-outlined sb1">add</span></button>
+                        <span className="material-symbols-outlined sb2" onClick={() => handleNoteTypeChange('NoteTxt')}> text_fields </span>
+                        <span className="material-symbols-outlined sb3" onClick={() => handleNoteTypeChange('NoteImg')}> image </span>
+                        <span className="material-symbols-outlined sb4" onClick={() => handleNoteTypeChange('NoteVideo')}> youtube_activity </span>
                     </div>
                 </form>
             </div>
