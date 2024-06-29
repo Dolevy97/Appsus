@@ -70,3 +70,28 @@
     font-size: 0.75em;
     color: #5e5e5e;
 }
+
+@media (max-width: 480px) {
+    .mail-details-container {
+        margin: auto;
+        width: 55vw;
+        height: 80vh;
+
+        margin-block: 0;
+        padding-inline: 4em;
+        padding-block: 0;
+
+        background-color: inherit;
+        box-shadow: 0 1px 3px rgb(0 0 0 / 0.5);
+        box-shadow: 0 1px 1px 1000px rgb(0 0 0 / 0.5);
+        border-radius: 10px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    .header-right {
+        position: absolute;
+        top: 3em;
+        right: .5em;
+        width: 50px;
+    }
+}
