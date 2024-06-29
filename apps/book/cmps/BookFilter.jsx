@@ -56,7 +56,7 @@ export function BookFilter({ filterBy, onSetFilter }) {
                 <label htmlFor="book-length">Book has atleast {bookLength} pages</label>
                 <input value={bookLength || 0} onChange={handleChange} name="bookLength" min={0} max={800} type="range" id="book-length" />
 
-                <button onClick={clearFilter}>Clear Filter</button>
+                <button className="book-btn" onClick={clearFilter}>Clear Filter</button>
             </form>
         </section>
     )

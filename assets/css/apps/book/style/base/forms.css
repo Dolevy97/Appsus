@@ -1,4 +1,4 @@
-button {
+.book-btn {
     cursor: pointer;
     background-color: var(--clr2bg);
     margin: 0.5em;
@@ -7,12 +7,13 @@ button {
     border-radius: 4px;   
 }
 
-button:hover {
+.book-btn:hover {
     background-color: var(--clr2);
     color: white;
     transition: .3s;
 }
-input:focus {
-    background-color: var(--clr1bg);
+
+.book-input:focus {
+    background-color: var(--clr1bg-light);
     transition: background-color 1s;
 }

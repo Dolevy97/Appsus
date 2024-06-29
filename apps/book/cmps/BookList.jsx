@@ -23,8 +23,8 @@ export function BookList({ books, onRemoveBook }) {
                     <section className="book-actions">
                         <h4>{book.listPrice.amount} {book.listPrice.currencyCode}</h4>
                         <section className="btns">
-                            <Link to={`/book/edit/${book.id}`}><button>Edit</button></Link>
-                            <button onClick={() => onRemoveBook(book.id, bookRef.current[book.id])}>Remove</button>
+                            <Link to={`/book/edit/${book.id}`}><button className="book-btn">Edit</button></Link>
+                            <button className="book-btn" onClick={() => onRemoveBook(book.id, bookRef.current[book.id])}>Remove</button>
                         </section>
                     </section>
                 </div>)}
