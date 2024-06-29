@@ -11,7 +11,7 @@ export function UserMsg() {
         const onRemoveListener = eventBusService.on('show-user-msg', msg => {
             clearTimeout(timeoutIdRef.current)
             setMsg(msg)
-            timeoutIdRef.current = setTimeout(closeMsg, 2000);
+            timeoutIdRef.current = setTimeout(closeMsg, 200000);
         })
 
         return () => onRemoveListener()
@@ -27,7 +27,7 @@ export function UserMsg() {
     if (!msg) return null
     return (
         <section className={`user-msg ${msg.type}`}>
-            <h2>{msg.txt}</h2>
+            <p>{msg.txt}</p>
             <button onClick={closeMsg} className="close-btn">X</button>
         </section>
     )
