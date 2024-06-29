@@ -5,19 +5,17 @@ const { useState, useEffect, useRef } = React
 import { eventBusService } from '../../../services/event-bus.service.js'
 import { noteService } from "../services/note.service.js"
 
-
 export function AddNote({ onSaveNewNote }) {
     const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
     const [newTodoInput, setNewTodoInput] = useState('')
 
     const [noteType, setNoteType] = useState('NoteTxt')
-    
+
     const [isAddOpen, setIsAddOpen] = useState(false)
     const containerRef = useRef(null)
 
-
     useEffect(() => {
-        function handleOutsideClick (event){
+        function handleOutsideClick(event) {
             if (containerRef.current && !containerRef.current.contains(event.target)) {
                 setIsAddOpen(false)
             }
@@ -28,11 +26,9 @@ export function AddNote({ onSaveNewNote }) {
         }
     }, [])
 
-
     useEffect(() => {
         setNoteToEdit(noteService.getEmptyNote(noteType))
     }, [])
-
 
     function onSaveNote(ev) {
         ev.preventDefault()
@@ -76,42 +72,20 @@ export function AddNote({ onSaveNewNote }) {
     }
 
     function handleTodoInputChange(event) {
-        setNewTodoInput(event.target.value);
+        setNewTodoInput(event.target.value)
     }
 
 
     function handleTodoInputBlur() {
-        const listTodos = newTodoInput.split(',').map(txt => ({ txt: txt.trim(), doneAt: null }));
+        const listTodos = newTodoInput.split(',').map(txt => ({ txt: txt.trim(), doneAt: null }))
         setNoteToEdit(prevNote => ({
             ...prevNote,
             info: {
                 ...prevNote.info,
                 todos: [...(prevNote.info.todos || []), ...listTodos]
             }
-        }));
-        setNewTodoInput('');
-    }
-
-
-    function handleCheckboxChange(todoIdx) {
-        setNoteToEdit(prevNote => {
-            const updatedTodos = prevNote.info.todos.map((todo, idx) => {
-                if (idx === todoIdx) {
-                    return {
-                        ...todo,
-                        doneAt: todo.doneAt ? null : Date.now() // Toggle doneAt value
-                    };
-                }
-                return todo;
-            });
-            return {
-                ...prevNote,
-                info: {
-                    ...prevNote.info,
-                    todos: updatedTodos
-                }
-            };
-        });
+        }))
+        setNewTodoInput('')
     }
 
 
@@ -130,24 +104,34 @@ export function AddNote({ onSaveNewNote }) {
     }
 
 
- 
+
 
     const { info } = noteToEdit
     return (
         <section className="add-note-section">
             <div className={`dummy-addNote ${isAddOpen ? 'dummy-addNote-hidden' : 'dummy-addNote-visible'}`} onClick={onOpenAdd}>
                 <span>Take a note</span>
-                </div>
+            </div>
 
             <div className={`add-note-container ${isAddOpen ? 'add-note-visible' : 'add-note-hidden'}`}>
                 <form onSubmit={onSaveNote}>
+
+                    <input
+                        value={info.title}
+                        onChange={handleChange}
+                        name="title"
+                        type="text"
+                        className="input add-note-input-title"
+                        placeholder="Title"
+                    />
+
                     {noteType === 'NoteTxt' && (
                         <input
                             type="text"
                             id="byText"
                             name="txt"
                             className="input add-note-input"
-                            placeholder="Take a note"
+                            placeholder="Take a note..."
                             onChange={handleChange}
                             value={info.txt || ''}
                         />
@@ -174,7 +158,7 @@ export function AddNote({ onSaveNewNote }) {
                             value={info.url || ''}
                         />
                     )}
-               {noteType === 'NoteTodos' && (
+                    {noteType === 'NoteTodos' && (
                         <div>
                             <input
                                 type="text"

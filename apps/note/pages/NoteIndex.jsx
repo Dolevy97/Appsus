@@ -11,19 +11,13 @@ import { NoteEdit } from "../pages/NoteEdit.jsx"
 const { Link, useSearchParams } = ReactRouterDOM
 const { useState, useEffect, useRef } = React
 
-
 export function NoteIndex() {
-
     const [notes, setNotes] = useState()
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
-
-    // const debounceLoadBooks = useRef(utilService.debounce(loadMails, 300))
-
 
     useEffect(() => {
         loadNotes()
     }, [filterBy])
-
 
     function loadNotes() {
         noteService.query(filterBy)
@@ -93,11 +87,6 @@ export function NoteIndex() {
             .catch((err) => console.log('err:', err))
     }
 
-
-
- 
-
-
     if (!notes) return <div className="loader-container"> <div className="loader"></div> </div>
     return (
         <section className='note-index'>
@@ -117,8 +106,6 @@ export function NoteIndex() {
                     onSelectNoteId={onSelectNoteId}
                     onChangeColor={onChangeColor}
                     onChangeNote={onChangeNote}
-                  
-                
                     onSaveNewNote={onSaveNewNote}
                 />
             </React.Fragment>

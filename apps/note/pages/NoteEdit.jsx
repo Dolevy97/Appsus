@@ -1,26 +1,21 @@
 
+const { Link, useParams, useNavigate } = ReactRouterDOM
+const { useState, useEffect, useRef } = React
 
 import { noteService } from "../services/note.service.js"
 import { eventBusService } from '../../../services/event-bus.service.js'
 import { ColorPicker } from "../cmps/ColorPicker.jsx"
 
-
-const { Link, useParams, useNavigate } = ReactRouterDOM
-const { useState, useEffect, useRef } = React
-
-
 export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor,
     onDuplicateNote, onChangeNote, }) {
+
     const { noteId } = useParams()
     const [note, setNote] = useState(null)/// paly with the note 
     const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
     const [newTodoInput, setNewTodoInput] = useState('')
     const [noteType, setNoteType] = useState('NoteTxt')
     const navigate = useNavigate()
-
-    //icones
     const [colorPickerNoteId, setColorPickerNoteId] = useState(null)
-
 
     useEffect(() => {
         if (noteId) {
@@ -29,7 +24,6 @@ export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor,
                     setNote(note)
                     setNoteType(note.type)
                     setNoteToEdit(note)
-
                 })
                 .catch(err => console.error('Error fetching note:', err))
         } else {
@@ -124,12 +118,9 @@ export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor,
                     onChangeNote(savedNote)
                 })
                 .catch(err => console.log('Error saving note:', err))
-
             return updatedNote
         })
     }
-
-
 
 
     ///all icones
@@ -158,6 +149,14 @@ export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor,
 
                         <div className='edit-note-section '>
                             <form onSubmit={onSaveNote}>
+                                <input
+                                    value={info.title}
+                                    onChange={handleChange}
+                                    name="title"
+                                    type="text"
+                                    className="input add-note-input-title"
+                                    placeholder="Title"
+                                />
                                 {noteType === 'NoteTxt' && (
                                     <input style={note.style}
                                         type="text"

@@ -1,21 +1,17 @@
 
 
-import { noteService } from "../services/note.service.js"
 
 export function NotePreview({ note}) {
     const { type, info } = note
-   
-
     let content
 
-  
 function displayCheckBoxPreview() {
 }
-
 
     if (type === 'NoteTxt') {
         content = (
             <div className="text note-preview" style={note.style}>
+                <h4 className="not-title" >{info.title}</h4>
                 {info.txt}
             </div>
         )
@@ -44,7 +40,7 @@ function displayCheckBoxPreview() {
                     ))}
                 </ul>
             </div>
-        );
+        )
     } else if (type === 'NoteVideo') {
         content = (
             <div className="video note-preview" style={note.style}>
