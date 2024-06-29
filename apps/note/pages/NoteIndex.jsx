@@ -95,6 +95,8 @@ export function NoteIndex() {
 
 
 
+ 
+
 
     if (!notes) return <div className="loader-container"> <div className="loader"></div> </div>
     return (
@@ -115,7 +117,8 @@ export function NoteIndex() {
                     onSelectNoteId={onSelectNoteId}
                     onChangeColor={onChangeColor}
                     onChangeNote={onChangeNote}
-
+                  
+                
                     onSaveNewNote={onSaveNewNote}
                 />
             </React.Fragment>

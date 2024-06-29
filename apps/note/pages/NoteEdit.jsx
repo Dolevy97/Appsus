@@ -9,10 +9,12 @@ const { Link, useParams, useNavigate } = ReactRouterDOM
 const { useState, useEffect, useRef } = React
 
 
-export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor, onDuplicateNote, onChangeNote }) {
+export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor,
+    onDuplicateNote, onChangeNote, }) {
     const { noteId } = useParams()
     const [note, setNote] = useState(null)/// paly with the note 
     const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
+    const [newTodoInput, setNewTodoInput] = useState('')
     const [noteType, setNoteType] = useState('NoteTxt')
     const navigate = useNavigate()
 
@@ -77,6 +79,59 @@ export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor, onDuplica
     }
 
 
+
+    function handleTodoInputChange(event) {
+        setNewTodoInput(event.target.value)
+    }
+
+    function handleTodoInputBlur() {
+        const listTodos = newTodoInput.split(',').map(txt => ({ txt: txt.trim(), doneAt: null }))
+        setNoteToEdit(prevNote => ({
+            ...prevNote,
+            info: {
+                ...prevNote.info,
+                todos: [...(prevNote.info.todos || []), ...listTodos]
+            }
+        }))
+        setNewTodoInput('')
+    }
+
+    function handleCheckboxChange(todoIdx) {
+        setNoteToEdit(prevNote => {
+            const updatedTodos = prevNote.info.todos.map((todo, idx) => {
+                if (idx === todoIdx) {
+                    return {
+                        ...todo,
+                        doneAt: todo.doneAt ? null : Date.now() // 
+                    }
+                }
+                return todo
+            })
+
+            const updatedNote = {
+                ...prevNote,
+                info: {
+                    ...prevNote.info,
+                    todos: updatedTodos
+                }
+            }
+
+            // Save the updated note to local storage
+            noteService.save(updatedNote)
+                .then((savedNote) => {
+                    console.log('Note saved successfully:', savedNote)
+                    setNoteToEdit(savedNote)
+                    onChangeNote(savedNote)
+                })
+                .catch(err => console.log('Error saving note:', err))
+
+            return updatedNote
+        })
+    }
+
+
+
+
     ///all icones
 
     function onDuplicateNote(note) {
@@ -99,7 +154,7 @@ export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor, onDuplica
             <h2><Link to="/note"> {noteId && (<div className="main-screen"> </div>)}</Link></h2>
             {noteId && (
                 <div style={note.style} className="edit-note-container">
-                    <div className  = "edit-note-section-for-input ">
+                    <div className="edit-note-section-for-input ">
 
                         <div className='edit-note-section '>
                             <form onSubmit={onSaveNote}>
@@ -136,8 +191,31 @@ export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor, onDuplica
                                         value={info.url || ''}
                                     />
                                 )}
-
-
+                                {noteType === 'NoteTodos' && (
+                                    <div>
+                                        <input
+                                            type="text"
+                                            name="todos"
+                                            className="input add-note-input"
+                                            placeholder="Enter comma(,) for each new todo"
+                                            onChange={handleTodoInputChange}
+                                            onBlur={handleTodoInputBlur}
+                                            value={newTodoInput}
+                                        />
+                                        <ul>
+                                            {(info.todos || []).map((todo, idx) => (
+                                                <li key={idx}>
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={!!todo.doneAt}
+                                                        onChange={() => handleCheckboxChange(idx)}
+                                                    />
+                                                    {todo.txt}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
                                 <div className="submit-icons-edit">
                                     <button className="button-note-reset" type="submit"><span className="material-symbols-outlined sb1 ">add</span></button>
                                 </div>

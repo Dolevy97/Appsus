@@ -1,13 +1,16 @@
 
 
+import { noteService } from "../services/note.service.js"
 
-export function NotePreview({ note }) {
+export function NotePreview({ note}) {
     const { type, info } = note
+   
 
     let content
 
   
-
+function displayCheckBoxPreview() {
+}
 
 
     if (type === 'NoteTxt') {
@@ -30,9 +33,11 @@ export function NotePreview({ note }) {
                 <ul>
                     {info.todos.map((todo, idx) => (
                         <li key={idx}>
+                          
                             <input
                                 type="checkbox"
-                          
+                                checked={!!todo.doneAt}
+                                onChange={() => displayCheckBoxPreview()}
                             />
                             {todo.txt}
                         </li>
