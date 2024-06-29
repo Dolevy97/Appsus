@@ -111,6 +111,11 @@ export function NoteIndex() {
                     onChangeNote={onChangeNote}
                 />
                 <NoteEdit
+                    onRemoveNote={onRemoveNote}
+                    onSelectNoteId={onSelectNoteId}
+                    onChangeColor={onChangeColor}
+                    onChangeNote={onChangeNote}
+
                     onSaveNewNote={onSaveNewNote}
                 />
             </React.Fragment>

@@ -2,20 +2,24 @@
 
 import { noteService } from "../services/note.service.js"
 import { eventBusService } from '../../../services/event-bus.service.js'
+import { ColorPicker } from "../cmps/ColorPicker.jsx"
 
 
 const { Link, useParams, useNavigate } = ReactRouterDOM
 const { useState, useEffect, useRef } = React
 
 
-export function NoteEdit({onSaveNewNote }) {
+export function NoteEdit({ onSaveNewNote ,onRemoveNote, onChangeColor, onDuplicateNote, onChangeNote }) {
     const { noteId } = useParams()
     const [note, setNote] = useState(null)/// paly with the note 
     const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
     const [noteType, setNoteType] = useState('NoteTxt')
     const navigate = useNavigate()
 
+    //icones
+    const [colorPickerNoteId, setColorPickerNoteId] = useState(null)
 
+   
 
     useEffect(() => {
         if (noteId) {
@@ -24,16 +28,16 @@ export function NoteEdit({onSaveNewNote }) {
                     setNote(note)
                     setNoteType(note.type)
                     setNoteToEdit(note)
-                   
+
                 })
                 .catch(err => console.error('Error fetching note:', err))
         } else {
             setNoteToEdit(noteService.getEmptyNote())
         }
     }, [noteId])
-  
 
 
+///add to edit
     function onSaveNote(ev) {
         ev.preventDefault()
         const updatedNote = { ...noteToEdit, type: noteType }
@@ -73,13 +77,28 @@ export function NoteEdit({onSaveNewNote }) {
         }))
     }
 
+
+///all icones
+
+function onDuplicateNote(note) {
+    const newNote = { ...note, id: '' }
+
+    noteService
+        .save(newNote)
+        .then(onChangeNote)
+        .catch((err) => console.log('err', err))
+}
+
+
+
+
     const { info } = noteToEdit
 
     if (!note) return
     return (
         <section className="edit-note">
-            <h2><Link to="/note"> {noteId  && (<div className="main-screen"> </div>)}</Link></h2>
-            {noteId  && (
+            <h2><Link to="/note"> {noteId && (<div className="main-screen"> </div>)}</Link></h2>
+            {noteId && (
                 <div style={note.style} className="edit-note-container">
                     <div >
 
@@ -126,10 +145,20 @@ export function NoteEdit({onSaveNewNote }) {
                             </form>
                         </div>
 
-                        <div className="pin-icon">
-                            <span className="material-symbols-outlined icone-hover">keep</span>
-                        </div>
-
+                        <div className="icones-display-edit">
+                                 
+                                    <section className="note-actions-edit">
+                                        <div className="other-icons-edit">
+                                            <span onClick={() => setColorPickerNoteId(noteId)} className="material-symbols-outlined icone-hover">palette</span>
+                                            <span onClick={() => { onRemoveNote(noteId), navigate('/note') }} className="material-symbols-outlined icone-hover">delete</span>
+                                            <span onClick={() => onDuplicateNote(note)} className="material-symbols-outlined icone-hover">content_copy</span>
+                                            <span className="material-symbols-outlined icone-hover">mail</span>
+                                        </div>
+                                    </section>
+                                </div>
+                                {colorPickerNoteId === noteId && (
+                                    <ColorPicker onChangeColor={(color) => onChangeColor(noteId, color, setColorPickerNoteId)} />
+                                )}
                     </div>
 
                 </div>)}
