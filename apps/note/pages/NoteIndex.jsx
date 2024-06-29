@@ -7,6 +7,7 @@ import { NoteList } from "../cmps/NoteList.jsx"
 import { NoteFilter } from "../cmps/NoteFilter.jsx"
 import { AddNote } from "../cmps/AddNote.jsx"
 import { NoteEdit } from "../pages/NoteEdit.jsx"
+import { showGmailMsg } from "../../../services/event-bus.service.js"
 
 const { Link, useSearchParams } = ReactRouterDOM
 const { useState, useEffect, useRef } = React
@@ -43,8 +44,10 @@ export function NoteIndex() {
     function onRemoveNote(noteId) {
         noteService.remove(noteId).then(() => {
             setNotes((prevNotes) => prevNotes.filter((note) => note.id !== noteId))
+            showGmailMsg('Note Deleted Successfully🦔')
         })
     }
+
 
     function onSetFilter(filterBy) {
         setFilterBy({ ...filterBy })

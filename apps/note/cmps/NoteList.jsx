@@ -33,6 +33,7 @@ export function NoteList({ notes, onRemoveNote, onChangeColor, onDuplicateNote, 
     }
 
 
+    
 
     function handlePinClick(noteId) {
         const updatedNotes = notesState.map(note => {

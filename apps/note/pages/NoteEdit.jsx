@@ -45,7 +45,6 @@ export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor,
         const updatedNote = { ...noteToEdit, type: noteType }
         noteService.save(updatedNote)
             .then((savedNote) => {
-                console.log('Note saved successfully:', savedNote)
                 onSaveNewNote(savedNote)
                 navigate('/note')
             })
@@ -86,7 +85,9 @@ export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor,
     }
 
     function handleTodoInputBlur() {
-        const listTodos = newTodoInput.split(',').map(txt => ({ txt: txt.trim(), doneAt: null }))
+        var listTodos = newTodoInput.split(',')
+        const cleanListTodos = listTodos.filter(Boolean)//thats a cool booly
+        listTodos = cleanListTodos.map(txt => ({ txt: txt.trim(), doneAt: null }))
         setNoteToEdit(prevNote => ({
             ...prevNote,
             info: {
@@ -120,7 +121,6 @@ export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor,
             // Save the updated note to local storage
             noteService.save(updatedNote)
                 .then((savedNote) => {
-                    console.log('Note saved successfully:', savedNote)
                     setNoteToEdit(savedNote)
                     onChangeNote(savedNote)
                 })

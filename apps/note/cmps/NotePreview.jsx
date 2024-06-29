@@ -26,7 +26,7 @@ export function NotePreview({ note }) {
         content = (
             <div className="todo-note-preview" style={note.style}>
                 <h4 className="note-todo-title">{info.title}</h4>
-                <ul>
+                <ul className="ul-todo">
                     {info.todos.map((todo, idx) => (
                         <li key={idx}>
                             <span className="note-todo">
@@ -35,7 +35,8 @@ export function NotePreview({ note }) {
                                     checked={!!todo.doneAt}
                                     onChange={() => displayCheckBoxPreview()}
                                 />
-                                {todo.txt} </span>
+                                <span>{todo.txt}
+                                </span> </span>
                         </li>
                     ))}
                 </ul>
