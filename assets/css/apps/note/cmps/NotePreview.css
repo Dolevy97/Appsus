@@ -52,12 +52,12 @@
 
 
 
-.edit-todo-list li input[type="checkbox"] {
+.todo-note-preview li input[type="checkbox"] {
     margin-right: 6px;
 
 }
 
-.edit-todo-list li input[type="checkbox"]:checked+span {
+.todo-note-preview li input[type="checkbox"]:checked+span {
     text-decoration: line-through;
     color: #2e2e2e;
 }

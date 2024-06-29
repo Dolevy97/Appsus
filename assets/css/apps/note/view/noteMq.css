@@ -125,7 +125,11 @@
 
 /* LARGE */
 @media (min-width: 1000px) {
+
+
+    
     .note-list {
+        
         column-count: 3;
 
     }
