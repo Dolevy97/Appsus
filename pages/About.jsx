@@ -11,7 +11,7 @@ export function About() {
 
                 <h4>Thank you for visiting AppSus. We hope you enjoy exploring our site as much as we enjoyed building it</h4>
             </div>
-            <img className="pixel-img" src="./../assets/imgs/About Image.png" alt="" />
+            <img className="pixel-img" src="./../../assets/imgs/About Image.png" alt="" />
           <div className="social">
            <div className="social-container">
                 <h3>Dolev Levy</h3>
