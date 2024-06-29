@@ -118,7 +118,7 @@ export function MailCompose({ setIsAdding, isAdding, onSetMail }) {
 
                 <article className="input-to">
                     <label htmlFor="mail-to"></label>
-                    <input value={to} onChange={handleChange} required id="mail-to" type="email" name="to" placeholder="To" />
+                    <input value={to} onChange={handleChange} required id="mail-to" type="email" name="to" placeholder="Recipients" />
                 </article>
 
                 <article className="input-subject">
