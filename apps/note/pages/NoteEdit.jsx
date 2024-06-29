@@ -1,24 +1,21 @@
 
+const { Link, useParams, useNavigate } = ReactRouterDOM
+const { useState, useEffect, useRef } = React
 
 import { noteService } from "../services/note.service.js"
 import { eventBusService } from '../../../services/event-bus.service.js'
 import { ColorPicker } from "../cmps/ColorPicker.jsx"
 
+export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor,
+    onDuplicateNote, onChangeNote, }) {
 
-const { Link, useParams, useNavigate } = ReactRouterDOM
-const { useState, useEffect, useRef } = React
-
-
-export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor, onDuplicateNote, onChangeNote }) {
     const { noteId } = useParams()
     const [note, setNote] = useState(null)/// paly with the note 
     const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
+    const [newTodoInput, setNewTodoInput] = useState('')
     const [noteType, setNoteType] = useState('NoteTxt')
     const navigate = useNavigate()
-
-    //icones
     const [colorPickerNoteId, setColorPickerNoteId] = useState(null)
-
 
     useEffect(() => {
         if (noteId) {
@@ -27,7 +24,6 @@ export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor, onDuplica
                     setNote(note)
                     setNoteType(note.type)
                     setNoteToEdit(note)
-
                 })
                 .catch(err => console.error('Error fetching note:', err))
         } else {
@@ -77,6 +73,56 @@ export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor, onDuplica
     }
 
 
+
+    function handleTodoInputChange(event) {
+        setNewTodoInput(event.target.value)
+    }
+
+    function handleTodoInputBlur() {
+        const listTodos = newTodoInput.split(',').map(txt => ({ txt: txt.trim(), doneAt: null }))
+        setNoteToEdit(prevNote => ({
+            ...prevNote,
+            info: {
+                ...prevNote.info,
+                todos: [...(prevNote.info.todos || []), ...listTodos]
+            }
+        }))
+        setNewTodoInput('')
+    }
+
+    function handleCheckboxChange(todoIdx) {
+        setNoteToEdit(prevNote => {
+            const updatedTodos = prevNote.info.todos.map((todo, idx) => {
+                if (idx === todoIdx) {
+                    return {
+                        ...todo,
+                        doneAt: todo.doneAt ? null : Date.now() // 
+                    }
+                }
+                return todo
+            })
+
+            const updatedNote = {
+                ...prevNote,
+                info: {
+                    ...prevNote.info,
+                    todos: updatedTodos
+                }
+            }
+
+            // Save the updated note to local storage
+            noteService.save(updatedNote)
+                .then((savedNote) => {
+                    console.log('Note saved successfully:', savedNote)
+                    setNoteToEdit(savedNote)
+                    onChangeNote(savedNote)
+                })
+                .catch(err => console.log('Error saving note:', err))
+            return updatedNote
+        })
+    }
+
+
     ///all icones
 
     function onDuplicateNote(note) {
@@ -99,10 +145,18 @@ export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor, onDuplica
             <h2><Link to="/note"> {noteId && (<div className="main-screen"> </div>)}</Link></h2>
             {noteId && (
                 <div style={note.style} className="edit-note-container">
-                    <div className  = "edit-note-section-for-input ">
+                    <div className="edit-note-section-for-input ">
 
                         <div className='edit-note-section '>
                             <form onSubmit={onSaveNote}>
+                                <input style={note.style}
+                                    value={info.title}
+                                    onChange={handleChange}
+                                    name="title"
+                                    type="text"
+                                    className="input edit-note-input-title"
+                                    placeholder="Title"
+                                />
                                 {noteType === 'NoteTxt' && (
                                     <input style={note.style}
                                         type="text"
@@ -136,8 +190,31 @@ export function NoteEdit({ onSaveNewNote, onRemoveNote, onChangeColor, onDuplica
                                         value={info.url || ''}
                                     />
                                 )}
-
-
+                                {noteType === 'NoteTodos' && (
+                                    <div>
+                                        <input style={note.style}
+                                            type="text"
+                                            name="todos"
+                                            className=" edit-todo-input1"
+                                            placeholder="Enter comma(,) for each new todo"
+                                            onChange={handleTodoInputChange}
+                                            onBlur={handleTodoInputBlur}
+                                            value={newTodoInput}
+                                        />
+                                        <ul>
+                                            {(info.todos || []).map((todo, idx) => (
+                                                <li key={idx}>
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={!!todo.doneAt}
+                                                        onChange={() => handleCheckboxChange(idx)}
+                                                    />
+                                                    {todo.txt}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
                                 <div className="submit-icons-edit">
                                     <button className="button-note-reset" type="submit"><span className="material-symbols-outlined sb1 ">add</span></button>
                                 </div>

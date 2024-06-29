@@ -3,12 +3,13 @@ import { NotePreview } from "../cmps/NotePreview.jsx"
 import { noteService } from "../services/note.service.js"
 import { ColorPicker } from "./ColorPicker.jsx"
 
-const { Link, Outlet } = ReactRouterDOM
+const { Link, Outlet,useNavigate } = ReactRouterDOM
 const { useState, useEffect, useRef } = React
 
 export function NoteList({ notes, onRemoveNote, onChangeColor, onDuplicateNote, onChangeNote }) {
     const [colorPickerNoteId, setColorPickerNoteId] = useState(null)
     const [notesState, setNotesState] = useState([])
+    const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -24,6 +25,13 @@ export function NoteList({ notes, onRemoveNote, onChangeColor, onDuplicateNote, 
             .then(onChangeNote)
             .catch((err) => console.log('err', err))
     }
+
+    function onSendToMail(note) {
+       const sendNewNote = note.info.title
+       navigate(`/mail/?body=${sendNewNote}`)
+
+    }
+
 
 
     function handlePinClick(noteId) {
@@ -66,7 +74,8 @@ export function NoteList({ notes, onRemoveNote, onChangeColor, onDuplicateNote, 
                                             <span onClick={() => setColorPickerNoteId(note.id)} className="material-symbols-outlined icone-hover">palette</span>
                                             <span onClick={() => onRemoveNote(note.id)} className="material-symbols-outlined icone-hover">delete</span>
                                             <span onClick={() => onDuplicateNote(note)} className="material-symbols-outlined icone-hover">content_copy</span>
-                                            <span className="material-symbols-outlined icone-hover">mail</span>
+                                            <span onClick={() => onSendToMail(note)} className="material-symbols-outlined icone-hover">mail</span>
+
                                         </div>
                                     </section>
                                 </div>
@@ -79,8 +88,8 @@ export function NoteList({ notes, onRemoveNote, onChangeColor, onDuplicateNote, 
                 </div>
             )}
             <div className="note-list-container">
-            { unpinnedNotes.length > 0 &&
-                <h2 className="is-notpinned-title">Other Notes</h2> }
+                {unpinnedNotes.length > 0 &&
+                    <h2 className="is-notpinned-title">Other Notes</h2>}
                 <ul className="note-list">
                     {unpinnedNotes.map(note => (
                         <li key={note.id} className="note-item" style={note.style}>
@@ -98,7 +107,7 @@ export function NoteList({ notes, onRemoveNote, onChangeColor, onDuplicateNote, 
                                         <span onClick={() => setColorPickerNoteId(note.id)} className="material-symbols-outlined icone-hover">palette</span>
                                         <span onClick={() => onRemoveNote(note.id)} className="material-symbols-outlined icone-hover">delete</span>
                                         <span onClick={() => onDuplicateNote(note)} className="material-symbols-outlined icone-hover">content_copy</span>
-                                        <span className="material-symbols-outlined icone-hover">mail</span>
+                                        <span onClick={() => onSendToMail(note)} className="material-symbols-outlined icone-hover">mail</span>
                                     </div>
                                 </section>
                             </div>

@@ -5,7 +5,6 @@ import { localStorageService } from '../../../services/storage.service.js'
 let gDummyNotes
 const NOTES_KEY = 'noteDB'
 
-// Initialize notes if not already in localStorage
 _createNotes()
 
 export const noteService = {
@@ -63,12 +62,10 @@ function save(note) {
     }
 }
 
-
-
-function getEmptyNote(type="NoteTxt", txt = '') {
+function getEmptyNote(type="NoteTxt", txt = '',title ='') {
     const note = {
         id: '', 
-        info: {},
+        info: {title},
         isPinned: false,
         style: { backgroundColor: 'white' },
         type ,
@@ -95,10 +92,9 @@ function getEmptyNote(type="NoteTxt", txt = '') {
     return note
 }
 
-
 function getEmptyTodo() {
-    return { txt: '', doneAt: null, id: utilService.makeId() }
-  }
+    return { txt: '', doneAt: null, id: utilService.makeId()}
+}
 
 function _createNotes() {
     gDummyNotes = localStorageService.loadFromStorage(NOTES_KEY)

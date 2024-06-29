@@ -33,11 +33,6 @@
   border: none;
 }
 
-.icones-display-edit{
-
-  
-}
-
 .note-actions-edit {
   display: flex;
   justify-content: space-between;
@@ -58,4 +53,20 @@
   gap: 15px;
   cursor: pointer;
   z-index: 50;
+}
+
+.edit-note-input-title{
+  font-size: 24px;
+  margin-top: 15px;
+  margin-left: 10px;
+  width: 100%;
+  border: none;
+}
+
+.edit-todo-input1{
+  font-size: 18px;
+  margin-top: 15px;
+  margin-left: 10px;
+  width: 100%;
+  border: none;
 }
