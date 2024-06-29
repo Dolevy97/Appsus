@@ -57,7 +57,6 @@ function save(note) {
     if (note.id) {
         return storageService.put(NOTES_KEY, note)
     } else {
-        console.log(note)
         return storageService.post(NOTES_KEY, note)
     }
 }

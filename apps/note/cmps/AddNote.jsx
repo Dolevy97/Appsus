@@ -33,10 +33,8 @@ export function AddNote({ onSaveNewNote }) {
     function onSaveNote(ev) {
         ev.preventDefault()
         const newNote = { ...noteToEdit, type: noteType }
-        console.log(newNote)
         noteService.save(newNote)
             .then((savedNote) => {
-                console.log('Note saved successfully:', savedNote)
                 onSaveNewNote(savedNote)
                 setNoteToEdit(noteService.getEmptyNote(noteType))
                 onCloseAdd()

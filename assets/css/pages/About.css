@@ -1,47 +1,86 @@
 .about {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5em;
+
     height: 70vh;
     text-align: center;
     margin-block-start: 10vh;
-    
+
     padding-inline: 2em;
+    color: #1e1e1e;
+
+}
+
+.about * {
+    box-sizing: border-box;
+}
+
+.about-content {
+    background-color: rgb(253, 228, 194);
+    padding: 12px;
+    border-radius: 8px;
+
+
+}
+
+.about-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.about-header h2 {
+    margin-block-end: 1em;
 }
 
 .images-container {
     display: flex;
     flex-direction: column;
+    border-radius: 10px;
 }
 
 .pixel-img {
-    height: 400px;
+    
+    padding: 15px 0;
+    width: auto;
+    height: auto;
+    margin: auto;
     object-fit: contain;
+    border-radius: 40px;
+    max-height: 300px;
+    margin-bottom: 10px;
+   
 }
 
 .social-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    width: 400px;
-    height: 100px;
+    width: 170px;
+    height: 50px;
+    margin: auto;
+    margin-bottom: 3em;
 }
 
-.social-container .links {
+/* .social-container .links {
     margin-left: auto;
 }
 
 .social-container .links a:first-of-type {
     padding-right: 2em;
+} */
+
+.social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
+    margin: auto;
 }
 
-
 .social-logo {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     object-fit: contain;
-
+    padding-inline-start: 10px;
     transition: scale .2s;
 }
 
@@ -57,6 +96,7 @@
         gap: 1em;
         font-size: .9em;
     }
+
     .pixel-img {
         height: 200px;
     }
@@ -65,15 +105,25 @@
         width: 25px;
         height: 25px;
     }
+
+    .social {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 70vw;
+        margin: auto;
+    }
+
 }
 
-@media (max-height: 860px) {
-    .about  {
+/* @media (max-height: 860px) {
+    .about {
         font-size: .8em;
         gap: .5em;
     }
+
     .pixel-img {
         height: 250px;
     }
 
-}
+} */
