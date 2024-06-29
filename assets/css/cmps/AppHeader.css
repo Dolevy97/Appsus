@@ -52,7 +52,7 @@ nav a.active {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding-inline-end: 1em;
+        margin-inline-end: 1em;
     }
 
     .nav-menu:hover {
@@ -71,13 +71,15 @@ nav a.active {
         display: flex;
         position: absolute;
         top: 7.5em;
-
+        width: 100vw;
+        
         flex-direction: column;
         align-items: center;
         justify-content: center;
         z-index: 20;
 
         background-color: #F0D6B3;
+
     }
 
     nav.open a {
