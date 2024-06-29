@@ -6,13 +6,63 @@
     gap: 2em;
     height: 50vh;
     text-align: center;
+    margin-block-start: 6em;
+    
+    padding-inline: 2em;
 }
 
 .images-container {
     display: flex;
+    flex-direction: column;
 }
 
 .pixel-img {
-    height: 200px;
+    height: 400px;
     object-fit: contain;
+}
+
+.social-container {
+    display: flex;
+    align-items: center;
+    width: 400px;
+    height: 100px;
+}
+
+.social-container .links {
+    margin-left: auto;
+}
+
+.social-container .links a:first-of-type {
+    padding-right: 2em;
+}
+
+
+.social-logo {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+
+    transition: scale .2s;
+}
+
+.social-logo:hover {
+    cursor: pointer;
+    scale: 1.1;
+}
+
+
+@media (max-width: 480px) {
+    .about {
+        margin-block-start: 9em;
+        gap: 1em;
+        font-size: .9em;
+    }
+    .pixel-img {
+        height: 200px;
+    }
+
+    .social-logo {
+        width: 25px;
+        height: 25px;
+    }
 }

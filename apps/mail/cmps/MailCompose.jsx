@@ -1,14 +1,28 @@
 const { useState, useEffect } = React
 import { mailService } from "../services/mail.service.js";
+import { noteService } from "../../note/services/note.service.js";
+const { useNavigate, useSearchParams } = ReactRouterDOM
 
 export function MailCompose({ setIsAdding, isAdding, onSetMail }) {
+    const [searchParams, setSearchParams] = useSearchParams()
+
+    const defaultMail = mailService.getMailFromSearchParams(searchParams)
+
     const [user, setUser] = useState(null)
-    const [newMail, setNewMail] = useState(mailService.getEmptyMail())
+    const [newMail, setNewMail] = useState(defaultMail)
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         mailService.getUser()
             .then(setUser)
     }, [])
+
+    useEffect(() => {
+        if (searchParams.size > 0) {
+            setIsAdding(true)
+        }
+    }, [searchParams])
 
     function handleChange({ target }) {
         const field = target.name
@@ -70,6 +84,26 @@ export function MailCompose({ setIsAdding, isAdding, onSetMail }) {
             })
     }
 
+    function onSendToNote() {
+        const newNote = noteService.getEmptyNote()
+        //         const formattedMailToNote = `From: ${user.email}
+        // To: ${newMail.to}
+        // Subject: ${newMail.subject}
+        // Body: ${newMail.body}
+        //         `
+        const formattedMailToNote = newMail.body
+        newNote.info.txt = formattedMailToNote
+        noteService.save(newNote)
+            .then(() => {
+                navigate('/note')
+            })
+    }
+
+
+    if (!newMail || !user) return
+
+    const { body, subject, to } = defaultMail
+
     return (
         isAdding &&
         <section className="compose-mail">
@@ -85,20 +119,24 @@ export function MailCompose({ setIsAdding, isAdding, onSetMail }) {
 
                 <article className="input-to">
                     <label htmlFor="mail-to"></label>
-                    <input onChange={handleChange} required id="mail-to" type="email" name="to" placeholder="To" />
+                    <input value={to} onChange={handleChange} required id="mail-to" type="email" name="to" placeholder="To" />
                 </article>
 
                 <article className="input-subject">
                     <label htmlFor="subject"></label>
-                    <input onChange={handleChange} id="subject" type="text" name="subject" placeholder="Subject" />
+                    <input value={subject} onChange={handleChange} id="subject" type="text" name="subject" placeholder="Subject" />
                 </article>
 
-                <textarea onChange={handleChange} className="input-textarea" name="body" id="body">
+                <textarea value={body} onChange={handleChange} className="input-textarea" name="body" id="body">
                 </textarea>
 
                 <section className="compose-footer">
+
                     <button className="btn-send">Send</button>
-                    <button className="mobile-btn-send"><span class="material-symbols-outlined">send</span></button>
+                    <button className="mobile-btn-send"><span className="material-symbols-outlined">send</span></button>
+                    <div onClick={onSendToNote} title="Send to keep" className="send-to-keep">
+                        <span className="material-symbols-outlined">note_stack</span>
+                    </div>
                     <span title="Discard draft" onClick={() => setIsAdding(false)} className="material-symbols-outlined discard-draft-icon">delete</span>
                 </section>
             </form>

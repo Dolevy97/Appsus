@@ -1,5 +1,7 @@
 const { useState, useEffect, useRef } = React;
 
+const { useNavigate } = ReactRouterDOM
+
 import { utilService } from "../../../services/util.service.js"
 import { MailSideBar } from "../cmps/MailSideBar.jsx";
 import { MailHeader } from "../cmps/MailHeader.jsx"
@@ -19,7 +21,7 @@ export function MailIndex() {
 
     const debounceLoadBooks = useRef(utilService.debounce(loadMails, 300))
 
-
+    const navigate = useNavigate()
     useEffect(() => {
         debounceLoadBooks.current(filterBy, sortBy)
     }, [filterBy, sortBy])
@@ -47,6 +49,7 @@ export function MailIndex() {
         onSetFilterBy(folder)
         setCurrFolder(folder.status)
     }
+
 
     if (!mails) return <div className="loader-container"> <div className="loader"></div></div>
 
