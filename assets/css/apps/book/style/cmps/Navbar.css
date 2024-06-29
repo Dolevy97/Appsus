@@ -10,7 +10,7 @@
     justify-content: space-between;
     align-items: center;
 
-    background-color: var(--clr);
+    background-color: var(--clr1);
     color: var(--clr1bg);
     padding: 1em;
 }

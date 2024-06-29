@@ -38,12 +38,12 @@ export function BookAdd() {
         ev.preventDefault()
         const book = getBookById(bookId)
         let newBook = {
-            ...book, listPrice: {
+            ...book, reviews: [], listPrice: {
                 amount: utilService.getRandomIntInclusive(60, 200), currencyCode: 'NIS', isOnSale: Math.random() > 0.7
             }
         }
         bookService.addGoogleItem(newBook)
-            .then(() => {
+            .then(book => {
                 navigate('/book')
                 showSuccessMsg('Book saved successfully!')
             })

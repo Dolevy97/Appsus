@@ -87,9 +87,9 @@ export function BookDetails() {
     return (
         <React.Fragment>
             <div className="page-btns">
-                <Link to="/book"><button className="btn-back">Back</button></Link>
-                {prevBookId && <Link to={`/book/${prevBookId}`}><button>Previous Book</button></Link>}
-                {nextBookId && <Link to={`/book/${nextBookId}`}><button>Next Book</button></Link>}
+                <Link to="/book"><button className="btn-back-book book-btn">Back</button></Link>
+                {prevBookId && <Link to={`/book/${prevBookId}`}><button className="book-btn prev">Previous Book</button></Link>}
+                {nextBookId && <Link to={`/book/${nextBookId}`}><button className="book-btn next">Next Book</button></Link>}
             </div>
 
             <section className="book-details">
@@ -112,11 +112,11 @@ export function BookDetails() {
                     </React.Fragment>
                 })}</h3>
                 <h2 className={getPriceClass()}>{book.listPrice.amount} {book.listPrice.currencyCode}</h2>
-                <button>Buy Now!</button>
+                <button className="book-btn">Buy Now!</button>
             </section>
 
             <section className="add-review">
-                <button onClick={onSetAddReview}>{isAddingReview ? 'Close Review' : 'Add Review'}</button>
+                <button className="book-btn" onClick={onSetAddReview}>{isAddingReview ? 'Close Review' : 'Add Review'}</button>
                 {isAddingReview && <AddReview onAddReview={onAddReview} />}
             </section>
 

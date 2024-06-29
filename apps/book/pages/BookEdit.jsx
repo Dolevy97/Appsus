@@ -68,7 +68,7 @@ export function BookEdit() {
 
     return (
         <section className="book-edit-container">
-            <Link to="/add"><button className="btn-add">Add Book from Google Books</button></Link>
+            <Link to="/add"><button className="btn-add book-btn">Add Book from Google Books</button></Link>
 
             <h1>{bookId ? 'Edit' : 'Add'} Book</h1>
             <form className="book-edit-form" onSubmit={onSaveBook}>

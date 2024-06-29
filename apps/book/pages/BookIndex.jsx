@@ -50,7 +50,7 @@ export function BookIndex() {
     return (
         <section className="book-index">
             <BookAppHeader />
-            <Link to="/book/edit"><button className="btn-add">Add Book</button></Link>
+            <button className="btn-add book-btn"><Link to="/book/edit">Add Book</Link></button>
             <React.Fragment>
                 <BookFilter filterBy={filterBy} onSetFilter={onSetFilter} />
                 {!books.length && <h2>No books found</h2>}
