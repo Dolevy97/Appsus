@@ -9,6 +9,7 @@ import { noteService } from "../services/note.service.js"
 export function AddNote({ onSaveNewNote }) {
     const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
     const [noteType, setNoteType] = useState('NoteTxt')
+    
     const [isAddOpen, setIsAddOpen] = useState(false)
     const containerRef = useRef(null)
 

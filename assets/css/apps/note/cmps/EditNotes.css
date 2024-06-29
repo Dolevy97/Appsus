@@ -1,15 +1,31 @@
 .edit-note-container {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;
-    width: 600px;
-    height: 181px;
-    z-index: 30;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+  position: fixed;
+  display: flex;
+  justify-content: left;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 600px;
+  height: 181px;
+  z-index: 30;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
-  }
- 
+}
+
+
+.edit-note-input {
+  font-size: 24px;
+  margin-top: 15px;
+  margin-left: 10px;
+  width: 100%;
+  border: none;
+}
+
+.edit-note-input-url {
+  margin-left: 10px;
+  font-size: 16px;
+  margin-top: 15px;
+  width: 140%;
+  border: none;
+}
