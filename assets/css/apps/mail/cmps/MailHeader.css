@@ -65,3 +65,20 @@
 .menu-container:hover::before {
     scale: 1;
 }
+
+@media (max-width: 480px) {
+    .logo-container {
+        display: none;
+    }
+
+    .logo-menu-container {
+        width: 0;
+    }
+
+
+    .menu-container {
+        position: absolute;
+        left: 1.5em;
+        z-index: 10;
+    }
+}

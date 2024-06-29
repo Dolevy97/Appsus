@@ -179,3 +179,70 @@
     width: 32px;
     height: 20px;
 }
+
+@media (max-width: 480px) {
+    .mails-container {
+        height: 73vh;
+    }
+
+    .mail-item {
+        flex-direction: column;
+        height: 100px;
+        margin-inline-start: 3em;
+        padding-inline-start: 0;
+        overflow-x: hidden;
+        padding-block: 0;
+    }
+
+
+    .mail-item:hover .hover-icons {
+        display: none;
+    }
+
+    .mail-item:hover .mail-sent-at {
+        opacity: 1;
+    }
+
+    .mail-subject {
+        width: 90vw;
+        height: 20px;
+        /* overflow-x: hidden; */
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .mail-from {
+        width: 100vw;
+        padding-inline-end: .5em;
+    }
+
+    .separator {
+        display: none;
+    }
+
+    .mail-content {
+        display: flex;
+        flex-direction: column;
+        padding-inline-start: 3.2em;
+    }
+
+    .mail-body {
+        width: 65vw;
+        height: 20px;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .mail-sent-at {
+        position: relative;
+        margin-left: auto;
+        padding-inline-end: 0;
+        width: fit-content;
+    }
+
+    ::-webkit-scrollbar {
+        width: 0;
+    }
+
+}
