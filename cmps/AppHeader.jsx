@@ -7,7 +7,7 @@ export function AppHeader() {
     return <header className="app-header">
         <Link to="/">
             <article className="app-logo-container">
-                <img className="app-logo" src="./../../assets/imgs/YDLogo.png" alt="Logo" />
+                <img className="app-logo" src="./assets/imgs/YDLogo.png" alt="Logo" />
             </article>
         </Link>
         <div onClick={() => setIsMenuOpen(prevIsMenuOpen => !prevIsMenuOpen)} className="nav-menu">
