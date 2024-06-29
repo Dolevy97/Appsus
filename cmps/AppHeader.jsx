@@ -6,12 +6,14 @@ export function AppHeader() {
 
     return <header className="app-header">
         <Link to="/">
-            <h2 className="logo">Y&D</h2>
+            <article className="app-logo-container">
+                <img className="app-logo" src="./../assets/imgs/YDLogo.png" alt="Logo" />
+            </article>
         </Link>
         <div onClick={() => setIsMenuOpen(prevIsMenuOpen => !prevIsMenuOpen)} className="nav-menu">
             <span className="material-symbols-outlined">menu</span>
         </div>
-        <nav className={isMenuOpen? 'open' : ''}>
+        <nav className={isMenuOpen ? 'open' : ''}>
             <NavLink to="/">Home</NavLink>
             <NavLink to="/mail">Gmail</NavLink>
             <NavLink to="/note">Keep</NavLink>
