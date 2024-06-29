@@ -18,7 +18,8 @@ export const mailService = {
     remove,
     save,
     getEmptyMail,
-    getDefaultFilter
+    getDefaultFilter,
+    getMailFromSearchParams
 }
 
 
@@ -69,6 +70,15 @@ function getEmptyMail() {
 
 function getDefaultFilter() {
     return { txt: '', isRead: undefined, isStarred: undefined, status: undefined, labels: [] }
+}
+
+function getMailFromSearchParams(searchParams) {
+    const defaultMail = getEmptyMail()
+    const emptyMailParams = {}
+    for (const field in defaultMail) {
+        emptyMailParams[field] = searchParams.get(field) || ''
+    }
+    return emptyMailParams
 }
 
 // Private Functions
