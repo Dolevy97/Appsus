@@ -1,12 +1,12 @@
 
 
 
-export function NotePreview({ note}) {
+export function NotePreview({ note }) {
     const { type, info } = note
     let content
 
-function displayCheckBoxPreview() {
-}
+    function displayCheckBoxPreview() {
+    }
 
     if (type === 'NoteTxt') {
         content = (
@@ -22,20 +22,20 @@ function displayCheckBoxPreview() {
                 <h4 className="img-title">{info.title}</h4>
             </div>
         )
-    }  else if (type === 'NoteTodos') {
+    } else if (type === 'NoteTodos') {
         content = (
             <div className="todo-note-preview" style={note.style}>
-                <h4>{info.title}</h4>
+                <h4 className="note-todo-title">{info.title}</h4>
                 <ul>
                     {info.todos.map((todo, idx) => (
                         <li key={idx}>
-                          
-                            <input
-                                type="checkbox"
-                                checked={!!todo.doneAt}
-                                onChange={() => displayCheckBoxPreview()}
-                            />
-                            {todo.txt}
+                            <span className="note-todo">
+                                <input
+                                    type="checkbox"
+                                    checked={!!todo.doneAt}
+                                    onChange={() => displayCheckBoxPreview()}
+                                />
+                                {todo.txt} </span>
                         </li>
                     ))}
                 </ul>
