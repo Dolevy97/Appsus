@@ -14,11 +14,11 @@ export function AppHeader() {
             <span className="material-symbols-outlined">menu</span>
         </div>
         <nav className={isMenuOpen ? 'open' : ''}>
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/mail">Gmail</NavLink>
-            <NavLink to="/note">Keep</NavLink>
-            <NavLink to="/book">Books</NavLink>
-            <NavLink to="/about">About</NavLink>
+            <NavLink onClick={() => setIsMenuOpen(false)} to="/">Home</NavLink>
+            <NavLink onClick={() => setIsMenuOpen(false)} to="/mail">Gmail</NavLink>
+            <NavLink onClick={() => setIsMenuOpen(false)} to="/note">Keep</NavLink>
+            <NavLink onClick={() => setIsMenuOpen(false)} to="/book">Books</NavLink>
+            <NavLink onClick={() => setIsMenuOpen(false)} to="/about">About</NavLink>
         </nav>
     </header>
 }
