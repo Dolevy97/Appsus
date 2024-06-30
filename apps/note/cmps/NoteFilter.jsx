@@ -39,7 +39,7 @@ export function NoteFilter({ onSetFilter, filterBy }) {
   return (
 
     <section className="note-filter-section" >
-      <div className ="note-filter-img">Keep <img src="./../assets/imgs/keep.png" alt="" /> </div>
+      <div className ="note-filter-img">Keep <img src="./assets/imgs/keep.png" alt="" /> </div>
       <div className="note-filter-container">
         <div className="search-icon-note">
           <span className="material-symbols-outlined">search</span>
