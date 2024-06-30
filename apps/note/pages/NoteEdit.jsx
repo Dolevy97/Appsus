@@ -1,6 +1,6 @@
 
 const { Link, useParams, useNavigate } = ReactRouterDOM
-const { useState, useEffect, useRef } = React
+const { useState, useEffect} = React
 
 import { noteService } from "../services/note.service.js"
 import { eventBusService } from '../../../services/event-bus.service.js'

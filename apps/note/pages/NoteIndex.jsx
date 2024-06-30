@@ -9,8 +9,7 @@ import { AddNote } from "../cmps/AddNote.jsx"
 import { NoteEdit } from "../pages/NoteEdit.jsx"
 import { showGmailMsg } from "../../../services/event-bus.service.js"
 
-const { Link, useSearchParams } = ReactRouterDOM
-const { useState, useEffect, useRef } = React
+const { useState, useEffect} = React
 
 export function NoteIndex() {
     const [notes, setNotes] = useState()
@@ -37,17 +36,12 @@ export function NoteIndex() {
         })
     }
 
-    function onSelectNoteId(noteId) {
-        setSelectedBookId(noteId)
-    }
-
     function onRemoveNote(noteId) {
         noteService.remove(noteId).then(() => {
             setNotes((prevNotes) => prevNotes.filter((note) => note.id !== noteId))
             showGmailMsg('Note Deleted Successfully🦔')
         })
     }
-
 
     function onSetFilter(filterBy) {
         setFilterBy({ ...filterBy })
@@ -106,13 +100,11 @@ export function NoteIndex() {
                 />
                 <NoteEdit
                     onRemoveNote={onRemoveNote}
-                    onSelectNoteId={onSelectNoteId}
                     onChangeColor={onChangeColor}
                     onChangeNote={onChangeNote}
                     onSaveNewNote={onSaveNewNote}
                 />
             </React.Fragment>
         </section>
-
     )
 }

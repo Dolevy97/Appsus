@@ -5,9 +5,10 @@ const { Link, useParams, useNavigate } = ReactRouterDOM
 
 
 export function ColorPicker({ onChangeColor }) {
+  const navigate = useNavigate()
 
 
-  const {noteId}= useParams()
+  const { noteId } = useParams()
 
 
 
@@ -33,14 +34,18 @@ export function ColorPicker({ onChangeColor }) {
 
 
   return (
-    <div className={`color-picker ${noteId ? 'icones-display-edit':'icones-display'}`}>
+    <div className={`color-picker ${noteId ? 'icones-display-edit' : 'icones-display'}`}>
       {colors.map((color) => (
         <div
           key={color}
           className={`color-option ${pickedColor === color ? 'selected' : ''}`}
           style={
             { backgroundColor: color }}
-          onClick={(ev) => onColorPickerClick(ev, color) }
+          onClick={(ev) => {
+            onColorPickerClick(ev, color)
+            navigate('/note')
+          }}
+
         ></div>
       ))}
     </div>
