@@ -37,18 +37,19 @@ export function MailPreview({ setEditId, setIsEditing, mail, getFormattedTime, o
         ev.stopPropagation()
         if (mail.removedAt !== null) {
             mailService.remove(mail.id)
-                .then(mail => {
-                    onDeleteMail(mail.id, true)
-                    showGmailMsg(`Conversation moved to Trash.`)
+                .then(onDeleteMail(mail.id, true))
+                .then(() => {
+                    showGmailMsg('Conversation deleted forever.')
                 })
                 .catch(err => console.log('Oh no! err:', err))
+
         } else {
             const now = Math.floor(Date.now() / 1000)
             const newMail = { ...mail, removedAt: now }
             mailService.save(newMail)
                 .then(mail => {
                     onDeleteMail(mail)
-                    showGmailMsg('Conversation deleted forever.')
+                    showGmailMsg(`Conversation moved to Trash.`)
                 })
                 .catch(err => console.log('Oh no! err:', err))
         }
@@ -77,7 +78,7 @@ export function MailPreview({ setEditId, setIsEditing, mail, getFormattedTime, o
     return (
         <div onClick={() => `${mail.createdAt ? onEditDraft(mail.id) : onMoveToMail(mail.id)}`} className={`flex space-between mail-item ${mail.isRead ? 'read' : ''}`}>
             <section className="mail-start flex align-center">
-                {!mail.removedAt && <div title={mail.isStarred? 'Starred' : 'Not starred'} onClick={(onSetStar)}
+                {!mail.removedAt && <div title={mail.isStarred ? 'Starred' : 'Not starred'} onClick={(onSetStar)}
                     className={`material-symbols-outlined mail-star ${isStar}`}>star</div>}
                 {user.email === mail.to && <span title="Sent From" className="mail-from">{mail.from}</span>}
                 {user.email === mail.from && <span title="Sent To" className="mail-from">To: {mail.to}</span>}
