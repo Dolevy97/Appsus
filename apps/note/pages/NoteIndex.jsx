@@ -94,7 +94,6 @@ export function NoteIndex() {
                 <NoteList
                     notes={notes}
                     onRemoveNote={onRemoveNote}
-                    onSelectNoteId={onSelectNoteId}
                     onChangeColor={onChangeColor}
                     onChangeNote={onChangeNote}
                 />
