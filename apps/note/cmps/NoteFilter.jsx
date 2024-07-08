@@ -71,5 +71,5 @@ export function NoteFilter({ onSetFilter, filterBy }) {
        
       </div>
     </section>
-  );
+  )
 }
