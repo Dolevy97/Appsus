@@ -4,7 +4,7 @@
 
     .note-list {
         column-count: 1;
-
+        width: 94%
     }
 
     .note-filter-section {
@@ -14,7 +14,7 @@
     }
 
     .note-list-container {
-        width: 100%;
+        width: 94%
     }
 
     .note-filter-img {
